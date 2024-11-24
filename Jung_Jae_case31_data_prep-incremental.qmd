@@ -1,6 +1,6 @@
 ---
-title: "Project with Case 31"
-subtitle: "Data Preparation"
+title: "Data Preparation for Case 31"
+subtitle: "Incremental Version"
 author: "Jae Jung"
 institute: "IBM 3302, Cal Poly Pomona"
 date: "`r Sys.Date()`"
@@ -140,7 +140,7 @@ data_clean |>
 ```
 
 ------------------------------------------------------------------------
+
 > 11/25/2024
 
-- We will resume right here on Monday 11/25/2024. 
-
+-   We will resume right here on Monday 11/25/2024.
