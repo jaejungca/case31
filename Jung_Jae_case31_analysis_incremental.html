@@ -444,8 +444,8 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Jae Jung">
-  <meta name="dcterms.date" content="2024-11-24">
-  <title>Data Preparation for Case 31</title>
+  <meta name="dcterms.date" content="2024-11-27">
+  <title>Data Analysis for Case 31</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -1210,7 +1210,7 @@ margin-right: 0; }
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Data Preparation for Case 31</h1>
+  <h1 class="title">Data Analysis for Case 31</h1>
   <p class="subtitle">Incremental Version</p>
 
 <div class="quarto-title-authors">
@@ -1224,14 +1224,15 @@ Jae Jung
     </div>
 </div>
 
-  <p class="date">2024-11-24</p>
+  <p class="date">2024-11-27</p>
 </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#/libraries" id="/toc-libraries"><span class="header-section-number">1</span> Libraries</a></li>
-<li><a href="#/setting-up-data" id="/toc-setting-up-data"><span class="header-section-number">2</span> Setting Up Data</a></li>
-<li><a href="#/data-preparation" id="/toc-data-preparation"><span class="header-section-number">3</span> Data Preparation</a></li>
+<li><a href="#/setting-up-data" id="/toc-setting-up-data"><span class="header-section-number">2</span> Setting up Data</a></li>
+<li><a href="#/research-questions-and-hypotheses" id="/toc-research-questions-and-hypotheses"><span class="header-section-number">3</span> Research Questions and Hypotheses</a></li>
+<li><a href="#/r1-background-coloraquamarine" id="/toc-r1-background-coloraquamarine"><span class="header-section-number">4</span> R1 {background-color=“aquamarine”}</a></li>
 </ul>
 </nav>
 </section>
@@ -1243,31 +1244,28 @@ Jae Jung
 <section id="loading-common-packages" class="slide level2" data-number="1.1">
 <h2><span class="header-section-number">1.1</span> Loading common packages</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href></a><span class="co"># install.packages(&quot;haven&quot;)</span></span>
-<span id="cb1-2"><a href></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href></a><span class="fu">library</span>(haven) </span>
-<span id="cb1-4"><a href></a><span class="fu">library</span>(labelled) </span>
-<span id="cb1-5"><a href></a><span class="fu">library</span>(janitor) </span>
-<span id="cb1-6"><a href></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb1-7"><a href></a><span class="fu">library</span>(psych)</span>
-<span id="cb1-8"><a href></a><span class="fu">set_theme</span>(<span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href></a><span class="fu">library</span>(haven) </span>
+<span id="cb1-3"><a href></a><span class="fu">library</span>(labelled) </span>
+<span id="cb1-4"><a href></a><span class="fu">library</span>(janitor) </span>
+<span id="cb1-5"><a href></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb1-6"><a href></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-7"><a href></a><span class="fu">set_theme</span>(<span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
 <section id="setting-up-data" class="title-slide slide level1 center" data-background-color="aquamarine" data-number="2">
-<h1><span class="header-section-number">2</span> Setting Up Data</h1>
+<h1><span class="header-section-number">2</span> Setting up Data</h1>
 
 </section>
-<section id="reading-spss-data" class="slide level2 smaller" data-number="2.1">
-<h2><span class="header-section-number">2.1</span> Reading SPSS data</h2>
+<section id="reading-the-prepped-spss-file-from-the-preparation-stage" class="slide level2" data-number="2.1">
+<h2><span class="header-section-number">2.1</span> Reading the prepped SPSS file from the preparation stage</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href></a>data <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;Case 31 Data_efcu_1.sav&quot;</span>)</span>
-<span id="cb2-2"><a href></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
-<span id="cb2-3"><a href></a>  <span class="fu">clean_names</span>()</span>
-<span id="cb2-4"><a href></a></span>
-<span id="cb2-5"><a href></a><span class="co"># generate data dictionary</span></span>
-<span id="cb2-6"><a href></a>data <span class="sc">|&gt;</span></span>
-<span id="cb2-7"><a href></a>  <span class="fu">view_df</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href></a>data <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;Case 31 Data_efcu_Prepped.sav&quot;</span>)</span>
+<span id="cb2-2"><a href></a></span>
+<span id="cb2-3"><a href></a><span class="co"># generaet data dictionary</span></span>
+<span id="cb2-4"><a href></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb2-5"><a href></a>  <span class="fu">view_df</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output-display">
@@ -1293,35 +1291,59 @@ Jae Jung
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">q3</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Employees are Courteous</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3<br>
+4<br>
 5</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Strongly Disagree<br>
+Disagree<br>
+Uncertain<br>
+Agree<br>
 Strongly Agree</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">2</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q4</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">employees are helpful</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Employees are helpful</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3<br>
+4<br>
 5</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Strongly Disagree<br>
+Disagree<br>
+Uncertain<br>
+Agree<br>
 Strongly Agree</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">3</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">q5</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">employees are professional</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Employees are professional</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3<br>
+4<br>
 5</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Strongly Disagree<br>
+Disagree<br>
+Uncertain<br>
+Agree<br>
 Strongly Agree</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">4</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q6</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">employees are available</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Employees are available</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3<br>
+4<br>
 5</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Strongly Disagree<br>
+Disagree<br>
+Uncertain<br>
+Agree<br>
 Strongly Agree</td>
 </tr>
 <tr class="even">
@@ -1544,8 +1566,14 @@ No</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q30</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">CU rates lower</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3<br>
+4<br>
 5</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Strongly Disagree<br>
+Disagree<br>
+Uncertain<br>
+Agree<br>
 Strongly Agree</td>
 </tr>
 <tr class="even">
@@ -1553,8 +1581,14 @@ Strongly Agree</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">q31</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">CU confidential</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3<br>
+4<br>
 5</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Strongly Disagree<br>
+Disagree<br>
+Uncertain<br>
+Agree<br>
 Strongly Agree</td>
 </tr>
 <tr class="odd">
@@ -1562,8 +1596,14 @@ Strongly Agree</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q32</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">CU is prompt</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3<br>
+4<br>
 5</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Strongly Disagree<br>
+Disagree<br>
+Uncertain<br>
+Agree<br>
 Strongly Agree</td>
 </tr>
 <tr class="even">
@@ -1571,8 +1611,14 @@ Strongly Agree</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">q33</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">CU meets needs of members</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3<br>
+4<br>
 5</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Strongly Disagree<br>
+Disagree<br>
+Uncertain<br>
+Agree<br>
 Strongly Agree</td>
 </tr>
 <tr class="odd">
@@ -1580,8 +1626,14 @@ Strongly Agree</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q34</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">CU loan applications simple</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3<br>
+4<br>
 5</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Strongly Disagree<br>
+Disagree<br>
+Uncertain<br>
+Agree<br>
 Strongly Agree</td>
 </tr>
 <tr class="even">
@@ -1622,147 +1674,338 @@ no</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;"></td>
 <td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;"><em>range: 2.8-5.0</em></td>
 </tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">35</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">at_emp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top;"><em>range: 2.8-5.0</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">36</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q7r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Savings rates</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3<br>
+4<br>
+5</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Very Low<br>
+Low<br>
+Average<br>
+High<br>
+Very High</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">37</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">q8r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Fund borrowing rates</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3<br>
+4<br>
+5</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Very Low<br>
+Low<br>
+Average<br>
+High<br>
+Very High</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">38</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q9r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Statement Frequency</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3<br>
+4<br>
+5</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Never<br>
+Not Often Enough<br>
+About Right<br>
+Very Often<br>
+Too Often</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">39</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">q10r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Statement Accuracy</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3<br>
+4</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Poor<br>
+Fair<br>
+Good<br>
+Excellent</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">40</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q13r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Regular share account</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">41</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">q14r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Special subaccounts</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">42</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q15r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Christmas club account</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">43</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">q16r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">IRA</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">44</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q17r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Master credit card</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">45</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">q18r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Signature loans</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">46</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q19r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">New car loans</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">47</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">q20r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Late model car loans</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">48</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q21r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Older model car loans</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">49</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">q22r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Household goods loans</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">50</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q23r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Recreational loans</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">51</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">q24r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Share collateralized loan</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">52</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q25r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">IRA loans</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">53</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">q26r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Line of credit loans</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1<br>
+2<br>
+3</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Unaware<br>
+Aware but Have Not Used<br>
+Aware and Have Used</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">54</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">q37r</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">1<br>
+2<br>
+3<br>
+4<br>
+5</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; background-color: #eeeeee;">Very Poor<br>
+Poor<br>
+Average<br>
+Good<br>
+Excellent</td>
+</tr>
 </tbody>
 </table>
 </div>
 </div>
 </section></section>
 <section>
-<section id="data-preparation" class="title-slide slide level1 center" data-background-color="aquamarine" data-number="3">
-<h1><span class="header-section-number">3</span> Data Preparation</h1>
+<section id="research-questions-and-hypotheses" class="title-slide slide level1 center" data-background-color="aquamarine" data-number="3">
+<h1><span class="header-section-number">3</span> Research Questions and Hypotheses</h1>
 
 </section>
-<section id="attitudes-towards-employee-proficiency" class="slide level2 smaller" data-number="3.1">
-<h2><span class="header-section-number">3.1</span> Attitudes towards Employee Proficiency</h2>
-<h3 data-number="3.1.1" id="q3"><span class="header-section-number">3.1.1</span> q3</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href></a>data <span class="sc">|&gt;</span> <span class="co"># ctr + shift + M</span></span>
-<span id="cb3-2"><a href></a>  <span class="fu">count</span>(q3) <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> n<span class="sc">/</span><span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 3
-  q3                     n percent
-  &lt;dbl+lbl&gt;          &lt;int&gt;   &lt;dbl&gt;
-1 3                     13   0.102
-2 4                     57   0.445
-3 5 [Strongly Agree]    58   0.453</code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
+<section id="research-questions" class="slide level2" data-number="3.1">
+<h2><span class="header-section-number">3.1</span> Research Questions</h2>
+<pre><code>R1: Why do people join the Credit Union?
 
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href></a>data_clean <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q3 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb5-3"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb5-4"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb5-5"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb5-6"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb5-7"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q3 =</span> <span class="st">&quot;Employees are Courteous&quot;</span>)</span>
-<span id="cb5-8"><a href></a></span>
-<span id="cb5-9"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb5-10"><a href></a>  <span class="fu">select</span>(q3) <span class="sc">|&gt;</span> </span>
-<span id="cb5-11"><a href></a>  <span class="fu">var_label</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$q3
-[1] &quot;Employees are Courteous&quot;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href></a>  <span class="fu">select</span>(q3) <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a href></a>  <span class="fu">val_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$q3
-Strongly Disagree          Disagree         Uncertain             Agree 
-                1                 2                 3                 4 
-   Strongly Agree 
-                5 </code></pre>
-</div>
-</div>
+R2: Why do members use other financial institutions when they need to borrow funds? 
+
+R3: What are the members’ attitudes and beliefs about the proficiencies of credit union employees?
+
+R4: Are there any perceived differences on attitude towards employee proficiencies, awareness of services, and operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
+
+R5: How well are the members aware of the services offered by the credit union?
+
+R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?</code></pre>
+</section>
+<section id="hypotheses" class="slide level2" data-number="3.2">
+<h2><span class="header-section-number">3.2</span> Hypotheses</h2>
+<h3 data-number="3.2.1" id="h1---h3"><span class="header-section-number">3.2.1</span> H1 - H3</h3>
+<pre><code>H1: Members’ awareness of the regular share accounts will influence their opinions on the adequacy of financial services in meeting members’ needs.
+
+H2: Members will not be different in their opinion on CU’s loan rate (Q8r) and the degree to which they agree that CU’s loan rate is lower than competitors (Q30).
+
+H3a: There will be interaction effect between the current loan use and location of residence on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs.
+
+H3b: Test H2a controlling for the impact of attitudes toward employee proficiency.</code></pre>
 </section>
 <section class="slide level2">
 
-<h3 class="smaller" data-number="3.1.2" id="q4"><span class="header-section-number">3.1.2</span> q4</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href></a>data_clean <span class="ot">&lt;-</span>  data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q4 =</span> <span class="st">&quot;Employees are helpful&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb9-3"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q4 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb9-4"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb9-5"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb9-6"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb9-7"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>)) </span>
-<span id="cb9-8"><a href></a></span>
-<span id="cb9-9"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb9-10"><a href></a>  <span class="fu">select</span>(q4) <span class="sc">|&gt;</span></span>
-<span id="cb9-11"><a href></a>  <span class="fu">var_label</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$q4
-[1] &quot;Employees are helpful&quot;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href></a>  <span class="fu">select</span>(q4) <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href></a>  <span class="fu">val_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$q4
-Strongly Disagree          Disagree         Uncertain             Agree 
-                1                 2                 3                 4 
-   Strongly Agree 
-                5 </code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
+<h3 data-number="3.2.2" id="h4-h5"><span class="header-section-number">3.2.2</span> H4 &amp; H5</h3>
+<pre><code>H4: Compared with the members who have a loan, those members who don’t have a loan currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions.
 
-<h3 data-number="3.1.3" id="q5-and-q6"><span class="header-section-number">3.1.3</span> q5 and q6</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q5 =</span> <span class="st">&quot;Employees are professional&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-3"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q5 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb13-4"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb13-5"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb13-6"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb13-7"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb13-8"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q6 =</span> <span class="st">&quot;Employees are available&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-9"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q6 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb13-10"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb13-11"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb13-12"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb13-13"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span>
-<span id="cb13-14"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb13-15"><a href></a>  <span class="fu">select</span>(q5, q6) <span class="sc">|&gt;</span></span>
-<span id="cb13-16"><a href></a>  <span class="fu">var_label</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$q5
-[1] &quot;Employees are professional&quot;
+H5a: Member belief about CU keeps personal financial information confidential will positively influence the overall attitude toward credit union’s operational efficiency.
 
-$q6
-[1] &quot;Employees are available&quot;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href></a>  <span class="fu">select</span>(q5, q6) <span class="sc">|&gt;</span> </span>
-<span id="cb15-3"><a href></a>  <span class="fu">val_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$q5
-Strongly Disagree          Disagree         Uncertain             Agree 
-                1                 2                 3                 4 
-   Strongly Agree 
-                5 
+H5b: Loan application processing promptness will positively influence the overall attitude toward credit union’s operational efficiency.
 
-$q6
-Strongly Disagree          Disagree         Uncertain             Agree 
-                1                 2                 3                 4 
-   Strongly Agree 
-                5 </code></pre>
-</div>
-</div>
-</section>
-<section class="slide level2">
+H5c: Member satisfaction with level of financial services in meeting needs will positively influence the overall attitude toward credit union’s operational efficiency.
 
-<blockquote>
-<p>11/25/2024</p>
-</blockquote>
+H5d: Loan application simplicity and easiness will positively influence the overall attitude toward credit union’s operational efficiency.</code></pre>
+</section></section>
+<section>
+<section id="r1-background-coloraquamarine" class="title-slide slide level1 smaller center" data-number="4">
+<h1><span class="header-section-number">4</span> R1 {background-color=“aquamarine”}</h1>
+<p>R1: Why do people join the Credit Union?</p>
 <ul>
-<li>We will resume right here on Monday 11/25/2024.</li>
+<li>Constructs and roles: reasons for why people join the credit uniion</li>
+<li>Operationalization: q7r (Savings rates)</li>
+<li>Scale:
+<ul>
+<li>1-5 point, Likert-type scale</li>
+</ul></li>
+<li>Statistics:
+<ul>
+<li>Descriptive statistics, followed by one sample t-test</li>
+</ul></li>
 </ul>
+</section>
+<section id="descriptive-statistics" class="slide level2" data-number="4.1">
+<h2><span class="header-section-number">4.1</span> Descriptive Statistics</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href></a>  <span class="fu">count</span>(q7r) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href></a>  <span class="fu">mutate</span>(<span class="at">percent =</span> n<span class="sc">/</span><span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  q7r               n percent
+  &lt;dbl+lbl&gt;     &lt;int&gt;   &lt;dbl&gt;
+1  1 [Very Low]     1 0.00781
+2  2 [Low]         12 0.0938 
+3  3 [Average]     83 0.648  
+4  4 [High]        22 0.172  
+5 NA               10 0.0781 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href></a><span class="fu">describe</span>(data<span class="sc">$</span>q7r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   vars   n mean   sd median trimmed mad min max range  skew kurtosis   se
+X1    1 118 3.07 0.57      3    3.07   0   1   4     3 -0.26     1.18 0.05</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href></a>data <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(q7r)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img role="img" data-src="data:image/png;base64,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" width="960" class="r-stretch"></section>
+<section id="one-sample-t-test" class="slide level2" data-number="4.2">
+<h2><span class="header-section-number">4.2</span> One-sample t-test</h2>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p>Case 31 Project</p>

@@ -1,0 +1,138 @@
+---
+title: "Data Analysis for Case 31"
+subtitle: "Incremental Version"
+author: "Jae Jung"
+institute: "IBM 3302, Cal Poly Pomona"
+date: "`r Sys.Date()`"
+format: 
+  revealjs:
+    footer: Case 31 Project
+    transition: slide
+    transition-speed: default
+    toc: true
+    toc-depth: 1
+    slide-number: true
+    scrollable: true
+    smaller: true
+    code-fold: false
+    code-overflow: wrap
+    code-copy: true
+    number-sections: true
+    embed-resources: true
+    self-contained-math: true
+editor: visual
+execute: 
+  echo: true
+  freeze: auto
+---
+
+# Libraries {background-color="aquamarine"}
+
+## Loading common packages
+
+```{r}
+library(tidyverse)
+library(haven) 
+library(labelled) 
+library(janitor) 
+library(sjPlot)
+library(psych)
+set_theme(theme_minimal())
+```
+
+# Setting up Data {background-color="aquamarine"}
+
+## Reading the prepped SPSS file from the preparation stage
+
+```{r}
+#| output-location: fragment
+
+data <- read_spss("Case 31 Data_efcu_Prepped.sav")
+
+# generaet data dictionary
+data |> 
+  view_df()
+```
+
+# Research Questions and Hypotheses {background-color="aquamarine"}
+
+## Research Questions
+
+```         
+R1: Why do people join the Credit Union?
+
+R2: Why do members use other financial institutions when they need to borrow funds? 
+
+R3: What are the members’ attitudes and beliefs about the proficiencies of credit union employees?
+
+R4: Are there any perceived differences on attitude towards employee proficiencies, awareness of services, and operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
+
+R5: How well are the members aware of the services offered by the credit union?
+
+R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?
+```
+
+## Hypotheses
+
+### H1 - H3
+
+```         
+H1: Members’ awareness of the regular share accounts will influence their opinions on the adequacy of financial services in meeting members’ needs.
+
+H2: Members will not be different in their opinion on CU’s loan rate (Q8r) and the degree to which they agree that CU’s loan rate is lower than competitors (Q30).
+
+H3a: There will be interaction effect between the current loan use and location of residence on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs.
+
+H3b: Test H2a controlling for the impact of attitudes toward employee proficiency.
+```
+
+---
+
+### H4 & H5
+
+```         
+H4: Compared with the members who have a loan, those members who don’t have a loan currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions.
+
+H5a: Member belief about CU keeps personal financial information confidential will positively influence the overall attitude toward credit union’s operational efficiency.
+
+H5b: Loan application processing promptness will positively influence the overall attitude toward credit union’s operational efficiency.
+
+H5c: Member satisfaction with level of financial services in meeting needs will positively influence the overall attitude toward credit union’s operational efficiency.
+
+H5d: Loan application simplicity and easiness will positively influence the overall attitude toward credit union’s operational efficiency.
+```
+
+# R1 {background-color="aquamarine"} {.smaller}
+
+R1: Why do people join the Credit Union?
+
+- Constructs and roles: reasons for why people join the credit uniion
+- Operationalization:
+  q7r (Savings rates)
+- Scale:
+  - 1-5 point, Likert-type scale
+- Statistics:
+  - Descriptive statistics, followed by one sample t-test
+  
+## Descriptive Statistics
+
+```{r}
+data |> 
+  count(q7r) |> 
+  mutate(percent = n/sum(n))
+
+describe(data$q7r)
+```
+
+---
+
+```{r}
+data |> 
+  ggplot(aes(q7r)) +
+  geom_histogram()
+```
+
+
+## One-sample t-test
+
+
