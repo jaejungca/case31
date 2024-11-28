@@ -145,9 +145,10 @@ data_clean |>
 
 ```{r}
 #| output-location: fragment
-library(psych)
+
 data_clean |> 
-  select(q3:q6) |> alpha() #.87
+  select(q3:q6) |> 
+  alpha() #.87: cutoff is .70
 ```
 
 ------------------------------------------------------------------------
@@ -155,17 +156,10 @@ data_clean |>
 ### factor analysis
 
 ```{r}
-fa_at_emp <- data_clean |> 
-  select(q3:q6) |> 
-  fa(nfactors = 1, rotate = "none") 
-
-print(fa_at_emp)
-
-fa.diagram(fa_at_emp)
-
 data_clean |> 
   select(q3:q6) |> 
-  scree()
+  fa(nfactors = 1, rotate = "none") |> 
+  fa.diagram()
 
 ```
 
@@ -174,15 +168,23 @@ data_clean |>
 ### PCA (Principle Component Analysis)
 
 ```{r}
-pca_result <- data_clean |>
+data_clean |>
   select(q3:q6) |> 
-  prcomp(scale. = TRUE) 
-
-# % of variance explained by the first factor
-summary(pca_result)$importance[2,1] * 100
+  prcomp(scale. = TRUE) |> 
+  summary() # % of variance explained by the first factor
 ```
 
 ------------------------------------------------------------------------
+
+### Scree plot
+
+```{r}
+data_clean |> 
+  select(q3:q6) |> 
+  scree()
+```
+
+---
 
 ### Creating a composite scale
 
@@ -192,6 +194,7 @@ summary(pca_result)$importance[2,1] * 100
 data_clean <- data_clean |> 
   mutate(at_emp = rowMeans(across(q3:q6), na.rm = TRUE)) 
 
+# from psych: descriptive statistics
 describe(data_clean$at_emp)
 
 ```
@@ -638,8 +641,6 @@ data_clean <- data_clean |>
 data_clean |> count(q37r)
 ```
 
-
-
 # Renaming Clean Data
 
 ```{r}
@@ -656,10 +657,10 @@ data_preped |>
   write_sav("Case 31 Data_efcu_Prepped.sav")
 ```
 
-
 # Appendix
 
 ## alternative way using select(): in this case, we need to use anonymous function
+
 ```{r}
 #| eval: false
 #| echo: true
