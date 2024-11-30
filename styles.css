@@ -1,0 +1,48 @@
+
+/* Apply a yellow background to first-level headings (h1) */
+h1 {
+    background-color: yellow; /* Yellow for first-level headings */
+    padding: 10px; /* Optional: Add padding for better appearance */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    margin: 0; /* Remove default margin for a cleaner look */
+}
+
+h2 {
+    background-color: lightgreen; /* Yellow for first-level headings */
+    padding: 10px; /* Optional: Add padding for better appearance */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    margin: 0; /* Remove default margin for a cleaner look */
+}
+
+
+h3 {
+    background-color: #ccffdd; /* Yellow for first-level headings */
+    padding: 10px; /* Optional: Add padding for better appearance */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    margin: 0; /* Remove default margin for a cleaner look */
+}
+
+
+h4 {
+    background-color: #eaece5; /* Yellow for first-level headings */
+    padding: 10px; /* Optional: Add padding for better appearance */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    margin: 0; /* Remove default margin for a cleaner look */
+}
+
+
+
+/* Define a custom style for larger callouts */
+.large-callout {
+    font-size: 1.5em; /* Adjust the size as needed */
+}
+
+/* Define a custom style for medium text */
+.medium-text {
+  font-size: 24px;
+}
+
+/* Define a custom style for small text */
+.small-text {
+  font-size: 14px;
+}

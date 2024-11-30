@@ -1,0 +1,694 @@
+---
+title: "Data Analysis for Case 31"
+subtitle: "Sample Presentation"
+author: "Jae Jung"
+institute: "IBM 3302, Cal Poly Pomona"
+date: "Nov. 29, 2024"
+format: 
+  revealjs:
+    theme: serif
+    footer: Sample Presentation for Case 31 Project
+    logo: ccidm-email.png
+    transition: slide
+    transition-speed: default
+    incremental: false
+    toc: true
+    toc-depth: 1
+    slide-number: false
+    scrollable: true
+    smaller: true
+    title-slide-attributes: 
+      data-background-image: Purple and White.gif
+    code-fold: false
+    code-overflow: wrap
+    code-copy: true
+    number-sections: false
+    number-depth: 5
+    embed-resources: true
+    self-contained-math: true
+    css: styles.css
+editor: visual
+execute: 
+  echo: true
+  freeze: auto
+---
+
+# Introduction {background-color="#a13c65"}
+
+- Employees Federal Union (EFCU) is the credit unio for a Fortune 500 firm.
+
+## Problem Definition
+
+- CU has a large amount of surplus fund. 
+- It has also experienced a lower loan/share ratio than otehr credit unions of similar size. 
+- Average earnings on its investments have declined and profit margins are squeezed
+ 
+## Research Objectives
+
+1. To determine why its members are not borrowing money from the credit union. 
+2. To determine what the members' attitudes were toward the overall management and operations of the credit union. 
+
+## Significance of Research
+
+- The findings from the research will provide critical inforamtion that the managment can use to increase loan/ratio rate and increase profit margin.
+- Thus, the the research is critical in turning around the company's struggling financial status.
+
+# Background and Research Questions/Hypotheses {background-color="#a13c65"}
+
+## Information gathering
+
+::: {.incremental}
+- To address the research objectives, a research firm was hired. 
+- The researchers from the consulting company interviewed the management and some customers.
+- Based on the qualitative research and the researchers' own experience, they came up with some research questions and hypotheses.
+:::
+
+## Research Questions
+
+**R1**: Why do people join the Credit Union?
+
+R2: Why do members use other financial institutions when they need to borrow funds? 
+
+
+. . . 
+
+R3: What are the members’ attitudes and beliefs about the proficiencies of credit union employees?
+
+R4: Are there any perceived differences on attitude towards employee proficiencies, awareness of services, and operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
+
+
+. . . 
+
+R5: How well are the members aware of the services offered by the credit union?
+
+R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?
+
+
+## Hypotheses
+
+### H1 - H3
+
+::: {.medium-text}        
+H1: Members’ `awareness of the regular share accounts` will influence their opinions on the `adequacy of financial services` in meeting members’ needs.
+
+H2: Members will not be different in their opinion on CU’s loan rate (Q8r) and the degree to which they agree that CU’s loan rate is lower than competitors (Q30).
+
+H3a: There will be interaction effect between the current loan use and location of residence on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs.
+
+H3b: Test H2a controlling for the impact of attitudes toward employee proficiency.
+:::
+
+---
+
+### H4 & H5
+
+::: {.medium-text}        
+H4: Compared with the members who have a loan, [those members who don’t have a loan]{style="color:red;"} currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions.
+
+H5a: Member belief about CU keeps personal financial information confidential will positively influence the overall attitude toward credit union’s operational efficiency.
+
+H5b: Loan application processing promptness will positively influence the overall attitude toward credit union’s operational efficiency.
+
+H5c: Member satisfaction with level of financial services in meeting needs will positively influence the overall attitude toward credit union’s operational efficiency.
+
+H5d: Loan application simplicity and easiness will positively influence the overall attitude toward credit union’s operational efficiency.
+:::
+
+# `r fontawesome::fa("laptop-code", "white")` Methods {background-color="#447099"}
+
+## Research Design
+
+- A `mail survey` was used due to the following reasons:
+  - CU membership is widely dispersed geographically
+  - Low cost
+  - Sensitive questions needs anonymity to induce a candid response
+  - Long time needed for mail survey is not an issue for the board.
+
+. . .
+
+- Questions were mostly `structured` with several key questions asked in `unstructured` format
+
+. . .
+
+- `Likert-type` scales were used for attitudes measurements.
+
+## Population and Sampling
+
+- `Population`: All current members of the EFCU.
+- `Sampling frame`: 
+  - A list of members and their addresses is available.
+  - 3,531 members as of January 31 for trial balance listing of the EFCU membership
+
+. . .
+
+- `Sampling method`: _Simple random sampling_
+  - `Sample size`: 300
+    - Calculation: was done using estimated` population standard deviation` based on responses of 15 members to Q37.
+    - 300 random numbers were generated within the range of 1 to 3,531 members.
+    - Each random number was matched with the corresponding number in the sampling frame.
+
+## Data Collection and coding
+
+:::{.incremental}
+- Preparatoin of all copies of survey and mailing them were handled by the CU's staff members.
+- The structured questions in the survey were coded based on the classifications established by researchers
+- Questionnaire responses were examined for the integrity, and a few responses of low quality were excluded
+:::
+
+## Data Preparation
+
+- Used R/RStudio for wrangling and visualization
+
+. . .
+
+::: {.incremental}
+- Data `wrangling and preparation` was done separately. Specifically, we did the following
+  - `Reverse coded`
+  - Removed non-responses (`NA`)
+  - Removed `Not Applicable responses` from otherwise Likert-type interval scales to make them suitable for continuous variables (e.g., 1-5 piont scale)
+  - Renamed variable names
+  - Relabeled variable labels and value labels if needed.
+  - The prepared data is saved as `Case 31 Data_efcu_Prepped.sav`, which will be used for data analysis.
+:::
+
+```{r}
+#| echo: false
+
+### Libraries 
+#### Loading common packages
+library(tidyverse)
+library(haven) 
+library(labelled) 
+library(janitor) 
+library(sjPlot)
+library(psych)
+set_theme(theme_minimal())
+```
+
+```{r}
+#| echo: false
+#| output: false
+
+### Reading data
+data <- read_spss("Case 31 Data_efcu_Prepped.sav")
+dim(data)
+ncol(data)
+nrow(data)
+
+```
+
+
+## Variables in the data
+
+- Number of variables: `r ncol(data)`
+
+::: {style="font-size: 14px;"}
+```{r}
+#| echo: false
+
+# generate data dictionary
+data |> 
+  view_df()
+```
+:::
+
+
+## Sample Characteristics
+
+```{r}
+#| echo: false
+#| output: false
+
+pct_headqrt <- data |> 
+  count(q38) |> 
+  mutate(percent = n/sum(n)) |> 
+  filter(q38 == 1) |> 
+  select(percent)
+```
+
+- Number of participants: `r nrow(data)`
+- % of the participants who live in the `headquarter area` vs. `non-headquarter area`: ``r round(pct_headqrt*100, 1)`%` vs. ``r round((1-pct_headqrt)*100, 1)`%` .
+- No demographic variables are available on the survey
+  - Gender
+  - Ethnicity/Race
+  - Income
+  - Education
+
+
+## Measures
+
+- Refer to the Construct and Measurement Table.
+- All constructs, operationalization, and scales will be provided later.
+
+# `r fontawesome::fa("laptop-code", "white")` Analysis and Results {background-color="#447099"}
+
+- Used R for wrangling and modeling
+
+
+# Addressing R1 {background-color="aquamarine"} 
+
+**R1: Why do people join the Credit Union?**
+
+- `Constructs and roles`: reasons for why people join the credit uniion
+- `Operationalization`:
+  q7r (Savings rates)
+- `Scales:`
+  - 1-5 point, Likert-type scale
+- `Statistics to be used`:
+  - Descriptive statistics, followed by one sample t-test
+  
+## Descriptive Statistics
+
+```{r}
+data |> 
+  count(q7r) |> 
+  mutate(percent = n/sum(n))
+
+describe(data$q7r)
+```
+
+---
+
+```{r}
+data |> 
+  ggplot(aes(q7r)) +
+  geom_histogram()
+```
+
+---
+
+> W15-1: 12/2/2024
+
+## one-sample t-test
+
+```{r}
+#| output-location: fragment
+
+data |> 
+  t.test(q7r ~ 1, mu = 3, data = _)
+```
+
+------------------------------------------------------------------------
+
+::: {.callout-note .large-callout}
+## Insights about R1
+
+- The majority of the survey participants (`65%`) think that the savings rate the CU offers is average.
+- The **`sample mean`** is `3.07`, which is not statistically different from 3 ("average") (_p_ > .10).
+:::
+
+# Addressing R2 {background-color="aquamarine"}
+
+R2: Why do members use other financial institutions when they need to borrow funds?
+
+# Addressing R3 {background-color="aquamarine"}
+
+R3: What are the members’ attitudes and beliefs about the proficiency of credit union employees?
+
+-   Constructs and roles: Attitudes toward employee proficiencies
+-   Operationalization:
+    -   q3, q4, q5, q6 --\> at_emp
+-   Scale: interval scale: 1-5 point, Likert-type scale
+-   Statistics:
+    -   Descriptive statistics
+    -   Reliabilty/factor analysis,
+    -   one-sample t-test
+
+## Descriptive Statistics
+
+```{r}
+#| output-location: fragment
+describe(data$at_emp)
+```
+
+------------------------------------------------------------------------
+
+### Histogram
+
+```{r}
+#| output-location: slide
+data |> 
+  ggplot(aes(at_emp)) +
+  geom_histogram(binwidth = 0.5, color = "black", fill = "lightblue") +
+  geom_vline(aes(xintercept = mean(at_emp, na.rm = TRUE)),
+             color = "red", linetype = "dashed", size = 1) +
+  geom_text(aes(x = mean(at_emp, na.rm = TRUE), y = 30, 
+                label = paste0("Mean = ", round(mean(at_emp), 2))),
+            color = "red", angle = 90, vjust = -0.5, hjust = 2.2) +
+  labs(title = "Histogram of Employee Proficiencies with Mean Line",
+       x = "Employee Prociency",
+       y = "Count") +
+  scale_x_continuous(expand = c(0,0), limits = c(0, NA))
+  
+```
+
+## Reliability/factor analysis
+
+-   We already looked at reliability and unidimensionality.
+-   The four items are highly representative of the latent construct.
+-   Therefore, we created a compositie index and use it
+
+## one-sample t-test
+
+```{r}
+#| output-location: fragment
+data |> 
+  t.test(at_emp ~ 1, mu = 4, data = _)
+```
+
+------------------------------------------------------------------------
+
+::: {.callout-note .large-callout}
+## Summary insights about R3
+
+Participants perceived Employee proficiency is 4.21 on average out of 5.0 and is greater than 4.0 ("Agree")
+:::
+
+# Addressing R4 {background-color="aquamarine"}
+
+R4: Are there any perceived differences on (a) attitude towards employee proficiencies, (b) awareness of services, and (c) operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
+
+## R4a Data Analysis Overview
+
+-   R4a: Are there any perceived differences on attitude towards employee proficiencies between members who live in the area of the firm’s headquarters and members who live elsewhere?
+
+```         
+- Constructs and roles: 
+  - Member residence: IV
+  - Attitudes toward employee proficiency: DV 
+- Operationalization: 
+  - q38
+  - at_emp
+- Scale: 
+  - Nominal scale: 
+  - interval scale: 1-5 point, Likert-type scale
+- Statistics: 
+  - Descriptive statistics, followed by independent samples t-test
+```
+
+------------------------------------------------------------------------
+
+### Descriptives
+
+#### Boxplot
+
+```{r}
+#| output-location: fragment
+data |> 
+  mutate(q38 = haven::as_factor(q38)) |> 
+  ggplot(aes(q38, at_emp, fill = q38)) +
+  geom_boxplot() +
+  labs(x = "Live in HQ Area",
+       y = "Attitudes toward Employee Proficiency",
+       title = "Does Employee Proficiency differ by where customers live?") +
+  theme(legend.position = "none")
+
+```
+
+------------------------------------------------------------------------
+
+#### Barplot
+
+```{r}
+#| output-location: slide
+data |> 
+  mutate(q38 = haven::as_factor(q38)) |> 
+  group_by(q38) |> 
+  summarize(mean = mean(at_emp, na.rm = TRUE)) |> 
+  ggplot(aes(q38, mean, fill = q38)) +
+  geom_col() +
+  labs(x = "Live in HQ Area",
+       y = "Attitudes toward Employee Proficiency",
+       title = "Does Employee Proficiency differ by where customers live?") +
+  theme(legend.position = "none")
+```
+
+------------------------------------------------------------------------
+
+### Two independent sample t-test
+
+```{r}
+# check for equal variance
+library(car)
+
+data |> 
+  mutate(q38 = haven::as_factor(q38)) |> 
+  leveneTest(at_emp ~ q38, data = _)
+
+data |> 
+  mutate(q38 = haven::as_factor(q38)) |> 
+  var.test(at_emp ~ q38, data = _)
+
+# t.test: assuming var are equal
+data |> 
+  t.test(at_emp ~ q38, data = _, var.equal = TRUE) 
+```
+
+------------------------------------------------------------------------
+
+::: callout-note
+### Summary insights about H4a
+
+The group mean value on employee proficiency for customers who live in HQ and those who live elsewhere are not statistically different.
+
+Thus, we conclude that the location of customer residence is not associated with their perception of CU employee proficiency.
+:::
+
+## R4b Data Analysis Overview
+
+-   R4b: Are there any perceived differences on awareness of services between members who live in the area of the firm’s headquarters and members who live elsewhere?
+
+```         
+- Constructs and roles: 
+  - Member residence: IV
+  - service awareness: DV
+- Operationalization: 
+  - q38
+  - q13r - q26r
+- Scale: 
+  - Nominal scale: 
+  - Ordianal scale
+- Statistics: 
+  - Two-way cross-tab, followed by Chi-square independence test
+```
+
+------------------------------------------------------------------------
+
+### Cross-tab and Chi-square
+
+#### q13r by q38
+
+```{r}
+data <- data |> 
+  mutate(q13r = haven::as_factor(q13r),
+         q38 = haven::as_factor(q38))
+
+# cross-tabulation: count
+table(data$q13r, data$q38)
+
+# cross-tab: %
+table(data$q13r, data$q38) |> 
+  prop.table(margin = 2) * 100 
+
+# Chi-square test of independence
+table(data$q13r, data$q38) |>
+  chisq.test() 
+
+table(data$q38, data$q13r) |> 
+  mosaicplot(main = "Awareness of Regular share account by Residence", 
+             color = TRUE, las = 1 )
+```
+
+#### q14r by q38
+
+```{r}
+data <- data |> 
+  mutate(q14r = haven::as_factor(q14r))
+
+# cross-tabulation: count
+table(data$q14r, data$q38)
+
+# cross-tab: %
+table(data$q14r, data$q38) |> 
+  prop.table(margin = 2) * 100 
+
+# Chi-square test of independence
+table(data$q14r, data$q38) |>
+  chisq.test() 
+
+table(data$q38, data$q14r) |> 
+  mosaicplot(main = "Awareness of Special Sub accounts by Residence", 
+             color = TRUE, las = 1 )
+```
+
+#### q15r by q38
+
+```{r}
+data <- data |> 
+  mutate(q15r = haven::as_factor(q15r))
+
+# cross-tabulation: count
+table(data$q15r, data$q38)
+
+# cross-tab: %
+table(data$q15r, data$q38) |> 
+  prop.table(margin = 2) * 100 
+
+# Chi-square test of independence
+table(data$q15r, data$q38) |>
+  chisq.test() 
+
+table(data$q38, data$q15r) |> 
+  mosaicplot(main = "Awareness of Christmas club account by Residence", 
+             color = TRUE, las = 1 )
+```
+
+### Further cleaning
+
+```{r}
+data <- data |> 
+  mutate(q13r = haven::as_factor(q13r),
+         q14r = haven::as_factor(q14r),
+         q15r = haven::as_factor(q15r),
+         q16r = haven::as_factor(q16r),
+         q17r = haven::as_factor(q17r),
+         q18r = haven::as_factor(q18r),
+         q19r = haven::as_factor(q19r),
+         q20r = haven::as_factor(q20r),
+         q21r = haven::as_factor(q21r),
+         q22r = haven::as_factor(q22r),
+         q23r = haven::as_factor(q23r),
+         q24r = haven::as_factor(q24r),
+         q25r = haven::as_factor(q25r),
+         q26r = haven::as_factor(q26r)
+         )
+```
+
+## R4c Data Analysis Overview
+
+-   R4c: Are there any perceived differences on operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
+
+```         
+- Constructs and roles: 
+  - Member residence: IV
+  - operatoinal effectiveness: DV
+- Operationalization: 
+  - q38
+  - q9r, q10r, 
+  - q11-q12r, 
+  - q31-q34, 
+  - q37r
+- Scale: 
+  - Nominal scale
+  - interval scales
+  - Nominal
+  - interval
+  - interval
+- Statistics: D
+  - Descriptive statistics, followed by
+    - 2-groups t-test 
+    - Ch-square independence test
+    - 2-groups t-test
+    - 2-groups t-test
+```
+
+# Addressing R5 {background-color="aquamarine"}
+
+R5: How well are the members aware of the services offered by the credit union?
+
+-   Constructs and roles:
+    -   Awareness of services:
+-   Operationalization:
+    -   q13r-q26r
+-   Scale:
+    -   Ordinal scale:
+-   Statistics:
+    -   Chi-square goodness-of-fit test
+
+## q13r
+
+```{r}
+#| output-location: fragment
+
+p = c(1/3, 1/3, 1/3)
+table(data$q13r) |> 
+  chisq.test(p = p)
+
+```
+
+## More efficient coding with map()
+
+```{r}
+#| output-location: fragment
+# data
+
+awareness_long <- data |> 
+  select(q13r:q26r) |> 
+  pivot_longer(cols = everything(),
+               names_to = "services",
+               values_to = "awareness")
+awareness_long
+
+```
+
+------------------------------------------------------------------------
+
+```{r}
+#| output-location: fragment
+# Expected proportions (e.g., equal distribution across levels)
+exp_p <- c(`Unaware` = 1/3, 
+           `Aware but Have Not Used` = 1/3, 
+           `Aware and Have Used` = 1/3) 
+
+# Perform chi-square goodness of fit for each product
+awareness_long |> 
+  group_by(services) |> 
+  count(awareness) |> 
+  complete(awareness = names(exp_p), fill = list(n = 0)) |> # tidyr
+  group_by(services) |> 
+  summarise(
+    chisq_test = list(chisq.test(
+      x = n,
+      p = exp_p[levels(factor(awareness))]
+  ))
+  ) |> 
+  mutate(tidy_results = map(chisq_test, broom::tidy)) |> 
+  unnest(tidy_results)
+```
+
+# Addressing R6 {background-color="aquamarine"}
+
+R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?
+
+# Test of H1 {background-color="black"}
+
+H1: Members’ awareness of the regular share accounts will influence their opinions on the adequacy of financial services in meeting members’ needs.
+
+# Test of H2 {background-color="black"}
+
+H2: Members will not be different in their opinion on CU’s loan rate (Q8r) and the degree to which they agree that CU’s loan rate is lower than competitors (Q30).
+
+# Test of H3a {background-color="black"}
+
+H3a: There will be interaction effect between the current loan use and location of residence on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs.
+
+# Test of H3b {background-color="black"}
+
+H3b: Test H2a controlling for the impact of attitudes toward employee proficiency.
+
+# Test of H4 {background-color="black"}
+
+H4: Compared with the members who have a loan, [those members who don’t have a loan]{style="color:red;"} currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions.
+
+# Test of H5 {background-color="black"}
+
+::: {.small-text}
+H5a: Member belief about CU keeps personal financial information confidential will positively influence the overall attitude toward credit union’s operational efficiency.
+
+H5b: Loan application processing promptness will positively influence the overall attitude toward credit union’s operational efficiency.
+
+H5c: Member satisfaction with level of financial services in meeting needs will positively influence the overall attitude toward credit union’s operational efficiency.
+
+H5d: Loan application simplicity and easiness will positively influence the overall attitude toward credit union’s operational efficiency.
+:::
+
