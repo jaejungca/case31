@@ -14,7 +14,7 @@ format:
     incremental: false
     toc: true
     toc-depth: 1
-    slide-number: false
+    slide-number: true
     scrollable: true
     smaller: true
     title-slide-attributes: 
@@ -190,24 +190,24 @@ set_theme(theme_minimal())
 #| output: false
 
 ### Reading data
-data <- read_spss("Case 31 Data_efcu_Prepped.sav")
-dim(data)
-ncol(data)
-nrow(data)
+case31 <- read_spss("Case 31 Data_efcu_Prepped.sav")
+dim(case31)
+ncol(case31)
+nrow(case31)
 
 ```
 
 
 ## Variables in the data
 
-- Number of variables: `r ncol(data)`
+- Number of variables: `r ncol(case31)`
 
 ::: {style="font-size: 14px;"}
 ```{r}
 #| echo: false
 
 # generate data dictionary
-data |> 
+case31 |> 
   view_df()
 ```
 :::
@@ -219,14 +219,14 @@ data |>
 #| echo: false
 #| output: false
 
-pct_headqrt <- data |> 
+pct_headqrt <- case31 |> 
   count(q38) |> 
   mutate(percent = n/sum(n)) |> 
   filter(q38 == 1) |> 
   select(percent)
 ```
 
-- Number of participants: `r nrow(data)`
+- Number of participants: `r nrow(case31)`
 - % of the participants who live in the `headquarter area` vs. `non-headquarter area`: ``r round(pct_headqrt*100, 1)`%` vs. ``r round((1-pct_headqrt)*100, 1)`%` .
 - No demographic variables are available on the survey
   - Gender
@@ -249,7 +249,7 @@ pct_headqrt <- data |>
 
 **R1: Why do people join the Credit Union?**
 
-- `Constructs and roles`: reasons for why people join the credit uniion
+- `Constructs and roles`: reasons for why people join the Credit Union
 - `Operationalization`:
   q7r (Savings rates)
 - `Scales:`
@@ -259,18 +259,38 @@ pct_headqrt <- data |>
   
 ## Descriptive Statistics
 
+::: {.incremental .medium-text}
+
 ```{r}
-data |> 
+#| echo: false
+#| label: fig-freq
+#| fig-cap: Response Frequency of Savings Rate (q7r)
+
+case31 |> 
   count(q7r) |> 
   mutate(percent = n/sum(n))
-
-describe(data$q7r)
 ```
+
+. . .
+
+```{r}
+#| echo: false
+#| label: fig-desc-stat-savings
+#| fig-cap: Descriptive Statistics for Savings Rate (Q7r)
+
+describe(case31$q7r)
+```
+
+:::
 
 ---
 
 ```{r}
-data |> 
+#| echo: false
+#| label: fig-hist-savings-rate
+#| fig-cap: Histogram for Savings Rate (Q7r)
+
+case31 |> 
   ggplot(aes(q7r)) +
   geom_histogram()
 ```
@@ -279,55 +299,83 @@ data |>
 
 > W15-1: 12/2/2024
 
-## one-sample t-test
+## One-sample t-test
+
+::: {.medium-text}
+
+- $H_0: \mu = 3$
+- $H_1: \mu \neq 3$
 
 ```{r}
-#| output-location: fragment
+#| output-location: column-fragment
 
-data |> 
+case31 |> 
   t.test(q7r ~ 1, mu = 3, data = _)
 ```
 
-------------------------------------------------------------------------
+:::
+
+---
 
 ::: {.callout-note .large-callout}
 ## Insights about R1
 
 - The majority of the survey participants (`65%`) think that the savings rate the CU offers is average.
-- The **`sample mean`** is `3.07`, which is not statistically different from 3 ("average") (_p_ > .10).
+- The **`sample mean`** is `3.07`, which is not statistically different from 3 ("average") (*p* > .10).
+- Thus, we can conclude that CU members seems to think that the savings rate CU applies to them is about average.
 :::
 
 # Addressing R2 {background-color="aquamarine"}
 
 R2: Why do members use other financial institutions when they need to borrow funds?
 
+- `Constructs and roles`: Reasons to use loans from other financial institutions 
+- `Operationalization`:
+  - q8r (Fund borrowing rates)
+  - q30 (CU rates lower)
+- `Scales:`
+  - 1-5 point, Likert-type scales
+- `Statistics to be used`:
+  - Descriptive statistics, followed by one sample t-test
+  
+## Descriptive Statistics
+
+## One-sample t-test
+
+
 # Addressing R3 {background-color="aquamarine"}
 
 R3: What are the members’ attitudes and beliefs about the proficiency of credit union employees?
 
--   Constructs and roles: Attitudes toward employee proficiencies
--   Operationalization:
+-   `Constructs and roles`: Attitudes toward employee proficiency
+-   `Operationalization`:
     -   q3, q4, q5, q6 --\> at_emp
--   Scale: interval scale: 1-5 point, Likert-type scale
--   Statistics:
+-   `Scale: interval scale`: 1-5 point, Likert-type scale
+-   `Statistics`:
     -   Descriptive statistics
     -   Reliabilty/factor analysis,
     -   one-sample t-test
 
 ## Descriptive Statistics
 
+### Means & SD
+::: {.medium-text}
 ```{r}
 #| output-location: fragment
-describe(data$at_emp)
+describe(case31$at_emp)
 ```
+:::
 
-------------------------------------------------------------------------
+---
 
 ### Histogram
 
 ```{r}
-#| output-location: slide
-data |> 
+#| label: fig-at_emp-histogram
+#| echo: false
+#| fig-cap: Histogram of Employee Proficiencies (at_emp) with a Mean line
+
+case31 |> 
   ggplot(aes(at_emp)) +
   geom_histogram(binwidth = 0.5, color = "black", fill = "lightblue") +
   geom_vline(aes(xintercept = mean(at_emp, na.rm = TRUE)),
@@ -335,7 +383,7 @@ data |>
   geom_text(aes(x = mean(at_emp, na.rm = TRUE), y = 30, 
                 label = paste0("Mean = ", round(mean(at_emp), 2))),
             color = "red", angle = 90, vjust = -0.5, hjust = 2.2) +
-  labs(title = "Histogram of Employee Proficiencies with Mean Line",
+  labs(title = "Histogram of Employee Proficiencies with a Mean line",
        x = "Employee Prociency",
        y = "Count") +
   scale_x_continuous(expand = c(0,0), limits = c(0, NA))
@@ -344,24 +392,29 @@ data |>
 
 ## Reliability/factor analysis
 
--   We already looked at reliability and unidimensionality.
+-   We already looked at reliability and unidimensionality in the data preparatoin stage.
 -   The four items are highly representative of the latent construct.
--   Therefore, we created a compositie index and use it
+-   Therefore, we created a `composite index` and use it
 
-## one-sample t-test
+## One-sample t-test
+
+::: {.medium-text}
+
+- $H_0: \mu = 4$
+- $H_1: \mu \neq 4$
 
 ```{r}
 #| output-location: fragment
-data |> 
+case31 |> 
   t.test(at_emp ~ 1, mu = 4, data = _)
 ```
-
+:::
 ------------------------------------------------------------------------
 
 ::: {.callout-note .large-callout}
 ## Summary insights about R3
 
-Participants perceived Employee proficiency is 4.21 on average out of 5.0 and is greater than 4.0 ("Agree")
+Participants perceived Employee proficiency (_M_ = `4.21` out of 5.0) is statistically significantly greater than 4.0 (`"Agree"`)
 :::
 
 # Addressing R4 {background-color="aquamarine"}
@@ -370,31 +423,43 @@ R4: Are there any perceived differences on (a) attitude towards employee profici
 
 ## R4a Data Analysis Overview
 
--   R4a: Are there any perceived differences on attitude towards employee proficiencies between members who live in the area of the firm’s headquarters and members who live elsewhere?
+R4a: Are there any perceived differences on attitude towards employee proficiencies between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
-```         
-- Constructs and roles: 
+::: {.small-text}
+- `Constructs and roles`: 
   - Member residence: IV
   - Attitudes toward employee proficiency: DV 
-- Operationalization: 
+:::
+
+. . .
+
+::: {.small-text}
+- `Operationalization`: 
   - q38
   - at_emp
-- Scale: 
+- `Scale`: 
   - Nominal scale: 
   - interval scale: 1-5 point, Likert-type scale
-- Statistics: 
-  - Descriptive statistics, followed by independent samples t-test
-```
+:::
 
-------------------------------------------------------------------------
+. . .
+
+::: {.small-text}
+- `Statistics`: 
+  - Descriptive statistics, followed by independent samples t-test
+:::
+
+---
 
 ### Descriptives
 
 #### Boxplot
 
 ```{r}
-#| output-location: fragment
-data |> 
+#| echo: false
+#| label: fig-box-at-emp-by-residence
+#| fig-cap: Attitudes toward employee proficiency by residence
+case31 |> 
   mutate(q38 = haven::as_factor(q38)) |> 
   ggplot(aes(q38, at_emp, fill = q38)) +
   geom_boxplot() +
@@ -405,13 +470,15 @@ data |>
 
 ```
 
-------------------------------------------------------------------------
+---
 
 #### Barplot
 
 ```{r}
-#| output-location: slide
-data |> 
+#| echo: false
+#| label: fig-bar-at-emp-by-residence
+#| fig-cap: Attitudes toward employee proficiency by residence
+case31 |> 
   mutate(q38 = haven::as_factor(q38)) |> 
   group_by(q38) |> 
   summarize(mean = mean(at_emp, na.rm = TRUE)) |> 
@@ -425,128 +492,215 @@ data |>
 
 ------------------------------------------------------------------------
 
-### Two independent sample t-test
+### Two independent samples t-test
 
+::: {.panel-tabset}
+
+#### Levene's Test
+::: {.medium-text}
 ```{r}
-# check for equal variance
+#| echo: true
+#| output-location: fragment
+
 library(car)
 
-data |> 
+case31 |> 
   mutate(q38 = haven::as_factor(q38)) |> 
   leveneTest(at_emp ~ q38, data = _)
+```
+:::
 
-data |> 
+#### Variance test
+::: {.medium-text}
+```{r}
+case31 |> 
   mutate(q38 = haven::as_factor(q38)) |> 
   var.test(at_emp ~ q38, data = _)
+```
+:::
 
+#### Two Samples t-test
+::: {.medium-text}
+```{r}
 # t.test: assuming var are equal
-data |> 
+case31 |> 
   t.test(at_emp ~ q38, data = _, var.equal = TRUE) 
 ```
+:::
 
-------------------------------------------------------------------------
+:::
 
-::: callout-note
+---
+
+::: {.callout-tip .large-callout}
 ### Summary insights about H4a
 
-The group mean value on employee proficiency for customers who live in HQ and those who live elsewhere are not statistically different.
+- The group mean value of employee proficiency for `customers who live in HQ` (*M* = 4.28) and `those who live elsewhere` (*M* = 4.14) are not statistically different (*p* > 0.10).
 
-Thus, we conclude that the location of customer residence is not associated with their perception of CU employee proficiency.
+- Thus, we conclude that CU member perception of CU employee proficiency does not differ regardless of whether they live in headquarters area or not.
 :::
 
 ## R4b Data Analysis Overview
 
--   R4b: Are there any perceived differences on awareness of services between members who live in the area of the firm’s headquarters and members who live elsewhere?
+R4b: Are there any perceived differences on awareness of services between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
-```         
-- Constructs and roles: 
+::: {.small-text}    
+- `Constructs and roles`: 
   - Member residence: IV
   - service awareness: DV
-- Operationalization: 
+:::
+
+. . .
+
+::: {.small-text} 
+- `Operationalization`: 
   - q38
   - q13r - q26r
-- Scale: 
-  - Nominal scale: 
-  - Ordianal scale
-- Statistics: 
-  - Two-way cross-tab, followed by Chi-square independence test
-```
+- `Scale`: 
+  - Nominal scale
+  - Ordinal scale
+:::
 
-------------------------------------------------------------------------
+. . .
 
-### Cross-tab and Chi-square
+::: {.small-text} 
+- `Statistics`: 
+  - Two-way cross-tabs, followed by Chi-square independence test
+:::
 
-#### q13r by q38
+---
 
+### q13r (Share account) by q38
+
+:::: {.panel-tabset}
+
+#### Cleanng
+::: {.medium-text}
 ```{r}
-data <- data |> 
+case31 <- case31 |> 
   mutate(q13r = haven::as_factor(q13r),
          q38 = haven::as_factor(q38))
+```
+:::
 
-# cross-tabulation: count
-table(data$q13r, data$q38)
+#### cross-tab
+::: {.medium-text}
+```{r}
+table(case31$q13r, case31$q38)
 
 # cross-tab: %
-table(data$q13r, data$q38) |> 
+table(case31$q13r, case31$q38) |> 
   prop.table(margin = 2) * 100 
+```
+:::
 
-# Chi-square test of independence
-table(data$q13r, data$q38) |>
-  chisq.test() 
-
-table(data$q38, data$q13r) |> 
+#### Mosaic Plot
+::: {.medium-text}
+```{r}
+#| echo: false
+table(case31$q38, case31$q13r) |> 
   mosaicplot(main = "Awareness of Regular share account by Residence", 
              color = TRUE, las = 1 )
 ```
+:::
 
-#### q14r by q38
-
+#### Chi-square test of independence
+::: {.medium-text}
 ```{r}
-data <- data |> 
-  mutate(q14r = haven::as_factor(q14r))
+table(case31$q13r, case31$q38) |>
+  chisq.test() 
+```
+:::
 
+::::
+
+---
+
+::: {.callout-tip .large-callout}
+#### Insights
+
+- Members' awareness of regular share account is not associated with the place of members' residence.
+- Paraphrasing, members' awareness of regular share account is not dependent on where they live.
+:::
+
+---
+
+### q14r (Special subaccounts) by q38
+
+:::: {.panel-tabset}
+
+#### Cleaning
+::: {.medium-text}
+```{r}
+case31 <- case31 |> 
+  mutate(q14r = haven::as_factor(q14r))
+```
+:::
+
+#### Cross-tab
+::: {.medium-text}
+```{r}
 # cross-tabulation: count
-table(data$q14r, data$q38)
+
+table(case31$q14r, case31$q38)
 
 # cross-tab: %
-table(data$q14r, data$q38) |> 
+table(case31$q14r, case31$q38) |> 
   prop.table(margin = 2) * 100 
+```
+:::
 
-# Chi-square test of independence
-table(data$q14r, data$q38) |>
-  chisq.test() 
-
-table(data$q38, data$q14r) |> 
+#### Mosaic Plot
+::: {.medium-text}
+```{r}
+#| echo: false
+table(case31$q38, case31$q14r) |> 
   mosaicplot(main = "Awareness of Special Sub accounts by Residence", 
              color = TRUE, las = 1 )
 ```
+:::
 
-#### q15r by q38
+#### Chi-square test of independence
+::: {.medium-text}
+```{r}
+table(case31$q14r, case31$q38) |>
+  chisq.test() 
+```
+:::
+
+::::
+
+---
+
+### q15r (Christmas club account) by q38
 
 ```{r}
-data <- data |> 
+case31 <- case31 |> 
   mutate(q15r = haven::as_factor(q15r))
 
-# cross-tabulation: count
-table(data$q15r, data$q38)
+# cross-tab
+table(case31$q15r, case31$q38)
 
 # cross-tab: %
-table(data$q15r, data$q38) |> 
+table(case31$q15r, case31$q38) |> 
   prop.table(margin = 2) * 100 
 
-# Chi-square test of independence
-table(data$q15r, data$q38) |>
-  chisq.test() 
-
-table(data$q38, data$q15r) |> 
+# Mosaic Plot
+table(case31$q38, case31$q15r) |> 
   mosaicplot(main = "Awareness of Christmas club account by Residence", 
              color = TRUE, las = 1 )
+
+# Chi-square test of independence
+table(case31$q15r, case31$q38) |>
+  chisq.test() 
 ```
+
+---
 
 ### Further cleaning
 
 ```{r}
-data <- data |> 
+case31_clean <- case31 |> 
   mutate(q13r = haven::as_factor(q13r),
          q14r = haven::as_factor(q14r),
          q15r = haven::as_factor(q15r),
@@ -564,74 +718,181 @@ data <- data |>
          )
 ```
 
+---
+
+### Creating a function for chi-square independence test
+
+```{r}
+
+chisq_ind_test <- function(data, var) {
+  
+  library(dplyr)
+  library(rlang)
+  library(glue)
+  
+  var <- enquo(var)  # Capture the column as a quosure
+  
+  # Remove NA's
+  data <- data |> 
+    filter(!is.na(!!var), !is.na(q38))
+  
+  # Remove unused levels to avoid errors in chi-square test
+  data <- data |> 
+  mutate(!!var := droplevels(!!var)) # dynamic column name
+  
+  # Cross-tab
+  tab <- table(pull(data, !!var), data$q38)
+
+  # Cross-tab: %
+  prop_tab <- prop.table(tab, margin = 2) * 100
+
+  # Mosaic Plot
+  tab_c <- table(data$q38, pull(data, !!var))
+  
+  mosaicplot(
+    tab_c,
+    main = glue::glue("Awareness of {quo_name(var)} by Residence"),
+    color = TRUE, las = 1
+  )
+
+  # Chi-square test of independence
+  chi_sq_result <- chisq.test(tab)
+
+  # Return results as a list
+  list(
+    crosstab = tab,
+    proportions = prop_tab,
+    chi_square = chi_sq_result
+  )
+}
+
+```
+
+---
+
+### Testing all 
+
+```{r}
+#| output-location: slide
+awareness <- vars(q13r, q14r, q15r, q16r, q17r, q18r, q19r, q20r, q21r, q22r, q23r, q24r, q25r, q26r) # Quote the variables
+
+awareness |> 
+  map(~ chisq_ind_test(case31_clean, !!.x))
+```
+
+#### testing for q26r by q38
+```{r}
+case31_clean |> 
+  chisq_ind_test(q26r)
+```
+
+
 ## R4c Data Analysis Overview
 
 -   R4c: Are there any perceived differences on operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
-```         
-- Constructs and roles: 
+:::::{.small-text}    
+
+::::{.columns}
+
+:::{.column width="50%"}
+- `Constructs and roles`: 
   - Member residence: IV
   - operatoinal effectiveness: DV
-- Operationalization: 
+- `Operationalization`: 
   - q38
   - q9r, q10r, 
   - q11-q12r, 
   - q31-q34, 
   - q37r
-- Scale: 
+:::
+
+:::{.column width="50%"}
+- `Scale`: 
   - Nominal scale
   - interval scales
   - Nominal
   - interval
   - interval
-- Statistics: D
+- `Statistics`: 
   - Descriptive statistics, followed by
     - 2-groups t-test 
     - Ch-square independence test
     - 2-groups t-test
     - 2-groups t-test
-```
+
+:::    
+::::
+
+:::::
 
 # Addressing R5 {background-color="aquamarine"}
 
 R5: How well are the members aware of the services offered by the credit union?
 
--   Constructs and roles:
+-   `Constructs and roles`:
     -   Awareness of services:
--   Operationalization:
+-   `Operationalization`:
     -   q13r-q26r
--   Scale:
+-   `Scale`:
     -   Ordinal scale:
--   Statistics:
+-   `Statistics`:
     -   Chi-square goodness-of-fit test
 
 ## q13r
 
+### Barplot
+```{r}
+#| output-location: column-fragment
+case31_clean |>
+  ggplot(aes(q13r, fill = q13r)) +
+  geom_bar() +
+  theme(legend.position = "none")
+```
+
+---
+
+### Chi-square Goodness-of-fit test
+- $H_0$ = the observed data follows the expected distribution
+- $H_A$ = the observed data follows the expected distribution
+
+:::{.medium-text}
 ```{r}
 #| output-location: fragment
 
 p = c(1/3, 1/3, 1/3)
-table(data$q13r) |> 
+table(case31_clean$q13r) |> 
   chisq.test(p = p)
-
 ```
+:::
 
-## More efficient coding with map()
+---
+
+:::{.callout-important .large-callout}
+### Insights
+- There is statistically significnat evidence that the observed data doesn't follow from the theoretical distribution
+- the level of members' awareness of regular share account is different across the three levels with "unawareness being highest
+
+:::
+
+
+## More efficient testing with a function
 
 ```{r}
 #| output-location: fragment
 # data
 
-awareness_long <- data |> 
+awareness_long <- case31_clean |> 
   select(q13r:q26r) |> 
   pivot_longer(cols = everything(),
                names_to = "services",
-               values_to = "awareness")
+               values_to = "aware_level")
 awareness_long
 
 ```
 
-------------------------------------------------------------------------
+
+---
 
 ```{r}
 #| output-location: fragment
@@ -643,26 +904,165 @@ exp_p <- c(`Unaware` = 1/3,
 # Perform chi-square goodness of fit for each product
 awareness_long |> 
   group_by(services) |> 
-  count(awareness) |> 
-  complete(awareness = names(exp_p), fill = list(n = 0)) |> # tidyr
+  count(aware_level) |> 
+  complete(aware_level = names(exp_p), fill = list(n = 0)) |> # tidyr
   group_by(services) |> 
   summarise(
     chisq_test = list(chisq.test(
       x = n,
-      p = exp_p[levels(factor(awareness))]
+      p = exp_p[levels(factor(aware_level))]
   ))
   ) |> 
   mutate(tidy_results = map(chisq_test, broom::tidy)) |> 
   unnest(tidy_results)
 ```
 
+---
+
+:::{.callout-note .large-callout}
+### Insights about R5
+:::
+
 # Addressing R6 {background-color="aquamarine"}
 
 R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?
 
-# Test of H1 {background-color="black"}
+::: {.small-text}    
+- `Constructs and roles`: 
+  - Attitude toward operational effectiveness
+:::
+
+. . .
+
+::: {.small-text} 
+- `Operationalization`: 
+  - Q9r–Q10r
+  - Q11–Q12rc,
+  - Q31 – Q34
+  - Q37r
+- `Scale`: 
+  - ordinal/internal scale
+  - nominal scale 
+  - Interval
+  - Interval
+:::
+
+. . .
+
+::: {.small-text} 
+- `Statistics`: 
+  - DS / Chi-square goodness-of-fit test
+  - DS / Chi-square goodness-of-fit test
+  - DS / One group t-test
+  - DS / One group t-test
+
+:::
+
+
+
+# Test of H1 {background-color="steelblue"}
 
 H1: Members’ awareness of the regular share accounts will influence their opinions on the adequacy of financial services in meeting members’ needs.
+
+
+::: {.small-text}    
+- `Constructs and roles`: 
+  - Members’ awareness of the regular share account (IV)
+  - Adequacy of financial services in meeting member needs (DV)
+:::
+
+. . .
+
+::: {.small-text} 
+- `Operationalization`: 
+  - q13r
+  - q33
+- `Scale`: 
+  - Ordinal scale
+  - Interval
+:::
+
+. . .
+
+::: {.small-text} 
+- `Statistics`: 
+  - DS / One-way ANOVA
+  
+:::
+
+## Visualization
+
+### Frequency by group
+
+```{r}
+case31_clean |> 
+  group_by(q13r) |> 
+  ggplot(aes(q33, fill = q13r)) +
+  geom_histogram() +
+  facet_wrap(~q13r) +
+  theme(legend.position = "none")
+```
+
+### Mean value by group
+```{r}
+# means
+case31_clean |> 
+  group_by(q13r) |> 
+  summarize(mean = mean(q33)) 
+
+case31_clean |> 
+  group_by(q13r) |> 
+  summarize(mean = mean(q33)) |> 
+  ggplot(aes(mean, q13r, fill = q13r)) +
+  geom_col() +
+  theme(legend.position = "none")
+  
+```
+
+
+## Test of H1
+
+### 1. check normality assumption
+
+```{r}
+# Shapiro-Wilk normality test 
+
+case31_clean |> 
+  pull(q33) |> 
+  shapiro.test()
+
+case31_clean |> 
+  group_by(q13r) |> 
+  summarise(p_value = shapiro.test(pull(cur_data(), q33))$p.value)
+```
+
+### 2. Honogeneity of variance
+
+```{r}
+library(car)
+case31_clean |> 
+  leveneTest(q33 ~ q15r, data = _)
+```
+
+### 3. ANOVA Test
+
+```{r}
+
+
+case31_clean |> 
+  aov(q33 ~ q13r, data = _) |> 
+  summary()
+
+```
+
+### 4. Post-hoc Analysis if ANOVA is significant
+
+```{r}
+case31_clean |> 
+  aov(q33 ~ q13r, data = _) |> 
+  TukeyHSD()
+```
+
 
 # Test of H2 {background-color="black"}
 
@@ -683,12 +1083,47 @@ H4: Compared with the members who have a loan, [those members who don’t have a
 # Test of H5 {background-color="black"}
 
 ::: {.small-text}
-H5a: Member belief about CU keeps personal financial information confidential will positively influence the overall attitude toward credit union’s operational efficiency.
+H5a: Member belief about CU keeps personal `financial information confidential` will positively influence the [overall attitude toward credit union’s operational efficiency]{style="color:orange;"}.
 
-H5b: Loan application processing promptness will positively influence the overall attitude toward credit union’s operational efficiency.
+H5b: `Loan application processing promptness` will positively influence the overall attitude toward credit union’s operational efficiency.
 
-H5c: Member satisfaction with level of financial services in meeting needs will positively influence the overall attitude toward credit union’s operational efficiency.
+H5c: `Member satisfaction with level of financial services in meeting needs` will positively influence the overall attitude toward credit union’s operational efficiency.
 
-H5d: Loan application simplicity and easiness will positively influence the overall attitude toward credit union’s operational efficiency.
+H5d: `Loan application simplicity and easiness` will positively influence the overall attitude toward credit union’s operational efficiency.
 :::
+
+# Test of H5 (cont'd) {background-color="steelblue"}
+
+
+::: {.small-text}    
+- `Constructs and roles`: 
+  1. Overall managerial and operational efficiency (DV)
+  2. (a) Confidentiality of personal financial information (IV)
+  3. (b) Loan application processing promptness (IV)
+  4. (c) Adequacy of financial services in meeting needs (IV)
+  5. (d) Simplicity and easiness of loan application (IV)
+
+:::
+
+. . .
+
+::: {.small-text} 
+- `Operationalization`: 
+  1. q37r
+  2. q31
+  3. q32
+  4. q33
+  5. q34
+- `Scale`: 
+  - all of them are interval
+:::
+
+. . .
+
+::: {.small-text} 
+- `Statistics`: 
+  - separate visualization, followed by multiple regress
+
+:::
+
 

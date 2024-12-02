@@ -24,7 +24,7 @@ h3 {
 
 
 h4 {
-    background-color: #eaece5; /* Yellow for first-level headings */
+    background-color: #b2c2bf; /* Yellow for first-level headings */
     padding: 10px; /* Optional: Add padding for better appearance */
     border-radius: 5px; /* Optional: Add rounded corners */
     margin: 0; /* Remove default margin for a cleaner look */
@@ -37,12 +37,18 @@ h4 {
     font-size: 1.5em; /* Adjust the size as needed */
 }
 
+
+/* Define a custom style for large text */
+.large-text {
+  font-size: 60px;
+}
+
 /* Define a custom style for medium text */
 .medium-text {
-  font-size: 24px;
+  font-size: 40px;
 }
 
 /* Define a custom style for small text */
 .small-text {
-  font-size: 14px;
+  font-size: 20px;
 }
