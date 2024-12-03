@@ -3,7 +3,7 @@ title: "Data Analysis for Case 31"
 subtitle: "Sample Presentation"
 author: "Jae Jung"
 institute: "IBM 3302, Cal Poly Pomona"
-date: "Nov. 29, 2024"
+date: "Dec. 2, 2024"
 format: 
   revealjs:
     theme: serif
@@ -35,63 +35,60 @@ execute:
 
 # Introduction {background-color="#a13c65"}
 
-- Employees Federal Union (EFCU) is the credit unio for a Fortune 500 firm.
+-   Employees Federal Union (EFCU) is the credit union for a Fortune 500 firm.
 
 ## Problem Definition
 
-- CU has a large amount of surplus fund. 
-- It has also experienced a lower loan/share ratio than otehr credit unions of similar size. 
-- Average earnings on its investments have declined and profit margins are squeezed
- 
+-   CU has a large amount of surplus fund.
+-   It has also experienced a lower loan/share ratio than otehr credit unions of similar size.
+-   Average earnings on its investments have declined and profit margins are squeezed
+
 ## Research Objectives
 
-1. To determine why its members are not borrowing money from the credit union. 
-2. To determine what the members' attitudes were toward the overall management and operations of the credit union. 
+1.  To determine why its members are not borrowing money from the credit union.
+2.  To determine what the members' attitudes were toward the overall management and operations of the credit union.
 
 ## Significance of Research
 
-- The findings from the research will provide critical inforamtion that the managment can use to increase loan/ratio rate and increase profit margin.
-- Thus, the the research is critical in turning around the company's struggling financial status.
+-   The findings from the research will provide critical inforamtion that the managment can use to increase loan/ratio rate and increase profit margin.
+-   Thus, the the research is critical in turning around the company's struggling financial status.
 
 # Background and Research Questions/Hypotheses {background-color="#a13c65"}
 
 ## Information gathering
 
-::: {.incremental}
-- To address the research objectives, a research firm was hired. 
-- The researchers from the consulting company interviewed the management and some customers.
-- Based on the qualitative research and the researchers' own experience, they came up with some research questions and hypotheses.
+::: {incremental}
+-   To address the research objectives, a research firm was hired.
+-   The researchers from the consulting company interviewed the management and some customers.
+-   Based on the qualitative research and the researchers' own experience, they came up with some research questions and hypotheses.
 :::
 
 ## Research Questions
 
 **R1**: Why do people join the Credit Union?
 
-R2: Why do members use other financial institutions when they need to borrow funds? 
+R2: Why do members use other financial institutions when they need to borrow funds?
 
-
-. . . 
+. . .
 
 R3: What are the members’ attitudes and beliefs about the proficiencies of credit union employees?
 
 R4: Are there any perceived differences on attitude towards employee proficiencies, awareness of services, and operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
-
-. . . 
+. . .
 
 R5: How well are the members aware of the services offered by the credit union?
 
 R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?
 
-
 ## Hypotheses
 
 ### H1 - H3
 
-::: {.medium-text}        
+::: {.small-text}
 H1: Members’ `awareness of the regular share accounts` will influence their opinions on the `adequacy of financial services` in meeting members’ needs.
 
-H2: Members will not be different in their opinion on CU’s loan rate (Q8r) and the degree to which they agree that CU’s loan rate is lower than competitors (Q30).
+H2: Members will not be different in their opinion on `CU’s loan rate (Q8r)` and the degree to which they agree that CU’s loan rate is lower than competitors (Q30).
 
 H3a: There will be interaction effect between the current loan use and location of residence on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs.
 
@@ -102,7 +99,7 @@ H3b: Test H2a controlling for the impact of attitudes toward employee proficienc
 
 ### H4 & H5
 
-::: {.medium-text}        
+::: small-text
 H4: Compared with the members who have a loan, [those members who don’t have a loan]{style="color:red;"} currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions.
 
 H5a: Member belief about CU keeps personal financial information confidential will positively influence the overall attitude toward credit union’s operational efficiency.
@@ -118,57 +115,57 @@ H5d: Loan application simplicity and easiness will positively influence the over
 
 ## Research Design
 
-- A `mail survey` was used due to the following reasons:
-  - CU membership is widely dispersed geographically
-  - Low cost
-  - Sensitive questions needs anonymity to induce a candid response
-  - Long time needed for mail survey is not an issue for the board.
+-   A `mail survey` was used due to the following reasons:
+    -   CU membership is widely dispersed geographically
+    -   Low cost
+    -   Sensitive questions needs anonymity to induce a candid response
+    -   Long time needed for mail survey is not an issue for the board.
 
 . . .
 
-- Questions were mostly `structured` with several key questions asked in `unstructured` format
+-   Questions were mostly `structured` with several key questions asked in `unstructured` format
 
 . . .
 
-- `Likert-type` scales were used for attitudes measurements.
+-   `Likert-type` scales were used for attitudes measurements.
 
 ## Population and Sampling
 
-- `Population`: All current members of the EFCU.
-- `Sampling frame`: 
-  - A list of members and their addresses is available.
-  - 3,531 members as of January 31 for trial balance listing of the EFCU membership
+-   `Population`: All current members of the EFCU.
+-   `Sampling frame`:
+    -   A list of members and their addresses is available.
+    -   3,531 members as of January 31 for trial balance listing of the EFCU membership
 
 . . .
 
-- `Sampling method`: _Simple random sampling_
-  - `Sample size`: 300
-    - Calculation: was done using estimated` population standard deviation` based on responses of 15 members to Q37.
-    - 300 random numbers were generated within the range of 1 to 3,531 members.
-    - Each random number was matched with the corresponding number in the sampling frame.
+-   `Sampling method`: *Simple random sampling*
+    -   `Sample size`: 300
+        -   Calculation: was done using estimated`population standard deviation` based on responses of 15 members to Q37.
+        -   300 random numbers were generated within the range of 1 to 3,531 members.
+        -   Each random number was matched with the corresponding number in the sampling frame.
 
 ## Data Collection and coding
 
-:::{.incremental}
-- Preparatoin of all copies of survey and mailing them were handled by the CU's staff members.
-- The structured questions in the survey were coded based on the classifications established by researchers
-- Questionnaire responses were examined for the integrity, and a few responses of low quality were excluded
+::: incremental
+-   Preparatoin of all copies of survey and mailing them were handled by the CU's staff members.
+-   The structured questions in the survey were coded based on the classifications established by researchers
+-   Questionnaire responses were examined for the integrity, and a few responses of low quality were excluded
 :::
 
 ## Data Preparation
 
-- Used R/RStudio for wrangling and visualization
+-   Used R/RStudio for wrangling and visualization
 
 . . .
 
-::: {.incremental}
-- Data `wrangling and preparation` was done separately. Specifically, we did the following
-  - `Reverse coded`
-  - Removed non-responses (`NA`)
-  - Removed `Not Applicable responses` from otherwise Likert-type interval scales to make them suitable for continuous variables (e.g., 1-5 piont scale)
-  - Renamed variable names
-  - Relabeled variable labels and value labels if needed.
-  - The prepared data is saved as `Case 31 Data_efcu_Prepped.sav`, which will be used for data analysis.
+::: incremental
+-   Data `wrangling and preparation` was done separately. Specifically, we did the following
+    -   `Reverse coded`
+    -   Removed non-responses (`NA`)
+    -   Removed `Not Applicable responses` from otherwise Likert-type interval scales to make them suitable for continuous variables (e.g., 1-5 piont scale)
+    -   Renamed variable names
+    -   Relabeled variable labels and value labels if needed.
+    -   The prepared data is saved as `Case 31 Data_efcu_Prepped.sav`, which will be used for data analysis.
 :::
 
 ```{r}
@@ -197,10 +194,9 @@ nrow(case31)
 
 ```
 
-
 ## Variables in the data
 
-- Number of variables: `r ncol(case31)`
+-   Number of variables: `r ncol(case31)`
 
 ::: {style="font-size: 14px;"}
 ```{r}
@@ -211,7 +207,6 @@ case31 |>
   view_df()
 ```
 :::
-
 
 ## Sample Characteristics
 
@@ -226,41 +221,37 @@ pct_headqrt <- case31 |>
   select(percent)
 ```
 
-- Number of participants: `r nrow(case31)`
-- % of the participants who live in the `headquarter area` vs. `non-headquarter area`: ``r round(pct_headqrt*100, 1)`%` vs. ``r round((1-pct_headqrt)*100, 1)`%` .
-- No demographic variables are available on the survey
-  - Gender
-  - Ethnicity/Race
-  - Income
-  - Education
-
+-   Number of participants: `r nrow(case31)`
+-   \% of the participants who live in the `headquarter area` vs. `non-headquarter area`: `r round(pct_headqrt*100, 1)`\% vs. `r round((1-pct_headqrt)*100, 1)`\%.
+-   No demographic variables are available on the survey
+    -   Gender
+    -   Ethnicity/Race
+    -   Income
+    -   Education
 
 ## Measures
 
-- Refer to the Construct and Measurement Table.
-- All constructs, operationalization, and scales will be provided later.
+-   Refer to the Construct and Measurement Table.
+-   All constructs, operationalization, and scales will be provided later.
 
 # `r fontawesome::fa("laptop-code", "white")` Analysis and Results {background-color="#447099"}
 
-- Used R for wrangling and modeling
+-   Used R for wrangling and modeling
 
-
-# Addressing R1 {background-color="aquamarine"} 
+# Addressing R1 {background-color="aquamarine"}
 
 **R1: Why do people join the Credit Union?**
 
-- `Constructs and roles`: reasons for why people join the Credit Union
-- `Operationalization`:
-  q7r (Savings rates)
-- `Scales:`
-  - 1-5 point, Likert-type scale
-- `Statistics to be used`:
-  - Descriptive statistics, followed by one sample t-test
-  
+-   `Constructs and roles`: reasons for why people join the Credit Union
+-   `Operationalization`: q7r (Savings rates)
+-   `Scales:`
+    -   1-5 point, Likert-type scale
+-   `Statistics to be used`:
+    -   Descriptive statistics, followed by one sample t-test
+
 ## Descriptive Statistics
 
 ::: {.incremental .medium-text}
-
 ```{r}
 #| echo: false
 #| label: fig-freq
@@ -280,10 +271,9 @@ case31 |>
 
 describe(case31$q7r)
 ```
-
 :::
 
----
+------------------------------------------------------------------------
 
 ```{r}
 #| echo: false
@@ -295,16 +285,15 @@ case31 |>
   geom_histogram()
 ```
 
----
+------------------------------------------------------------------------
 
 > W15-1: 12/2/2024
 
 ## One-sample t-test
 
-::: {.medium-text}
-
-- $H_0: \mu = 3$
-- $H_1: \mu \neq 3$
+::: medium-text
+-   $H_0: \mu = 3$
+-   $H_1: \mu \neq 3$
 
 ```{r}
 #| output-location: column-fragment
@@ -312,36 +301,34 @@ case31 |>
 case31 |> 
   t.test(q7r ~ 1, mu = 3, data = _)
 ```
-
 :::
 
----
+------------------------------------------------------------------------
 
 ::: {.callout-note .large-callout}
 ## Insights about R1
 
-- The majority of the survey participants (`65%`) think that the savings rate the CU offers is average.
-- The **`sample mean`** is `3.07`, which is not statistically different from 3 ("average") (*p* > .10).
-- Thus, we can conclude that CU members seems to think that the savings rate CU applies to them is about average.
+-   The majority of the survey participants (`65%`) think that the savings rate the CU offers is average.
+-   The **`sample mean`** is `3.07`, which is not statistically different from 3 ("average") (*p* \> .10).
+-   Thus, we can conclude that CU members seems to think that the savings rate CU applies to them is about average.
 :::
 
 # Addressing R2 {background-color="aquamarine"}
 
 R2: Why do members use other financial institutions when they need to borrow funds?
 
-- `Constructs and roles`: Reasons to use loans from other financial institutions 
-- `Operationalization`:
-  - q8r (Fund borrowing rates)
-  - q30 (CU rates lower)
-- `Scales:`
-  - 1-5 point, Likert-type scales
-- `Statistics to be used`:
-  - Descriptive statistics, followed by one sample t-test
-  
+-   `Constructs and roles`: Reasons to use loans from other financial institutions
+-   `Operationalization`:
+    -   q8r (Fund borrowing rates)
+    -   q30 (CU rates lower)
+-   `Scales:`
+    -   1-5 point, Likert-type scales
+-   `Statistics to be used`:
+    -   Descriptive statistics, followed by one sample t-test
+
 ## Descriptive Statistics
 
 ## One-sample t-test
-
 
 # Addressing R3 {background-color="aquamarine"}
 
@@ -359,14 +346,15 @@ R3: What are the members’ attitudes and beliefs about the proficiency of credi
 ## Descriptive Statistics
 
 ### Means & SD
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 #| output-location: fragment
 describe(case31$at_emp)
 ```
 :::
 
----
+------------------------------------------------------------------------
 
 ### Histogram
 
@@ -398,10 +386,9 @@ case31 |>
 
 ## One-sample t-test
 
-::: {.medium-text}
-
-- $H_0: \mu = 4$
-- $H_1: \mu \neq 4$
+::: medium-text
+-   $H_0: \mu = 4$
+-   $H_1: \mu \neq 4$
 
 ```{r}
 #| output-location: fragment
@@ -409,12 +396,13 @@ case31 |>
   t.test(at_emp ~ 1, mu = 4, data = _)
 ```
 :::
+
 ------------------------------------------------------------------------
 
 ::: {.callout-note .large-callout}
 ## Summary insights about R3
 
-Participants perceived Employee proficiency (_M_ = `4.21` out of 5.0) is statistically significantly greater than 4.0 (`"Agree"`)
+Participants perceived Employee proficiency (*M* = `4.21` out of 5.0) is statistically significantly greater than 4.0 (`"Agree"`)
 :::
 
 # Addressing R4 {background-color="aquamarine"}
@@ -425,31 +413,31 @@ R4: Are there any perceived differences on (a) attitude towards employee profici
 
 R4a: Are there any perceived differences on attitude towards employee proficiencies between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
-::: {.small-text}
-- `Constructs and roles`: 
-  - Member residence: IV
-  - Attitudes toward employee proficiency: DV 
+::: small-text
+-   `Constructs and roles`:
+    -   Member residence: IV
+    -   Attitudes toward employee proficiency: DV
 :::
 
 . . .
 
-::: {.small-text}
-- `Operationalization`: 
-  - q38
-  - at_emp
-- `Scale`: 
-  - Nominal scale: 
-  - interval scale: 1-5 point, Likert-type scale
+::: small-text
+-   `Operationalization`:
+    -   q38
+    -   at_emp
+-   `Scale`:
+    -   Nominal scale:
+    -   interval scale: 1-5 point, Likert-type scale
 :::
 
 . . .
 
-::: {.small-text}
-- `Statistics`: 
-  - Descriptive statistics, followed by independent samples t-test
+::: small-text
+-   `Statistics`:
+    -   Descriptive statistics, followed by independent samples t-test
 :::
 
----
+------------------------------------------------------------------------
 
 ### Descriptives
 
@@ -470,7 +458,7 @@ case31 |>
 
 ```
 
----
+------------------------------------------------------------------------
 
 #### Barplot
 
@@ -494,10 +482,10 @@ case31 |>
 
 ### Two independent samples t-test
 
-::: {.panel-tabset}
-
+:::::: panel-tabset
 #### Levene's Test
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 #| echo: true
 #| output-location: fragment
@@ -511,7 +499,8 @@ case31 |>
 :::
 
 #### Variance test
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 case31 |> 
   mutate(q38 = haven::as_factor(q38)) |> 
@@ -520,62 +509,62 @@ case31 |>
 :::
 
 #### Two Samples t-test
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 # t.test: assuming var are equal
 case31 |> 
   t.test(at_emp ~ q38, data = _, var.equal = TRUE) 
 ```
 :::
+::::::
 
-:::
-
----
+------------------------------------------------------------------------
 
 ::: {.callout-tip .large-callout}
 ### Summary insights about H4a
 
-- The group mean value of employee proficiency for `customers who live in HQ` (*M* = 4.28) and `those who live elsewhere` (*M* = 4.14) are not statistically different (*p* > 0.10).
+-   The group mean value of employee proficiency for `customers who live in HQ` (*M* = 4.28) and `those who live elsewhere` (*M* = 4.14) are not statistically different (*p* \> 0.10).
 
-- Thus, we conclude that CU member perception of CU employee proficiency does not differ regardless of whether they live in headquarters area or not.
+-   Thus, we conclude that CU member perception of CU employee proficiency does not differ regardless of whether they live in headquarters area or not.
 :::
 
 ## R4b Data Analysis Overview
 
 R4b: Are there any perceived differences on awareness of services between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
-::: {.small-text}    
-- `Constructs and roles`: 
-  - Member residence: IV
-  - service awareness: DV
+::: small-text
+-   `Constructs and roles`:
+    -   Member residence: IV
+    -   service awareness: DV
 :::
 
 . . .
 
-::: {.small-text} 
-- `Operationalization`: 
-  - q38
-  - q13r - q26r
-- `Scale`: 
-  - Nominal scale
-  - Ordinal scale
+::: small-text
+-   `Operationalization`:
+    -   q38
+    -   q13r - q26r
+-   `Scale`:
+    -   Nominal scale
+    -   Ordinal scale
 :::
 
 . . .
 
-::: {.small-text} 
-- `Statistics`: 
-  - Two-way cross-tabs, followed by Chi-square independence test
+::: small-text
+-   `Statistics`:
+    -   Two-way cross-tabs, followed by Chi-square independence test
 :::
 
----
+------------------------------------------------------------------------
 
 ### q13r (Share account) by q38
 
-:::: {.panel-tabset}
-
+::::::: panel-tabset
 #### Cleanng
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 case31 <- case31 |> 
   mutate(q13r = haven::as_factor(q13r),
@@ -584,7 +573,8 @@ case31 <- case31 |>
 :::
 
 #### cross-tab
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 table(case31$q13r, case31$q38)
 
@@ -595,7 +585,8 @@ table(case31$q13r, case31$q38) |>
 :::
 
 #### Mosaic Plot
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 #| echo: false
 table(case31$q38, case31$q13r) |> 
@@ -605,32 +596,32 @@ table(case31$q38, case31$q13r) |>
 :::
 
 #### Chi-square test of independence
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 table(case31$q13r, case31$q38) |>
   chisq.test() 
 ```
 :::
+:::::::
 
-::::
-
----
+------------------------------------------------------------------------
 
 ::: {.callout-tip .large-callout}
 #### Insights
 
-- Members' awareness of regular share account is not associated with the place of members' residence.
-- Paraphrasing, members' awareness of regular share account is not dependent on where they live.
+-   Members' awareness of regular share account is not associated with the place of members' residence.
+-   Paraphrasing, members' awareness of regular share account is not dependent on where they live.
 :::
 
----
+------------------------------------------------------------------------
 
 ### q14r (Special subaccounts) by q38
 
-:::: {.panel-tabset}
-
+::::::: panel-tabset
 #### Cleaning
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 case31 <- case31 |> 
   mutate(q14r = haven::as_factor(q14r))
@@ -638,7 +629,8 @@ case31 <- case31 |>
 :::
 
 #### Cross-tab
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 # cross-tabulation: count
 
@@ -651,7 +643,8 @@ table(case31$q14r, case31$q38) |>
 :::
 
 #### Mosaic Plot
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 #| echo: false
 table(case31$q38, case31$q14r) |> 
@@ -661,16 +654,16 @@ table(case31$q38, case31$q14r) |>
 :::
 
 #### Chi-square test of independence
-::: {.medium-text}
+
+::: medium-text
 ```{r}
 table(case31$q14r, case31$q38) |>
   chisq.test() 
 ```
 :::
+:::::::
 
-::::
-
----
+------------------------------------------------------------------------
 
 ### q15r (Christmas club account) by q38
 
@@ -695,7 +688,7 @@ table(case31$q15r, case31$q38) |>
   chisq.test() 
 ```
 
----
+------------------------------------------------------------------------
 
 ### Further cleaning
 
@@ -718,7 +711,7 @@ case31_clean <- case31 |>
          )
 ```
 
----
+------------------------------------------------------------------------
 
 ### Creating a function for chi-square independence test
 
@@ -768,9 +761,9 @@ chisq_ind_test <- function(data, var) {
 
 ```
 
----
+------------------------------------------------------------------------
 
-### Testing all 
+### Testing all
 
 ```{r}
 #| output-location: slide
@@ -781,50 +774,46 @@ awareness |>
 ```
 
 #### testing for q26r by q38
+
 ```{r}
 case31_clean |> 
   chisq_ind_test(q26r)
 ```
 
-
 ## R4c Data Analysis Overview
 
 -   R4c: Are there any perceived differences on operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
-:::::{.small-text}    
-
-::::{.columns}
-
-:::{.column width="50%"}
-- `Constructs and roles`: 
-  - Member residence: IV
-  - operatoinal effectiveness: DV
-- `Operationalization`: 
-  - q38
-  - q9r, q10r, 
-  - q11-q12r, 
-  - q31-q34, 
-  - q37r
+:::::: small-text
+::::: columns
+::: {.column width="50%"}
+-   `Constructs and roles`:
+    -   Member residence: IV
+    -   operatoinal effectiveness: DV
+-   `Operationalization`:
+    -   q38
+    -   q9r, q10r,
+    -   q11-q12r,
+    -   q31-q34,
+    -   q37r
 :::
 
-:::{.column width="50%"}
-- `Scale`: 
-  - Nominal scale
-  - interval scales
-  - Nominal
-  - interval
-  - interval
-- `Statistics`: 
-  - Descriptive statistics, followed by
-    - 2-groups t-test 
-    - Ch-square independence test
-    - 2-groups t-test
-    - 2-groups t-test
-
-:::    
-::::
-
+::: {.column width="50%"}
+-   `Scale`:
+    -   Nominal scale
+    -   interval scales
+    -   Nominal
+    -   interval
+    -   interval
+-   `Statistics`:
+    -   Descriptive statistics, followed by
+        -   2-groups t-test
+        -   Ch-square independence test
+        -   2-groups t-test
+        -   2-groups t-test
+:::
 :::::
+::::::
 
 # Addressing R5 {background-color="aquamarine"}
 
@@ -842,6 +831,7 @@ R5: How well are the members aware of the services offered by the credit union?
 ## q13r
 
 ### Barplot
+
 ```{r}
 #| output-location: column-fragment
 case31_clean |>
@@ -850,13 +840,14 @@ case31_clean |>
   theme(legend.position = "none")
 ```
 
----
+------------------------------------------------------------------------
 
 ### Chi-square Goodness-of-fit test
-- $H_0$ = the observed data follows the expected distribution
-- $H_A$ = the observed data follows the expected distribution
 
-:::{.medium-text}
+-   $H_0$ = the observed data follows the expected distribution
+-   $H_A$ = the observed data follows the expected distribution
+
+::: medium-text
 ```{r}
 #| output-location: fragment
 
@@ -866,15 +857,14 @@ table(case31_clean$q13r) |>
 ```
 :::
 
----
+------------------------------------------------------------------------
 
-:::{.callout-important .large-callout}
+::: {.callout-important .large-callout}
 ### Insights
-- There is statistically significnat evidence that the observed data doesn't follow from the theoretical distribution
-- the level of members' awareness of regular share account is different across the three levels with "unawareness being highest
 
+-   There is statistically significnat evidence that the observed data doesn't follow from the theoretical distribution
+-   the level of members' awareness of regular share account is different across the three levels with "unawareness being highest
 :::
-
 
 ## More efficient testing with a function
 
@@ -891,8 +881,7 @@ awareness_long
 
 ```
 
-
----
+------------------------------------------------------------------------
 
 ```{r}
 #| output-location: fragment
@@ -917,9 +906,9 @@ awareness_long |>
   unnest(tidy_results)
 ```
 
----
+------------------------------------------------------------------------
 
-:::{.callout-note .large-callout}
+::: {.callout-note .large-callout}
 ### Insights about R5
 :::
 
@@ -927,67 +916,62 @@ awareness_long |>
 
 R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?
 
-::: {.small-text}    
-- `Constructs and roles`: 
-  - Attitude toward operational effectiveness
+::: small-text
+-   `Constructs and roles`:
+    -   Attitude toward operational effectiveness
 :::
 
 . . .
 
-::: {.small-text} 
-- `Operationalization`: 
-  - Q9r–Q10r
-  - Q11–Q12rc,
-  - Q31 – Q34
-  - Q37r
-- `Scale`: 
-  - ordinal/internal scale
-  - nominal scale 
-  - Interval
-  - Interval
+::: small-text
+-   `Operationalization`:
+    -   Q9r–Q10r
+    -   Q11–Q12rc,
+    -   Q31 – Q34
+    -   Q37r
+-   `Scale`:
+    -   ordinal/internal scale
+    -   nominal scale
+    -   Interval
+    -   Interval
 :::
 
 . . .
 
-::: {.small-text} 
-- `Statistics`: 
-  - DS / Chi-square goodness-of-fit test
-  - DS / Chi-square goodness-of-fit test
-  - DS / One group t-test
-  - DS / One group t-test
-
+::: small-text
+-   `Statistics`:
+    -   DS / Chi-square goodness-of-fit test
+    -   DS / Chi-square goodness-of-fit test
+    -   DS / One group t-test
+    -   DS / One group t-test
 :::
-
-
 
 # Test of H1 {background-color="steelblue"}
 
 H1: Members’ awareness of the regular share accounts will influence their opinions on the adequacy of financial services in meeting members’ needs.
 
-
-::: {.small-text}    
-- `Constructs and roles`: 
-  - Members’ awareness of the regular share account (IV)
-  - Adequacy of financial services in meeting member needs (DV)
+::: small-text
+-   `Constructs and roles`:
+    -   Members’ awareness of the regular share account (IV)
+    -   Adequacy of financial services in meeting member needs (DV)
 :::
 
 . . .
 
-::: {.small-text} 
-- `Operationalization`: 
-  - q13r
-  - q33
-- `Scale`: 
-  - Ordinal scale
-  - Interval
+::: small-text
+-   `Operationalization`:
+    -   q13r
+    -   q33
+-   `Scale`:
+    -   Ordinal scale
+    -   Interval
 :::
 
 . . .
 
-::: {.small-text} 
-- `Statistics`: 
-  - DS / One-way ANOVA
-  
+::: small-text
+-   `Statistics`:
+    -   DS / One-way ANOVA
 :::
 
 ## Visualization
@@ -1004,6 +988,7 @@ case31_clean |>
 ```
 
 ### Mean value by group
+
 ```{r}
 # means
 case31_clean |> 
@@ -1019,10 +1004,9 @@ case31_clean |>
   
 ```
 
-
 ## Test of H1
 
-### 1. check normality assumption
+### 1. Check normality assumption
 
 ```{r}
 # Shapiro-Wilk normality test 
@@ -1063,7 +1047,6 @@ case31_clean |>
   TukeyHSD()
 ```
 
-
 # Test of H2 {background-color="black"}
 
 H2: Members will not be different in their opinion on CU’s loan rate (Q8r) and the degree to which they agree that CU’s loan rate is lower than competitors (Q30).
@@ -1082,7 +1065,7 @@ H4: Compared with the members who have a loan, [those members who don’t have a
 
 # Test of H5 {background-color="black"}
 
-::: {.small-text}
+::: small-text
 H5a: Member belief about CU keeps personal `financial information confidential` will positively influence the [overall attitude toward credit union’s operational efficiency]{style="color:orange;"}.
 
 H5b: `Loan application processing promptness` will positively influence the overall attitude toward credit union’s operational efficiency.
@@ -1094,36 +1077,37 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
 
 # Test of H5 (cont'd) {background-color="steelblue"}
 
-
-::: {.small-text}    
-- `Constructs and roles`: 
-  1. Overall managerial and operational efficiency (DV)
-  2. (a) Confidentiality of personal financial information (IV)
-  3. (b) Loan application processing promptness (IV)
-  4. (c) Adequacy of financial services in meeting needs (IV)
-  5. (d) Simplicity and easiness of loan application (IV)
-
+::: small-text
+-   `Constructs and roles`:
+    1.  Overall managerial and operational efficiency (DV)
+    2.  
+        (a) Confidentiality of personal financial information (IV)
+    3.  
+        (b) Loan application processing promptness (IV)
+    4.  
+        (c) Adequacy of financial services in meeting needs (IV)
+    5.  
+        (d) Simplicity and easiness of loan application (IV)
 :::
 
 . . .
 
-::: {.small-text} 
-- `Operationalization`: 
-  1. q37r
-  2. q31
-  3. q32
-  4. q33
-  5. q34
-- `Scale`: 
-  - all of them are interval
+::: small-text
+-   `Operationalization`:
+    1.  q37r
+    2.  q31
+    3.  q32
+    4.  q33
+    5.  q34
+-   `Scale`:
+    -   all of them are interval
 :::
 
 . . .
 
-::: {.small-text} 
-- `Statistics`: 
-  - separate visualization, followed by multiple regress
-
+::: small-text
+-   `Statistics`:
+    -   separate visualization, followed by multiple regress
 :::
 
-
+## Test of H5
