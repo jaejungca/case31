@@ -251,7 +251,11 @@ pct_headqrt <- case31 |>
 
 ## Descriptive Statistics
 
-::: {.incremental .medium-text}
+:::: incremental
+
+### Frequency Distribution
+
+::: {medium-text}
 ```{r}
 #| echo: false
 #| label: fig-freq
@@ -261,9 +265,11 @@ case31 |>
   count(q7r) |> 
   mutate(percent = n/sum(n))
 ```
+:::
 
-. . .
+### Descriptive Stat
 
+::: {medium-text}
 ```{r}
 #| echo: false
 #| label: fig-desc-stat-savings
@@ -273,6 +279,7 @@ describe(case31$q7r)
 ```
 :::
 
+::::
 ------------------------------------------------------------------------
 
 ```{r}
@@ -281,19 +288,23 @@ describe(case31$q7r)
 #| fig-cap: Histogram for Savings Rate (Q7r)
 
 case31 |> 
+  filter(!is.na(q7r)) |> 
+  mutate(q7r = haven::as_factor(q7r)) |> 
   ggplot(aes(q7r)) +
-  geom_histogram()
+  geom_bar() +
+  labs(x = "Savings Rate",
+       y = "# of Responses",
+       title = "Frequency of Member Opinions on Savings Rates",
+       caption = "1 = Very Low ... 5 = Very High")
 ```
 
 ------------------------------------------------------------------------
-
-> W15-1: 12/2/2024
 
 ## One-sample t-test
 
 ::: medium-text
 -   $H_0: \mu = 3$
--   $H_1: \mu \neq 3$
+-   $H_A: \mu \neq 3$
 
 ```{r}
 #| output-location: column-fragment
@@ -310,7 +321,7 @@ case31 |>
 
 -   The majority of the survey participants (`65%`) think that the savings rate the CU offers is average.
 -   The **`sample mean`** is `3.07`, which is not statistically different from 3 ("average") (*p* \> .10).
--   Thus, we can conclude that CU members seems to think that the savings rate CU applies to them is about average.
+-   Thus, we can conclude that CU members perceive that the savings rate CU applies to them is about average.
 :::
 
 # Addressing R2 {background-color="aquamarine"}
@@ -368,13 +379,14 @@ case31 |>
   geom_histogram(binwidth = 0.5, color = "black", fill = "lightblue") +
   geom_vline(aes(xintercept = mean(at_emp, na.rm = TRUE)),
              color = "red", linetype = "dashed", size = 1) +
-  geom_text(aes(x = mean(at_emp, na.rm = TRUE), y = 30, 
+  geom_text(aes(x = mean(at_emp, na.rm = TRUE), 
+                y = 30, 
                 label = paste0("Mean = ", round(mean(at_emp), 2))),
             color = "red", angle = 90, vjust = -0.5, hjust = 2.2) +
   labs(title = "Histogram of Employee Proficiencies with a Mean line",
        x = "Employee Prociency",
        y = "Count") +
-  scale_x_continuous(expand = c(0,0), limits = c(0, NA))
+  scale_x_continuous(limits = c(1, NA))
   
 ```
 
@@ -388,7 +400,7 @@ case31 |>
 
 ::: medium-text
 -   $H_0: \mu = 4$
--   $H_1: \mu \neq 4$
+-   $H_A: \mu \neq 4$
 
 ```{r}
 #| output-location: fragment
@@ -402,7 +414,7 @@ case31 |>
 ::: {.callout-note .large-callout}
 ## Summary insights about R3
 
-Participants perceived Employee proficiency (*M* = `4.21` out of 5.0) is statistically significantly greater than 4.0 (`"Agree"`)
+Participants perceived Employee proficiency (*M* = `4.21` out of 5.0) is statistically significantly greater than 4.0 (`"Agree"`) (_p_ < .001)
 :::
 
 # Addressing R4 {background-color="aquamarine"}
@@ -488,7 +500,7 @@ case31 |>
 ::: medium-text
 ```{r}
 #| echo: true
-#| output-location: fragment
+#| output-location: default
 
 library(car)
 
@@ -586,9 +598,12 @@ table(case31$q13r, case31$q38) |>
 
 #### Mosaic Plot
 
-::: medium-text
+::: small-text
 ```{r}
 #| echo: false
+#| label: fig-q13r-q38-mosaic
+#| fig-cap: Association of the awareness of regular share account by residence
+
 table(case31$q38, case31$q13r) |> 
   mosaicplot(main = "Awareness of Regular share account by Residence", 
              color = TRUE, las = 1 )
@@ -597,12 +612,18 @@ table(case31$q38, case31$q13r) |>
 
 #### Chi-square test of independence
 
+- $H_0$: Awareness of regular share account is `independent` of members' residence
+- $H_A$: Awareness of regular share account is `dependent` on members' residence
+
+
+
 ::: medium-text
 ```{r}
 table(case31$q13r, case31$q38) |>
   chisq.test() 
 ```
 :::
+
 :::::::
 
 ------------------------------------------------------------------------
@@ -611,7 +632,7 @@ table(case31$q13r, case31$q38) |>
 #### Insights
 
 -   Members' awareness of regular share account is not associated with the place of members' residence.
--   Paraphrasing, members' awareness of regular share account is not dependent on where they live.
+-   Paraphrasing, members' awareness of regular share account is independent of where they live.
 :::
 
 ------------------------------------------------------------------------
