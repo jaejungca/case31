@@ -63,53 +63,142 @@ execute:
 -   Based on the qualitative research and the researchers' own experience, they came up with some research questions and hypotheses.
 :::
 
-## Research Questions
+## Reasons for Consumers' Use of Credit Union
 
-**R1**: Why do people join the Credit Union?
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-R2: Why do members use other financial institutions when they need to borrow funds?
+_**R1**: Why do people join the Credit Union?_
 
-. . .
+##  Using services from Other Financial Services
 
-R3: What are the members’ attitudes and beliefs about the proficiencies of credit union employees?
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-R4: Are there any perceived differences on attitude towards employee proficiencies, awareness of services, and operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
+_**R2**: Why do members use other financial institutions when they need to borrow funds?_
 
-. . .
+## Attitudes and beliefs about the employee proficiency
 
-R5: How well are the members aware of the services offered by the credit union?
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?
+_**R3**: What are the members’ attitudes and beliefs about the proficiencies of credit union employees?_
 
-## Hypotheses
+## Differences in Headquarters vs. Elswhere
 
-### H1 - H3
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-::: {.small-text}
-H1: Members’ `awareness of the regular share accounts` will influence their opinions on the `adequacy of financial services` in meeting members’ needs.
+_**R4**: Are there any perceived differences on attitude towards employee proficiencies, awareness of services, and operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?_
 
-H2: Members will not be different in their opinion on `CU’s loan rate (Q8r)` and the degree to which they agree that CU’s loan rate is lower than competitors (Q30).
+## Awareness of Services
 
-H3a: There will be interaction effect between the current loan use and location of residence on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs.
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-H3b: Test H2a controlling for the impact of attitudes toward employee proficiency.
-:::
+_**R5**: How well are the members aware of the services offered by the credit union?_
+
+## CU's Operational Effectiveness
+
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
+
+_**R6**: What are the members’ attitudes and beliefs about how effectively the credit union is operated?_
+
+## Adequancy of Finacial Services
+
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
+
+_**H1**: Members’ `awareness of the regular share accounts` will influence their opinions on the `adequacy of financial services` in meeting members’ needs._
+
+## CU Members' Opinion on CU's Loan Rate
+
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
+
+_**H2**: Members will not be different in their opinion on `CU’s loan rate (Q8r)` and the degree to which they agree that CU’s loan rate is lower than competitors (Q30)._
+
+## Impact of Current loan use and residence lcoatoin on Finacial Services Adequacy
+
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
 
 ---
 
-### H4 & H5
+_**H3a**: There will be interaction effect between the `current loan use` and `location of residence` on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs._
 
-::: small-text
-H4: Compared with the members who have a loan, [those members who don’t have a loan]{style="color:red;"} currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions.
 
-H5a: Member belief about CU keeps personal financial information confidential will positively influence the overall attitude toward credit union’s operational efficiency.
+_**H3b**: Test H2a controlling for the impact of attitudes toward employee proficiency._
 
-H5b: Loan application processing promptness will positively influence the overall attitude toward credit union’s operational efficiency.
+--- 
 
-H5c: Member satisfaction with level of financial services in meeting needs will positively influence the overall attitude toward credit union’s operational efficiency.
+## Impact of Loan Status on CU Loan Rate
 
-H5d: Loan application simplicity and easiness will positively influence the overall attitude toward credit union’s operational efficiency.
-:::
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
+
+_**H4**: Compared with the members who have a loan, [those members who don’t have a loan]{style="color:red;"} currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions._
+
+## Factors Affecting Attitudes towards Credit Union Operational Efficiency
+
+- What to write on this sub-section?
+  - You can use information you learned from academic research
+  - You may use white paper available online
+  - You can use information you obtained from managers
+- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+- You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
+
+---
+
+_**H5a**: Member belief about CU keeps personal `financial information confidential` will positively influence the overall attitude toward credit union’s operational efficiency._
+
+_**H5b**: `Loan application processing promptness` will positively influence the overall attitude toward credit union’s operational efficiency._
+
+_**H5c**: Member `satisfaction with level of financial services in meeting needs` will positively influence the overall attitude toward credit union’s operational efficiency._
+
+_**H5d**: `Loan application simplicity and easiness` will positively influence the overall attitude toward credit union’s operational efficiency._
+
 
 # `r fontawesome::fa("laptop-code", "white")` Methods {background-color="#447099"}
 
@@ -931,20 +1020,22 @@ awareness_long |>
 
 ::: {.callout-note .large-callout}
 ### Insights about R5
+
+- Series of Chi-square goodness-of-fit statistics show and for all services, frequency distributions of awareness levels are significantly different from each other and the pattern of differences are quite similar with unawareness being largest across all types of financial services.
+
+- The company should increase the awareness.
 :::
 
 # Addressing R6 {background-color="aquamarine"}
 
 R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?
 
-::: small-text
+::::::{.columns .small-text}
+
+:::: {.column width="50%"}
 -   `Constructs and roles`:
     -   Attitude toward operational effectiveness
-:::
 
-. . .
-
-::: small-text
 -   `Operationalization`:
     -   Q9r–Q10r
     -   Q11–Q12rc,
@@ -955,17 +1046,18 @@ R6: What are the members’ attitudes and beliefs about how effectively the cred
     -   nominal scale
     -   Interval
     -   Interval
-:::
 
-. . .
+::::
 
-::: small-text
+::::{.column width="50%"}
 -   `Statistics`:
     -   DS / Chi-square goodness-of-fit test
     -   DS / Chi-square goodness-of-fit test
     -   DS / One group t-test
     -   DS / One group t-test
-:::
+::::
+
+::::::
 
 # Test of H1 {background-color="steelblue"}
 
@@ -997,9 +1089,15 @@ H1: Members’ awareness of the regular share accounts will influence their opin
 
 ## Visualization
 
-### Frequency by group
+---
+
+### Frequency by groups
 
 ```{r}
+#| echo: false
+#| label: fig-q33-q13r-histogram
+#| fig-cap: Frequency Distribution of Adequacy of Financial Services in Meeting Members' Needs (q33) by Their Awareness of Regular Share Accounts (q13r)
+
 case31_clean |> 
   group_by(q13r) |> 
   ggplot(aes(q33, fill = q13r)) +
@@ -1008,24 +1106,29 @@ case31_clean |>
   theme(legend.position = "none")
 ```
 
-### Mean value by group
+---
+
+### Mean value by groups
 
 ```{r}
-# means
-case31_clean |> 
-  group_by(q13r) |> 
-  summarize(mean = mean(q33)) 
+#| echo: false
+#| label: fig-q33-q13r-barplot
+#| fig-cap: Mean VAlue of Adequacy of Financial Services in Meeting Members' Needs (q33) by Their Awareness of Regular Share Accounts (q13r)
 
 case31_clean |> 
   group_by(q13r) |> 
   summarize(mean = mean(q33)) |> 
   ggplot(aes(mean, q13r, fill = q13r)) +
   geom_col() +
-  theme(legend.position = "none")
-  
+  geom_text(aes(label = glue::glue("{round(mean, 2)}")),
+            hjust = -0.1) +
+  theme(legend.position = "none") +
+  labs(x = "Average Value of Adequacy of Financial Services in Meeting Members' Needs",
+       y = "Level of Awareness of Regular Share Account",
+       title = "Impact of Awareness of Services on Perceived Adequcey of Financial Services")
 ```
 
-## Test of H1
+## Test Procedure
 
 ### 1. Check normality assumption
 
@@ -1052,8 +1155,6 @@ case31_clean |>
 ### 3. ANOVA Test
 
 ```{r}
-
-
 case31_clean |> 
   aov(q33 ~ q13r, data = _) |> 
   summary()
@@ -1067,6 +1168,14 @@ case31_clean |>
   aov(q33 ~ q13r, data = _) |> 
   TukeyHSD()
 ```
+
+---
+
+::: {.callout-note .large-callout}
+### Insights about H1
+
+- Members' perception of adequacy of financial services is most negative among who have highest level of awareness of regualr savings account (`aware and have used it`), while it is not different between the two lower awareness groups (`aware but have not used it` vs. `unaware`)
+:::
 
 # Test of H2 {background-color="black"}
 
@@ -1084,7 +1193,7 @@ H3b: Test H2a controlling for the impact of attitudes toward employee proficienc
 
 H4: Compared with the members who have a loan, [those members who don’t have a loan]{style="color:red;"} currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions.
 
-# Test of H5 {background-color="black"}
+# Test of H5 {background-color="steelblue"}
 
 ::: small-text
 H5a: Member belief about CU keeps personal `financial information confidential` will positively influence the [overall attitude toward credit union’s operational efficiency]{style="color:orange;"}.
@@ -1098,22 +1207,20 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
 
 # Test of H5 (cont'd) {background-color="steelblue"}
 
-::: small-text
+:::::: small-text
+
+:::: {.columns}
+
+:::{.column width="60%"}
 -   `Constructs and roles`:
     1.  Overall managerial and operational efficiency (DV)
-    2.  
-        (a) Confidentiality of personal financial information (IV)
-    3.  
-        (b) Loan application processing promptness (IV)
-    4.  
-        (c) Adequacy of financial services in meeting needs (IV)
-    5.  
-        (d) Simplicity and easiness of loan application (IV)
+    2.  (a) Confidentiality of personal financial information (IV)
+    3.  (b) Loan application processing promptness (IV)
+    4.  (c) Adequacy of financial services in meeting needs (IV)
+    5.  (d) Simplicity and easiness of loan application (IV)
 :::
 
-. . .
-
-::: small-text
+:::{.column width="40%"}
 -   `Operationalization`:
     1.  q37r
     2.  q31
@@ -1122,13 +1229,13 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
     5.  q34
 -   `Scale`:
     -   all of them are interval
-:::
-
-. . .
-
-::: small-text
 -   `Statistics`:
     -   separate visualization, followed by multiple regress
+
 :::
 
-## Test of H5
+::::
+
+::::::
+
+## Multiple Regression
