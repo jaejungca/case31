@@ -444,7 +444,7 @@
   <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Jae Jung">
-  <meta name="dcterms.date" content="2024-11-27">
+  <meta name="dcterms.date" content="2024-12-11">
   <title>Data Preparation for Case 31</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1224,7 +1224,7 @@ Jae Jung
     </div>
 </div>
 
-  <p class="date">2024-11-27</p>
+  <p class="date">2024-12-11</p>
 </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
@@ -1250,10 +1250,11 @@ Jae Jung
 <span id="cb1-2"><a href></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href></a><span class="fu">library</span>(haven) </span>
 <span id="cb1-4"><a href></a><span class="fu">library</span>(labelled) </span>
-<span id="cb1-5"><a href></a><span class="fu">library</span>(janitor) </span>
-<span id="cb1-6"><a href></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb1-7"><a href></a><span class="fu">library</span>(psych)</span>
-<span id="cb1-8"><a href></a><span class="fu">set_theme</span>(<span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href></a><span class="fu">library</span>(sjlabelled)</span>
+<span id="cb1-6"><a href></a><span class="fu">library</span>(janitor) </span>
+<span id="cb1-7"><a href></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb1-8"><a href></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-9"><a href></a><span class="fu">set_theme</span>(<span class="fu">theme_minimal</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -1264,7 +1265,7 @@ Jae Jung
 <section id="reading-spss-data" class="slide level2 smaller" data-number="2.1">
 <h2><span class="header-section-number">2.1</span> Reading SPSS data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href></a>data <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;Case 31 Data_efcu_1.sav&quot;</span>)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href></a>data <span class="ot">&lt;-</span> <span class="fu">read_sav</span>(<span class="st">&quot;Case 31 Data_efcu_1.sav&quot;</span>)</span>
 <span id="cb2-2"><a href></a>data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span> </span>
 <span id="cb2-3"><a href></a>  <span class="fu">clean_names</span>()</span>
 <span id="cb2-4"><a href></a></span>
@@ -1674,11 +1675,20 @@ no</td>
 <span id="cb7-2"><a href></a>  <span class="fu">select</span>(q3) <span class="sc">|&gt;</span> </span>
 <span id="cb7-3"><a href></a>  <span class="fu">val_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$q3
-Strongly Disagree          Disagree         Uncertain             Agree 
-                1                 2                 3                 4 
-   Strongly Agree 
-                5 </code></pre>
+<pre><code># A tibble: 128 × 1
+   q3                
+   &lt;dbl+lbl&gt;         
+ 1 4 [Agree]         
+ 2 4 [Agree]         
+ 3 4 [Agree]         
+ 4 4 [Agree]         
+ 5 4 [Agree]         
+ 6 4 [Agree]         
+ 7 5 [Strongly Agree]
+ 8 5 [Strongly Agree]
+ 9 5 [Strongly Agree]
+10 4 [Agree]         
+# ℹ 118 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1705,11 +1715,20 @@ Strongly Disagree          Disagree         Uncertain             Agree
 <span id="cb11-2"><a href></a>  <span class="fu">select</span>(q4) <span class="sc">|&gt;</span> </span>
 <span id="cb11-3"><a href></a>  <span class="fu">val_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$q4
-Strongly Disagree          Disagree         Uncertain             Agree 
-                1                 2                 3                 4 
-   Strongly Agree 
-                5 </code></pre>
+<pre><code># A tibble: 128 × 1
+   q4                
+   &lt;dbl+lbl&gt;         
+ 1 4 [Agree]         
+ 2 4 [Agree]         
+ 3 4 [Agree]         
+ 4 4 [Agree]         
+ 5 4 [Agree]         
+ 6 4 [Agree]         
+ 7 5 [Strongly Agree]
+ 8 5 [Strongly Agree]
+ 9 5 [Strongly Agree]
+10 4 [Agree]         
+# ℹ 118 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1744,17 +1763,20 @@ $q6
 <span id="cb15-2"><a href></a>  <span class="fu">select</span>(q5, q6) <span class="sc">|&gt;</span> </span>
 <span id="cb15-3"><a href></a>  <span class="fu">val_labels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$q5
-Strongly Disagree          Disagree         Uncertain             Agree 
-                1                 2                 3                 4 
-   Strongly Agree 
-                5 
-
-$q6
-Strongly Disagree          Disagree         Uncertain             Agree 
-                1                 2                 3                 4 
-   Strongly Agree 
-                5 </code></pre>
+<pre><code># A tibble: 128 × 2
+   q5                 q6                
+   &lt;dbl+lbl&gt;          &lt;dbl+lbl&gt;         
+ 1 4 [Agree]          4 [Agree]         
+ 2 4 [Agree]          4 [Agree]         
+ 3 4 [Agree]          4 [Agree]         
+ 4 3 [Uncertain]      4 [Agree]         
+ 5 4 [Agree]          4 [Agree]         
+ 6 4 [Agree]          4 [Agree]         
+ 7 5 [Strongly Agree] 5 [Strongly Agree]
+ 8 4 [Agree]          4 [Agree]         
+ 9 5 [Strongly Agree] 5 [Strongly Agree]
+10 4 [Agree]          4 [Agree]         
+# ℹ 118 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1809,8 +1831,35 @@ q6 0.03 0.18 0.47 0.32    0</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
 <span id="cb19-2"><a href></a>  <span class="fu">select</span>(q3<span class="sc">:</span>q6) <span class="sc">|&gt;</span> </span>
-<span id="cb19-3"><a href></a>  <span class="fu">fa</span>(<span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb19-4"><a href></a>  <span class="fu">fa.diagram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-3"><a href></a>  <span class="fu">factanal</span>(<span class="at">factors =</span> <span class="dv">1</span>, <span class="at">rotation =</span> <span class="st">&quot;none&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+factanal(x = select(data_clean, q3:q6), factors = 1, rotation = &quot;none&quot;)
+
+Uniquenesses:
+   q3    q4    q5    q6 
+0.431 0.141 0.423 0.473 
+
+Loadings:
+   Factor1
+q3 0.754  
+q4 0.927  
+q5 0.760  
+q6 0.726  
+
+               Factor1
+SS loadings      2.531
+Proportion Var   0.633
+
+Test of the hypothesis that 1 factor is sufficient.
+The chi square statistic is 11.35 on 2 degrees of freedom.
+The p-value is 0.00344 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href></a>  <span class="fu">select</span>(q3<span class="sc">:</span>q6) <span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a href></a>  <span class="fu">fa</span>(<span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb21-4"><a href></a>  <span class="fu">fa.diagram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img role="img" data-src="data:image/png;base64,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ABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAIIMAAEEGAACCDAABBAgAEggAADQAABBoAAAgwAAQQYAAL8f/mkkKoKKjuPAAAAAElFTkSuQmCC" width="960" class="r-stretch"></section>
@@ -1818,10 +1867,10 @@ q6 0.03 0.18 0.47 0.32    0</code></pre>
 
 <h3 data-number="3.1.6" id="pca-principle-component-analysis"><span class="header-section-number">3.1.6</span> PCA (Principle Component Analysis)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href></a>data_clean <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href></a>  <span class="fu">select</span>(q3<span class="sc">:</span>q6) <span class="sc">|&gt;</span> </span>
-<span id="cb20-3"><a href></a>  <span class="fu">prcomp</span>(<span class="at">scale. =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb20-4"><a href></a>  <span class="fu">summary</span>() <span class="co"># % of variance explained by the first factor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href></a>data_clean <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href></a>  <span class="fu">select</span>(q3<span class="sc">:</span>q6) <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a href></a>  <span class="fu">prcomp</span>(<span class="at">scale. =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb22-4"><a href></a>  <span class="fu">summary</span>() <span class="co"># % of variance explained by the first factor</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Importance of components:
                           PC1    PC2    PC3     PC4
@@ -1835,9 +1884,9 @@ Cumulative Proportion  0.7198 0.8585 0.9457 1.00000</code></pre>
 
 <h3 data-number="3.1.7" id="scree-plot"><span class="header-section-number">3.1.7</span> Scree plot</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb22-2"><a href></a>  <span class="fu">select</span>(q3<span class="sc">:</span>q6) <span class="sc">|&gt;</span> </span>
-<span id="cb22-3"><a href></a>  <span class="fu">scree</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href></a>  <span class="fu">select</span>(q3<span class="sc">:</span>q6) <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href></a>  <span class="fu">scree</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img role="img" data-src="data:image/png;base64,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" width="960" class="r-stretch"></section>
@@ -1845,11 +1894,11 @@ Cumulative Proportion  0.7198 0.8585 0.9457 1.00000</code></pre>
 
 <h3 data-number="3.1.8" id="creating-a-composite-scale"><span class="header-section-number">3.1.8</span> Creating a composite scale</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">at_emp =</span> <span class="fu">rowMeans</span>(<span class="fu">across</span>(q3<span class="sc">:</span>q6), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span>
-<span id="cb23-3"><a href></a></span>
-<span id="cb23-4"><a href></a><span class="co"># from psych: descriptive statistics</span></span>
-<span id="cb23-5"><a href></a><span class="fu">describe</span>(data_clean<span class="sc">$</span>at_emp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">at_emp =</span> <span class="fu">rowMeans</span>(<span class="fu">across</span>(q3<span class="sc">:</span>q6), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span>
+<span id="cb25-3"><a href></a></span>
+<span id="cb25-4"><a href></a><span class="co"># from psych: descriptive statistics</span></span>
+<span id="cb25-5"><a href></a><span class="fu">describe</span>(data_clean<span class="sc">$</span>at_emp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -1863,7 +1912,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
   q7                n
@@ -1877,21 +1926,21 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 </div>
 </div><div class="column" style="width:60%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb27-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q7r =</span> <span class="fu">case_when</span>(q7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb27-3"><a href></a>                         q7 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb27-4"><a href></a>                         q7 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb27-5"><a href></a>                         q7 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb27-6"><a href></a>                         q7 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb27-7"><a href></a>                         <span class="cn">TRUE</span>    <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb27-8"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q7r =</span> <span class="st">&quot;Savings rates&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb27-9"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q7r =</span> <span class="fu">c</span>(<span class="st">&quot;Very Low&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb27-10"><a href></a>                           <span class="st">&quot;Low&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb27-11"><a href></a>                           <span class="st">&quot;Average&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb27-12"><a href></a>                           <span class="st">&quot;High&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb27-13"><a href></a>                           <span class="st">&quot;Very High&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span>
-<span id="cb27-14"><a href></a></span>
-<span id="cb27-15"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q7r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q7r =</span> <span class="fu">case_when</span>(q7 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb29-3"><a href></a>                         q7 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb29-4"><a href></a>                         q7 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb29-5"><a href></a>                         q7 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb29-6"><a href></a>                         q7 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb29-7"><a href></a>                         <span class="cn">TRUE</span>    <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb29-8"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q7r =</span> <span class="st">&quot;Savings rates&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb29-9"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q7r =</span> <span class="fu">c</span>(<span class="st">&quot;Very Low&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb29-10"><a href></a>                           <span class="st">&quot;Low&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb29-11"><a href></a>                           <span class="st">&quot;Average&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb29-12"><a href></a>                           <span class="st">&quot;High&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb29-13"><a href></a>                           <span class="st">&quot;Very High&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span>
+<span id="cb29-14"><a href></a></span>
+<span id="cb29-15"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q7r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -1910,7 +1959,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q8r" class="slide level2" data-number="3.3">
 <h2><span class="header-section-number">3.3</span> q8r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q8)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -1929,21 +1978,21 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb31-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q8r =</span> <span class="fu">case_when</span>(q8 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb31-3"><a href></a>                         q8 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb31-4"><a href></a>                         q8 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb31-5"><a href></a>                         q8 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb31-6"><a href></a>                         q8 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb31-7"><a href></a>                         <span class="cn">TRUE</span>    <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb31-8"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q8r =</span> <span class="st">&quot;Fund borrowing rates&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb31-9"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q8r =</span> <span class="fu">c</span>(<span class="st">&quot;Very Low&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb31-10"><a href></a>                           <span class="st">&quot;Low&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb31-11"><a href></a>                           <span class="st">&quot;Average&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb31-12"><a href></a>                           <span class="st">&quot;High&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb31-13"><a href></a>                           <span class="st">&quot;Very High&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span>
-<span id="cb31-14"><a href></a></span>
-<span id="cb31-15"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q8r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb33-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q8r =</span> <span class="fu">case_when</span>(q8 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb33-3"><a href></a>                         q8 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb33-4"><a href></a>                         q8 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb33-5"><a href></a>                         q8 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb33-6"><a href></a>                         q8 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb33-7"><a href></a>                         <span class="cn">TRUE</span>    <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb33-8"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q8r =</span> <span class="st">&quot;Fund borrowing rates&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb33-9"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q8r =</span> <span class="fu">c</span>(<span class="st">&quot;Very Low&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb33-10"><a href></a>                           <span class="st">&quot;Low&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb33-11"><a href></a>                           <span class="st">&quot;Average&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb33-12"><a href></a>                           <span class="st">&quot;High&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb33-13"><a href></a>                           <span class="st">&quot;Very High&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span>
+<span id="cb33-14"><a href></a></span>
+<span id="cb33-15"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q8r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -1962,7 +2011,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q9r" class="slide level2" data-number="3.4">
 <h2><span class="header-section-number">3.4</span> q9r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q9)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q9)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -1977,17 +2026,23 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb35-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q9r =</span> <span class="dv">6</span> <span class="sc">-</span> q9) <span class="sc">|&gt;</span> </span>
-<span id="cb35-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q9r =</span> <span class="st">&quot;Statement Frequency&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb35-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q9r =</span> <span class="fu">c</span>(<span class="st">&quot;Never&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb35-5"><a href></a>                           <span class="st">&quot;Not Often Enough&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb35-6"><a href></a>                           <span class="st">&quot;About Right&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb35-7"><a href></a>                           <span class="st">&quot;Very Often&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb35-8"><a href></a>                           <span class="st">&quot;Too Often&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span>
-<span id="cb35-9"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q9r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href></a>data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb37-2"><a href></a>  <span class="fu">select</span>(q9) <span class="sc">|&gt;</span> </span>
+<span id="cb37-3"><a href></a>  <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb39-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q9r =</span> <span class="dv">6</span> <span class="sc">-</span> q9) <span class="sc">|&gt;</span> </span>
+<span id="cb39-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q9r =</span> <span class="st">&quot;Statement Frequency&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb39-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q9r =</span> <span class="fu">c</span>(<span class="st">&quot;Never&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb39-5"><a href></a>                           <span class="st">&quot;Not Often Enough&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb39-6"><a href></a>                           <span class="st">&quot;About Right&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb39-7"><a href></a>                           <span class="st">&quot;Very Often&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb39-8"><a href></a>                           <span class="st">&quot;Too Often&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span>
+<span id="cb39-9"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q9r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   q9r                      n
@@ -2000,7 +2055,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q10r" class="slide level2" data-number="3.5">
 <h2><span class="header-section-number">3.5</span> q10r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2017,14 +2072,14 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb39-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q10r =</span> <span class="dv">5</span> <span class="sc">-</span> q10) <span class="sc">|&gt;</span> </span>
-<span id="cb39-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q10r =</span> <span class="st">&quot;Statement Accuracy&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb39-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q10r =</span> <span class="fu">c</span>(<span class="st">&quot;Poor&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb39-5"><a href></a>                           <span class="st">&quot;Fair&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb39-6"><a href></a>                           <span class="st">&quot;Good&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb39-7"><a href></a>                           <span class="st">&quot;Excellent&quot;</span> <span class="ot">=</span> <span class="dv">4</span>))</span>
-<span id="cb39-8"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q10r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb43-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q10r =</span> <span class="dv">5</span> <span class="sc">-</span> q10) <span class="sc">|&gt;</span> </span>
+<span id="cb43-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q10r =</span> <span class="st">&quot;Statement Accuracy&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb43-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q10r =</span> <span class="fu">c</span>(<span class="st">&quot;Poor&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb43-5"><a href></a>                           <span class="st">&quot;Fair&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb43-6"><a href></a>                           <span class="st">&quot;Good&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb43-7"><a href></a>                           <span class="st">&quot;Excellent&quot;</span> <span class="ot">=</span> <span class="dv">4</span>))</span>
+<span id="cb43-8"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q10r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2041,7 +2096,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q13r" class="slide level2" data-number="3.6">
 <h2><span class="header-section-number">3.6</span> q13r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q13)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q13)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2057,13 +2112,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb43-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q13r =</span> <span class="dv">4</span> <span class="sc">-</span> q13) <span class="sc">|&gt;</span> </span>
-<span id="cb43-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q13r =</span> <span class="st">&quot;Regular share account&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb43-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q13r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb43-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb43-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb43-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q13r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb47-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q13r =</span> <span class="dv">4</span> <span class="sc">-</span> q13) <span class="sc">|&gt;</span> </span>
+<span id="cb47-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q13r =</span> <span class="st">&quot;Regular share account&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb47-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q13r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb47-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb47-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb47-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q13r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2079,7 +2134,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q14r" class="slide level2" data-number="3.7">
 <h2><span class="header-section-number">3.7</span> q14r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q14)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q14)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2095,13 +2150,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb47-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q14r =</span> <span class="dv">4</span> <span class="sc">-</span> q14) <span class="sc">|&gt;</span> </span>
-<span id="cb47-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q14r =</span> <span class="st">&quot;Special subaccounts&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb47-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q14r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb47-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb47-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb47-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q14r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q14r =</span> <span class="dv">4</span> <span class="sc">-</span> q14) <span class="sc">|&gt;</span> </span>
+<span id="cb51-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q14r =</span> <span class="st">&quot;Special subaccounts&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb51-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q14r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb51-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb51-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb51-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q14r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2117,7 +2172,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q15r" class="slide level2" data-number="3.8">
 <h2><span class="header-section-number">3.8</span> q15r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q15)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q15)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2133,13 +2188,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb51-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q15r =</span> <span class="dv">4</span> <span class="sc">-</span> q15) <span class="sc">|&gt;</span> </span>
-<span id="cb51-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q15r =</span> <span class="st">&quot;Christmas club account&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb51-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q15r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb51-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb51-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb51-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q15r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb55-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q15r =</span> <span class="dv">4</span> <span class="sc">-</span> q15) <span class="sc">|&gt;</span> </span>
+<span id="cb55-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q15r =</span> <span class="st">&quot;Christmas club account&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb55-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q15r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb55-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb55-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb55-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q15r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2155,7 +2210,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q16r" class="slide level2" data-number="3.9">
 <h2><span class="header-section-number">3.9</span> q16r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q16)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q16)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2171,13 +2226,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb55-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q16r =</span> <span class="dv">4</span> <span class="sc">-</span> q16) <span class="sc">|&gt;</span> </span>
-<span id="cb55-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q16r =</span> <span class="st">&quot;IRA&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb55-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q16r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb55-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb55-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb55-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q16r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb59-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q16r =</span> <span class="dv">4</span> <span class="sc">-</span> q16) <span class="sc">|&gt;</span> </span>
+<span id="cb59-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q16r =</span> <span class="st">&quot;IRA&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb59-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q16r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb59-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb59-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb59-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q16r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2193,7 +2248,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q17r" class="slide level2" data-number="3.10">
 <h2><span class="header-section-number">3.10</span> q17r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q17)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q17)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2209,13 +2264,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb59-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q17r =</span> <span class="dv">4</span> <span class="sc">-</span> q17) <span class="sc">|&gt;</span> </span>
-<span id="cb59-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q17r =</span> <span class="st">&quot;Master credit card&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb59-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q17r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb59-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb59-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb59-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q17r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb63-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q17r =</span> <span class="dv">4</span> <span class="sc">-</span> q17) <span class="sc">|&gt;</span> </span>
+<span id="cb63-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q17r =</span> <span class="st">&quot;Master credit card&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb63-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q17r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb63-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb63-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb63-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q17r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2231,7 +2286,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q18r" class="slide level2" data-number="3.11">
 <h2><span class="header-section-number">3.11</span> q18r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q18)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q18)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2247,13 +2302,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb63-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q18r =</span> <span class="dv">4</span> <span class="sc">-</span> q18) <span class="sc">|&gt;</span> </span>
-<span id="cb63-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q18r =</span> <span class="st">&quot;Signature loans&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb63-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q18r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb63-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb63-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb63-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q18r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb67-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q18r =</span> <span class="dv">4</span> <span class="sc">-</span> q18) <span class="sc">|&gt;</span> </span>
+<span id="cb67-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q18r =</span> <span class="st">&quot;Signature loans&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb67-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q18r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb67-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb67-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb67-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q18r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2269,7 +2324,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q19r" class="slide level2" data-number="3.12">
 <h2><span class="header-section-number">3.12</span> q19r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q19)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q19)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2285,13 +2340,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb67-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q19r =</span> <span class="dv">4</span> <span class="sc">-</span> q19) <span class="sc">|&gt;</span> </span>
-<span id="cb67-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q19r =</span> <span class="st">&quot;New car loans&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb67-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q19r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb67-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb67-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb67-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q19r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb71-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q19r =</span> <span class="dv">4</span> <span class="sc">-</span> q19) <span class="sc">|&gt;</span> </span>
+<span id="cb71-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q19r =</span> <span class="st">&quot;New car loans&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb71-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q19r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb71-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb71-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb71-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q19r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2307,7 +2362,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q20r" class="slide level2" data-number="3.13">
 <h2><span class="header-section-number">3.13</span> q20r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q20)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q20)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2323,13 +2378,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb71-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q20r =</span> <span class="dv">4</span> <span class="sc">-</span> q20) <span class="sc">|&gt;</span> </span>
-<span id="cb71-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q20r =</span> <span class="st">&quot;Late model car loans&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb71-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q20r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb71-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb71-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb71-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q20r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb75-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q20r =</span> <span class="dv">4</span> <span class="sc">-</span> q20) <span class="sc">|&gt;</span> </span>
+<span id="cb75-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q20r =</span> <span class="st">&quot;Late model car loans&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb75-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q20r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb75-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb75-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb75-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q20r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2345,7 +2400,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q21r" class="slide level2" data-number="3.14">
 <h2><span class="header-section-number">3.14</span> q21r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q21)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q21)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2361,13 +2416,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb75-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q21r =</span> <span class="dv">4</span> <span class="sc">-</span> q21) <span class="sc">|&gt;</span> </span>
-<span id="cb75-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q21r =</span> <span class="st">&quot;Older model car loans&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb75-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q21r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb75-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb75-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb75-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q21r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb79-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q21r =</span> <span class="dv">4</span> <span class="sc">-</span> q21) <span class="sc">|&gt;</span> </span>
+<span id="cb79-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q21r =</span> <span class="st">&quot;Older model car loans&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb79-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q21r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb79-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb79-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb79-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q21r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2383,7 +2438,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q22r" class="slide level2" data-number="3.15">
 <h2><span class="header-section-number">3.15</span> q22r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q22)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q22)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   q22                             n
@@ -2392,13 +2447,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 2 2 [Aware but Have Not Used]    80
 3 3                              37</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb79-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q22r =</span> <span class="dv">4</span> <span class="sc">-</span> q22) <span class="sc">|&gt;</span> </span>
-<span id="cb79-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q22r =</span> <span class="st">&quot;Household goods loans&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb79-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q22r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb79-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb79-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb79-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q22r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb83-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q22r =</span> <span class="dv">4</span> <span class="sc">-</span> q22) <span class="sc">|&gt;</span> </span>
+<span id="cb83-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q22r =</span> <span class="st">&quot;Household goods loans&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb83-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q22r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb83-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb83-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb83-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q22r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   q22r                            n
@@ -2412,7 +2467,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q23r" class="slide level2" data-number="3.16">
 <h2><span class="header-section-number">3.16</span> q23r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q23)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q23)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   q23                             n
@@ -2421,13 +2476,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 2 2 [Aware but Have Not Used]    60
 3 3                              55</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb83-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q23r =</span> <span class="dv">4</span> <span class="sc">-</span> q23) <span class="sc">|&gt;</span> </span>
-<span id="cb83-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q23r =</span> <span class="st">&quot;Recreational loans&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb83-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q23r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb83-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb83-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb83-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q23r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb87-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q23r =</span> <span class="dv">4</span> <span class="sc">-</span> q23) <span class="sc">|&gt;</span> </span>
+<span id="cb87-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q23r =</span> <span class="st">&quot;Recreational loans&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb87-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q23r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb87-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb87-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb87-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q23r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   q23r                            n
@@ -2441,7 +2496,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q24r" class="slide level2" data-number="3.17">
 <h2><span class="header-section-number">3.17</span> q24r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q24)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q24)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   q24                             n
@@ -2450,13 +2505,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 2 2 [Aware but Have Not Used]    57
 3 3                              69</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb87-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q24r =</span> <span class="dv">4</span> <span class="sc">-</span> q24) <span class="sc">|&gt;</span> </span>
-<span id="cb87-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q24r =</span> <span class="st">&quot;Share collateralized loan&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb87-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q24r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb87-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb87-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb87-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q24r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb91-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q24r =</span> <span class="dv">4</span> <span class="sc">-</span> q24) <span class="sc">|&gt;</span> </span>
+<span id="cb91-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q24r =</span> <span class="st">&quot;Share collateralized loan&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb91-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q24r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb91-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb91-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb91-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q24r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   q24r                            n
@@ -2470,7 +2525,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q25r" class="slide level2" data-number="3.18">
 <h2><span class="header-section-number">3.18</span> q25r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q25)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q25)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   q25                             n
@@ -2479,13 +2534,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 2 2 [Aware but Have Not Used]    46
 3 3                              78</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb91-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q25r =</span> <span class="dv">4</span> <span class="sc">-</span> q25) <span class="sc">|&gt;</span> </span>
-<span id="cb91-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q25r =</span> <span class="st">&quot;IRA loans&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb91-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q25r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb91-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb91-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb91-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q25r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb95-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q25r =</span> <span class="dv">4</span> <span class="sc">-</span> q25) <span class="sc">|&gt;</span> </span>
+<span id="cb95-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q25r =</span> <span class="st">&quot;IRA loans&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb95-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q25r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb95-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb95-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb95-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q25r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
   q25r                            n
@@ -2499,7 +2554,7 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q26r" class="slide level2" data-number="3.19">
 <h2><span class="header-section-number">3.19</span> q26r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q26)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q26)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   q26                             n
@@ -2507,13 +2562,13 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 1 1 [Aware and Have Used]        48
 2 2 [Aware but Have Not Used]    80</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb95-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q26r =</span> <span class="dv">4</span> <span class="sc">-</span> q26) <span class="sc">|&gt;</span> </span>
-<span id="cb95-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q26r =</span> <span class="st">&quot;Line of credit loans&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb95-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q26r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb95-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb95-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
-<span id="cb95-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q26r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb99-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q26r =</span> <span class="dv">4</span> <span class="sc">-</span> q26) <span class="sc">|&gt;</span> </span>
+<span id="cb99-3"><a href></a>  <span class="fu">set_variable_labels</span>(<span class="at">q26r =</span> <span class="st">&quot;Line of credit loans&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb99-4"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q26r =</span> <span class="fu">c</span>(<span class="st">&quot;Unaware&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb99-5"><a href></a>                           <span class="st">&quot;Aware but Have Not Used&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb99-6"><a href></a>                           <span class="st">&quot;Aware and Have Used&quot;</span> <span class="ot">=</span> <span class="dv">3</span>))</span>
+<span id="cb99-7"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q26r)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   q26r                            n
@@ -2526,38 +2581,38 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="q30---q34" class="slide level2 smaller" data-number="3.20">
 <h2><span class="header-section-number">3.20</span> q30 - q34</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href></a>data_clean <span class="ot">&lt;-</span>  data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb97-2"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q30 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb97-3"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb97-4"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb97-5"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb97-6"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb97-7"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q31 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb97-8"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb97-9"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb97-10"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb97-11"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))<span class="sc">|&gt;</span> </span>
-<span id="cb97-12"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q32 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb97-13"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb97-14"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb97-15"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb97-16"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))<span class="sc">|&gt;</span> </span>
-<span id="cb97-17"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q33 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb97-18"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb97-19"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb97-20"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb97-21"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))<span class="sc">|&gt;</span> </span>
-<span id="cb97-22"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q34 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb97-23"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb97-24"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb97-25"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb97-26"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href></a>data_clean <span class="ot">&lt;-</span>  data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb101-2"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q30 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb101-3"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb101-4"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb101-5"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb101-6"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb101-7"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q31 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb101-8"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb101-9"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb101-10"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb101-11"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))<span class="sc">|&gt;</span> </span>
+<span id="cb101-12"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q32 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb101-13"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb101-14"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb101-15"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb101-16"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))<span class="sc">|&gt;</span> </span>
+<span id="cb101-17"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q33 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb101-18"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb101-19"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb101-20"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb101-21"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))<span class="sc">|&gt;</span> </span>
+<span id="cb101-22"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q34 =</span> <span class="fu">c</span>(<span class="st">&quot;Strongly Disagree&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb101-23"><a href></a>                          <span class="st">&quot;Disagree&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb101-24"><a href></a>                          <span class="st">&quot;Uncertain&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb101-25"><a href></a>                          <span class="st">&quot;Agree&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb101-26"><a href></a>                          <span class="st">&quot;Strongly Agree&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="q37r" class="slide level2" data-number="3.21">
 <h2><span class="header-section-number">3.21</span> q37r</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q37)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q37)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2576,20 +2631,20 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section class="slide level2">
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
-<span id="cb100-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q37r =</span> <span class="fu">case_when</span>(q37 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
-<span id="cb100-3"><a href></a>                          q37 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
-<span id="cb100-4"><a href></a>                          q37 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb100-5"><a href></a>                          q37 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb100-6"><a href></a>                          q37 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="cb100-7"><a href></a>                          q37 <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb100-8"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q37r =</span> <span class="fu">c</span>(<span class="st">&quot;Very Poor&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
-<span id="cb100-9"><a href></a>                            <span class="st">&quot;Poor&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
-<span id="cb100-10"><a href></a>                            <span class="st">&quot;Average&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
-<span id="cb100-11"><a href></a>                            <span class="st">&quot;Good&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
-<span id="cb100-12"><a href></a>                            <span class="st">&quot;Excellent&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span>
-<span id="cb100-13"><a href></a></span>
-<span id="cb100-14"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q37r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">|&gt;</span> </span>
+<span id="cb104-2"><a href></a>  <span class="fu">mutate</span>(<span class="at">q37r =</span> <span class="fu">case_when</span>(q37 <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="dv">5</span>,</span>
+<span id="cb104-3"><a href></a>                          q37 <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="dv">4</span>,</span>
+<span id="cb104-4"><a href></a>                          q37 <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb104-5"><a href></a>                          q37 <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb104-6"><a href></a>                          q37 <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb104-7"><a href></a>                          q37 <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="cn">NA</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb104-8"><a href></a>  <span class="fu">set_value_labels</span>(<span class="at">q37r =</span> <span class="fu">c</span>(<span class="st">&quot;Very Poor&quot;</span> <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb104-9"><a href></a>                            <span class="st">&quot;Poor&quot;</span> <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb104-10"><a href></a>                            <span class="st">&quot;Average&quot;</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb104-11"><a href></a>                            <span class="st">&quot;Good&quot;</span> <span class="ot">=</span> <span class="dv">4</span>,</span>
+<span id="cb104-12"><a href></a>                            <span class="st">&quot;Excellent&quot;</span> <span class="ot">=</span> <span class="dv">5</span>))</span>
+<span id="cb104-13"><a href></a></span>
+<span id="cb104-14"><a href></a>data_clean <span class="sc">|&gt;</span> <span class="fu">count</span>(q37r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell fragment">
 <div class="cell-output cell-output-stdout">
@@ -2608,10 +2663,10 @@ X1    1 128 4.21 0.59      4    4.25 0.74 2.75   5  2.25 -0.32    -0.69 0.05</co
 <section id="renaming-clean-data" class="title-slide slide level1 center" data-number="4">
 <h1><span class="header-section-number">4</span> Renaming Clean Data</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href></a>data_preped <span class="ot">&lt;-</span> data_clean</span>
-<span id="cb102-2"><a href></a></span>
-<span id="cb102-3"><a href></a>data_preped <span class="sc">|&gt;</span> </span>
-<span id="cb102-4"><a href></a>  <span class="fu">view_df</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href></a>data_preped <span class="ot">&lt;-</span> data_clean</span>
+<span id="cb106-2"><a href></a></span>
+<span id="cb106-3"><a href></a>data_preped <span class="sc">|&gt;</span> </span>
+<span id="cb106-4"><a href></a>  <span class="fu">view_df</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top" data-quarto-postprocess="true" style="border-collapse:collapse; border:none;">
 <caption>Data frame: data_preped</caption>
@@ -3257,14 +3312,49 @@ Excellent</td>
 </div>
 </section>
 
+<section>
 <section id="exporting-prepped-data" class="title-slide slide level1 center" data-number="5">
 <h1><span class="header-section-number">5</span> Exporting Prepped Data</h1>
+
+</section>
+<section id="spss-data" class="slide level2" data-number="5.1">
+<h2><span class="header-section-number">5.1</span> SPSS data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href></a>data_preped <span class="sc">|&gt;</span> </span>
-<span id="cb103-2"><a href></a>  <span class="fu">write_sav</span>(<span class="st">&quot;Case 31 Data_efcu_Prepped.sav&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href></a>data_preped <span class="sc">|&gt;</span> </span>
+<span id="cb107-2"><a href></a>  <span class="fu">write_sav</span>(<span class="st">&quot;Case 31 Data_efcu_Prepped.sav&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-
+<section id="excel-data-as-metadata" class="slide level2" data-number="5.2">
+<h2><span class="header-section-number">5.2</span> Excel Data as Metadata</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href></a><span class="fu">library</span>(writexl)</span>
+<span id="cb108-2"><a href></a></span>
+<span id="cb108-3"><a href></a>data_preped <span class="sc">|&gt;</span> </span>
+<span id="cb108-4"><a href></a>  <span class="fu">write_xlsx</span>(<span class="st">&quot;Case 31 Data_efcu_Prepped.xlsx&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href></a><span class="co"># Extract variable labels</span></span>
+<span id="cb109-2"><a href></a>var_labels <span class="ot">&lt;-</span> <span class="fu">get_label</span>(data)</span>
+<span id="cb109-3"><a href></a>var_labels <span class="ot">&lt;-</span> var_labels <span class="sc">|&gt;</span> </span>
+<span id="cb109-4"><a href></a>  <span class="fu">t</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb109-5"><a href></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb109-6"><a href></a><span class="fu">dim</span>(var_labels)</span>
+<span id="cb109-7"><a href></a>var_labels</span>
+<span id="cb109-8"><a href></a></span>
+<span id="cb109-9"><a href></a><span class="co"># Convert data to labeled values</span></span>
+<span id="cb109-10"><a href></a>labeled_data <span class="ot">&lt;-</span> <span class="fu">as_label</span>(data)</span>
+<span id="cb109-11"><a href></a><span class="fu">dim</span>(labeled_data)</span>
+<span id="cb109-12"><a href></a>labeled_data <span class="ot">&lt;-</span> labeled_data <span class="sc">|&gt;</span> </span>
+<span id="cb109-13"><a href></a>  <span class="fu">as.data.frame</span>()</span>
+<span id="cb109-14"><a href></a></span>
+<span id="cb109-15"><a href></a><span class="co"># Add labels as the first row</span></span>
+<span id="cb109-16"><a href></a>output_data <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb109-17"><a href></a>  var_labels, labeled_data)</span>
+<span id="cb109-18"><a href></a></span>
+<span id="cb109-19"><a href></a><span class="co"># Save to Excel</span></span>
+<span id="cb109-20"><a href></a><span class="fu">write_xlsx</span>(output_data, <span class="at">path =</span> <span class="st">&quot;Case 31 Data_efcu_Prepped_labels.xlsx&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
 <section>
 <section id="appendix" class="title-slide slide level1 center" data-number="6">
 <h1><span class="header-section-number">6</span> Appendix</h1>
@@ -3273,11 +3363,11 @@ Excellent</td>
 <section id="alternative-way-using-select-in-this-case-we-need-to-use-anonymous-function" class="slide level2" data-number="6.1">
 <h2><span class="header-section-number">6.1</span> alternative way using select(): in this case, we need to use anonymous function</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href></a>data_clean <span class="sc">|&gt;</span></span>
-<span id="cb104-2"><a href></a>  (\(df) df <span class="sc">|&gt;</span> </span>
-<span id="cb104-3"><a href></a>    <span class="fu">mutate</span>(<span class="at">row_mean =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(df, q3, q4, q5, q6), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb104-4"><a href></a>  )() <span class="sc">|&gt;</span> </span>
-<span id="cb104-5"><a href></a>  <span class="fu">select</span>(row_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href></a>data_clean <span class="sc">|&gt;</span></span>
+<span id="cb110-2"><a href></a>  (\(df) df <span class="sc">|&gt;</span> </span>
+<span id="cb110-3"><a href></a>    <span class="fu">mutate</span>(<span class="at">row_mean =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(df, q3, q4, q5, q6), <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb110-4"><a href></a>  )() <span class="sc">|&gt;</span> </span>
+<span id="cb110-5"><a href></a>  <span class="fu">select</span>(row_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

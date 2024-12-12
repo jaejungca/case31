@@ -169,7 +169,7 @@ _**H3b**: Test H2a controlling for the impact of attitudes toward employee profi
 
 --- 
 
-## Impact of Loan Status on CU Loan Rate
+## Loan Status and CU Loan Rate
 
 - What to write on this sub-section?
   - You can use information you learned from academic research
@@ -1101,7 +1101,7 @@ H1: Members’ awareness of the regular share accounts will influence their opin
 case31_clean |> 
   group_by(q13r) |> 
   ggplot(aes(q33, fill = q13r)) +
-  geom_histogram() +
+  geom_histogram(binwidth = 0.5) +
   facet_wrap(~q13r) +
   theme(legend.position = "none")
 ```
@@ -1128,9 +1128,17 @@ case31_clean |>
        title = "Impact of Awareness of Services on Perceived Adequcey of Financial Services")
 ```
 
-## Test Procedure
+## ANOVA Test Procedure
+
+---
+
 
 ### 1. Check normality assumption
+
+::::{.columns}
+
+:::{.column .fragment}
+#### Overall test for q33
 
 ```{r}
 # Shapiro-Wilk normality test 
@@ -1138,11 +1146,22 @@ case31_clean |>
 case31_clean |> 
   pull(q33) |> 
   shapiro.test()
+```
+:::
 
+:::{.column .fragment}
+#### Test by awareness group
+
+```{r}
 case31_clean |> 
   group_by(q13r) |> 
   summarise(p_value = shapiro.test(pull(cur_data(), q33))$p.value)
 ```
+:::
+
+::::
+
+---
 
 ### 2. Honogeneity of variance
 
@@ -1152,6 +1171,8 @@ case31_clean |>
   leveneTest(q33 ~ q15r, data = _)
 ```
 
+---
+
 ### 3. ANOVA Test
 
 ```{r}
@@ -1160,6 +1181,8 @@ case31_clean |>
   summary()
 
 ```
+
+---
 
 ### 4. Post-hoc Analysis if ANOVA is significant
 
@@ -1230,7 +1253,7 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
 -   `Scale`:
     -   all of them are interval
 -   `Statistics`:
-    -   separate visualization, followed by multiple regress
+    -   separate visualization, followed by multiple regression
 
 :::
 
@@ -1239,3 +1262,12 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
 ::::::
 
 ## Multiple Regression
+
+```{r}
+#| eval: true
+
+case31_clean |> 
+  lm(q37r ~ q31 + q32 + q33 + q34, data = _)  |> 
+  summary()
+```
+

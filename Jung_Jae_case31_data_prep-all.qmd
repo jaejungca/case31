@@ -35,6 +35,7 @@ execute:
 library(tidyverse)
 library(haven) 
 library(labelled) 
+library(sjlabelled)
 library(janitor) 
 library(sjPlot)
 library(psych)
@@ -48,7 +49,7 @@ set_theme(theme_minimal())
 ```{r}
 #| output-location: fragment
 
-data <- read_spss("Case 31 Data_efcu_1.sav")
+data <- read_sav("Case 31 Data_efcu_1.sav")
 data <- data |> 
   clean_names()
 
@@ -156,6 +157,10 @@ data_clean |>
 ### factor analysis
 
 ```{r}
+data_clean |> 
+  select(q3:q6) |> 
+  factanal(factors = 1, rotation = "none")
+
 data_clean |> 
   select(q3:q6) |> 
   fa(nfactors = 1, rotate = "none") |> 
@@ -276,6 +281,9 @@ data_clean |> count(q9)
 ```{r}
 #| output-location: fragment
 
+data_clean |> 
+  select(q9) |> 
+  class()
 data_clean <- data_clean |> 
   mutate(q9r = 6 - q9) |> 
   set_variable_labels(q9r = "Statement Frequency") |> 
@@ -652,9 +660,52 @@ data_preped |>
 
 # Exporting Prepped Data
 
+## SPSS data
+
 ```{r}
+#| eval: false
+
 data_preped |> 
   write_sav("Case 31 Data_efcu_Prepped.sav")
+
+```
+
+## Excel Data as Metadata
+
+```{r}
+#| eval: false
+
+library(writexl)
+
+data_preped |> 
+  write_xlsx("Case 31 Data_efcu_Prepped.xlsx")
+
+```
+
+```{r}
+#| eval: false
+
+# Extract variable labels
+var_labels <- get_label(data)
+var_labels <- var_labels |> 
+  t() |> 
+  as.data.frame()
+dim(var_labels)
+var_labels
+
+# Convert data to labeled values
+labeled_data <- as_label(data)
+dim(labeled_data)
+labeled_data <- labeled_data |> 
+  as.data.frame()
+
+# Add labels as the first row
+output_data <- bind_rows(
+  var_labels, labeled_data)
+
+# Save to Excel
+write_xlsx(output_data, path = "Case 31 Data_efcu_Prepped_labels.xlsx")
+
 ```
 
 # Appendix
