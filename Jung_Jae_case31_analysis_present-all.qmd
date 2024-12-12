@@ -7,6 +7,8 @@ date: "Dec. 2, 2024"
 format: 
   revealjs:
     theme: serif
+    width: 1600
+    height: 900
     footer: Sample Presentation for Case 31 Project
     logo: ccidm-email.png
     transition: slide
@@ -65,140 +67,142 @@ execute:
 
 ## Reasons for Consumers' Use of Credit Union
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-_**R1**: Why do people join the Credit Union?_
+***R1**: Why do people join the Credit Union?*
 
-##  Using services from Other Financial Services
+## Using services from Other Financial Services
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-_**R2**: Why do members use other financial institutions when they need to borrow funds?_
+***R2**: Why do members use other financial institutions when they need to borrow funds?*
 
 ## Attitudes and beliefs about the employee proficiency
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-_**R3**: What are the members’ attitudes and beliefs about the proficiencies of credit union employees?_
+***R3**: What are the members’ attitudes and beliefs about the proficiencies of credit union employees?*
 
 ## Differences in Headquarters vs. Elswhere
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-_**R4**: Are there any perceived differences on attitude towards employee proficiencies, awareness of services, and operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?_
+***R4**: Are there any perceived differences on attitude towards employee proficiencies, awareness of services, and operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?*
 
 ## Awareness of Services
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-_**R5**: How well are the members aware of the services offered by the credit union?_
+***R5**: How well are the members aware of the services offered by the credit union?*
 
 ## CU's Operational Effectiveness
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "research question" because you do not have enough evidence to state the relationship with confidence.
 
-_**R6**: What are the members’ attitudes and beliefs about how effectively the credit union is operated?_
+***R6**: What are the members’ attitudes and beliefs about how effectively the credit union is operated?*
 
 ## Adequancy of Finacial Services
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
 
-_**H1**: Members’ `awareness of the regular share accounts` will influence their opinions on the `adequacy of financial services` in meeting members’ needs._
+***H1**: Members’ `awareness of the regular share accounts` will influence their opinions on the `adequacy of financial services` in meeting members’ needs.*
 
 ## CU Members' Opinion on CU's Loan Rate
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
 
-_**H2**: Members will not be different in their opinion on `CU’s loan rate (Q8r)` and the degree to which they agree that CU’s loan rate is lower than competitors (Q30)._
+***H2**: Members will not be different in their opinion on `CU’s loan rate (Q8r)` and the degree to which they agree that CU’s loan rate is lower than competitors (Q30).*
 
 ## Impact of Current loan use and residence lcoatoin on Finacial Services Adequacy
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
 
----
+***H3a**: There will be interaction effect between the `current loan use` and `location of residence` on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs.*
 
-_**H3a**: There will be interaction effect between the `current loan use` and `location of residence` on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs._
+. . .
 
+***H3b**: Test H2a controlling for the impact of attitudes toward employee proficiency.*
 
-_**H3b**: Test H2a controlling for the impact of attitudes toward employee proficiency._
-
---- 
+------------------------------------------------------------------------
 
 ## Loan Status and CU Loan Rate
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
 
-_**H4**: Compared with the members who have a loan, [those members who don’t have a loan]{style="color:red;"} currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions._
+***H4**: Compared with the members who have a loan, [those members who don’t have a loan]{style="color:red;"} currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions.*
 
 ## Factors Affecting Attitudes towards Credit Union Operational Efficiency
 
-- What to write on this sub-section?
-  - You can use information you learned from academic research
-  - You may use white paper available online
-  - You can use information you obtained from managers
-- Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
-- You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
+-   What to write on this sub-section?
+    -   You can use information you learned from academic research
+    -   You may use white paper available online
+    -   You can use information you obtained from managers
+-   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
+-   You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
 
----
+***H5a**: Member belief about CU keeps personal `financial information confidential` will positively influence the overall attitude toward credit union’s operational efficiency.*
 
-_**H5a**: Member belief about CU keeps personal `financial information confidential` will positively influence the overall attitude toward credit union’s operational efficiency._
+. . .
 
-_**H5b**: `Loan application processing promptness` will positively influence the overall attitude toward credit union’s operational efficiency._
+***H5b**: `Loan application processing promptness` will positively influence the overall attitude toward credit union’s operational efficiency.*
 
-_**H5c**: Member `satisfaction with level of financial services in meeting needs` will positively influence the overall attitude toward credit union’s operational efficiency._
+. . .
 
-_**H5d**: `Loan application simplicity and easiness` will positively influence the overall attitude toward credit union’s operational efficiency._
+***H5c**: Member `satisfaction with level of financial services in meeting needs` will positively influence the overall attitude toward credit union’s operational efficiency.*
 
+. . .
+
+***H5d**: `Loan application simplicity and easiness` will positively influence the overall attitude toward credit union’s operational efficiency.*
 
 # `r fontawesome::fa("laptop-code", "white")` Methods {background-color="#447099"}
 
@@ -276,7 +280,7 @@ set_theme(theme_minimal())
 #| output: false
 
 ### Reading data
-case31 <- read_spss("Case 31 Data_efcu_Prepped.sav")
+case31 <- read_sav("Case 31 Data_efcu_Prepped.sav")
 dim(case31)
 ncol(case31)
 nrow(case31)
@@ -311,7 +315,7 @@ pct_headqrt <- case31 |>
 ```
 
 -   Number of participants: `r nrow(case31)`
--   \% of the participants who live in the `headquarter area` vs. `non-headquarter area`: `r round(pct_headqrt*100, 1)`\% vs. `r round((1-pct_headqrt)*100, 1)`\%.
+-   \% of the participants who live in the `headquarter area` vs. `non-headquarter area`: `r round(pct_headqrt*100, 1)`% vs. `r round((1-pct_headqrt)*100, 1)`%.
 -   No demographic variables are available on the survey
     -   Gender
     -   Ethnicity/Race
@@ -327,7 +331,7 @@ pct_headqrt <- case31 |>
 
 -   Used R for wrangling and modeling
 
-# Addressing R1 {background-color="aquamarine"}
+# R1: Overview - One-Sample t-test {background-color="aquamarine"}
 
 **R1: Why do people join the Credit Union?**
 
@@ -339,8 +343,6 @@ pct_headqrt <- case31 |>
     -   Descriptive statistics, followed by one sample t-test
 
 ## Descriptive Statistics
-
-:::: incremental
 
 ### Frequency Distribution
 
@@ -368,7 +370,6 @@ describe(case31$q7r)
 ```
 :::
 
-::::
 ------------------------------------------------------------------------
 
 ```{r}
@@ -398,6 +399,10 @@ case31 |>
 ```{r}
 #| output-location: column-fragment
 
+mean_q7r <- case31 |> #count(q7r)
+  summarise(mean = mean(q7r, na.rm = TRUE)) |> 
+  round(2)
+
 case31 |> 
   t.test(q7r ~ 1, mu = 3, data = _)
 ```
@@ -409,11 +414,11 @@ case31 |>
 ## Insights about R1
 
 -   The majority of the survey participants (`65%`) think that the savings rate the CU offers is average.
--   The **`sample mean`** is `3.07`, which is not statistically different from 3 ("average") (*p* \> .10).
+-   The **`sample mean`** is `r mean_q7r`, which is not statistically different from 3 ("average") (*p* \> .10).
 -   Thus, we can conclude that CU members perceive that the savings rate CU applies to them is about average.
 :::
 
-# Addressing R2 {background-color="aquamarine"}
+# R2: Overview {background-color="aquamarine"}
 
 R2: Why do members use other financial institutions when they need to borrow funds?
 
@@ -430,7 +435,7 @@ R2: Why do members use other financial institutions when they need to borrow fun
 
 ## One-sample t-test
 
-# Addressing R3 {background-color="aquamarine"}
+# R3: Overview - One-sample t-test {background-color="aquamarine"}
 
 R3: What are the members’ attitudes and beliefs about the proficiency of credit union employees?
 
@@ -503,16 +508,22 @@ case31 |>
 ::: {.callout-note .large-callout}
 ## Summary insights about R3
 
-Participants perceived Employee proficiency (*M* = `4.21` out of 5.0) is statistically significantly greater than 4.0 (`"Agree"`) (_p_ < .001)
+Participants perceived Employee proficiency (*M* = `4.21` out of 5.0) is statistically significantly greater than 4.0 (`"Agree"`) (*p* \< .001)
 :::
 
-# Addressing R4 {background-color="aquamarine"}
+# R4 Overview {background-color="aquamarine"}
 
-R4: Are there any perceived differences on (a) attitude towards employee proficiencies, (b) awareness of services, and (c) operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
+R4: Are there any perceived differences on (a) attitude towards employee proficiency, (b) awareness of services, and (c) operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
-## R4a Data Analysis Overview
+- R4a: Two Samples t-Test
+- R4b: Two-way cross-tabs, followed by Chi-square independence test
+- R4c: Two tests possible depending on variables to use.  
+  - 2-groups t-test
+  - Ch-square independence test
 
-R4a: Are there any perceived differences on attitude towards employee proficiencies between members who live in the area of the firm’s headquarters and members who live elsewhere?
+## R4a Analysis Overview (Two samples t-test)
+
+R4a: Are there any perceived differences on attitude towards employee proficiency between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
 ::: small-text
 -   `Constructs and roles`:
@@ -535,7 +546,7 @@ R4a: Are there any perceived differences on attitude towards employee proficienc
 
 ::: small-text
 -   `Statistics`:
-    -   Descriptive statistics, followed by independent samples t-test
+    -   Descriptive statistics, followed by **`independent samples t-test`**
 :::
 
 ------------------------------------------------------------------------
@@ -630,7 +641,7 @@ case31 |>
 -   Thus, we conclude that CU member perception of CU employee proficiency does not differ regardless of whether they live in headquarters area or not.
 :::
 
-## R4b Data Analysis Overview
+## R4b Analysis Overview ($\chi^2$ Independence Test)
 
 R4b: Are there any perceived differences on awareness of services between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
@@ -663,7 +674,7 @@ R4b: Are there any perceived differences on awareness of services between member
 ### q13r (Share account) by q38
 
 ::::::: panel-tabset
-#### Cleanng
+#### Cleaning
 
 ::: medium-text
 ```{r}
@@ -701,10 +712,8 @@ table(case31$q38, case31$q13r) |>
 
 #### Chi-square test of independence
 
-- $H_0$: Awareness of regular share account is `independent` of members' residence
-- $H_A$: Awareness of regular share account is `dependent` on members' residence
-
-
+-   $H_0$: Awareness of regular share account is `independent` of members' residence
+-   $H_A$: Awareness of regular share account is `dependent` on members' residence
 
 ::: medium-text
 ```{r}
@@ -712,7 +721,6 @@ table(case31$q13r, case31$q38) |>
   chisq.test() 
 ```
 :::
-
 :::::::
 
 ------------------------------------------------------------------------
@@ -890,7 +898,7 @@ case31_clean |>
   chisq_ind_test(q26r)
 ```
 
-## R4c Data Analysis Overview
+## R4c Analysis Overview
 
 -   R4c: Are there any perceived differences on operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
@@ -925,7 +933,7 @@ case31_clean |>
 :::::
 ::::::
 
-# Addressing R5 {background-color="aquamarine"}
+# R5 ($\chi^2$ Goodness of Fit) {background-color="aquamarine"}
 
 R5: How well are the members aware of the services offered by the credit union?
 
@@ -1021,21 +1029,19 @@ awareness_long |>
 ::: {.callout-note .large-callout}
 ### Insights about R5
 
-- Series of Chi-square goodness-of-fit statistics show and for all services, frequency distributions of awareness levels are significantly different from each other and the pattern of differences are quite similar with unawareness being largest across all types of financial services.
+-   Series of Chi-square goodness-of-fit statistics show and for all services, frequency distributions of awareness levels are significantly different from each other and the pattern of differences are quite similar with unawareness being largest across all types of financial services.
 
-- The company should increase the awareness.
+-   The company should increase the awareness.
 :::
 
-# Addressing R6 {background-color="aquamarine"}
+# R6 Overview ($\chi^2$ & t-test) {background-color="aquamarine"}
 
 R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?
 
-::::::{.columns .small-text}
-
-:::: {.column width="50%"}
+::::: {.columns .small-text}
+::: {.column width="50%"}
 -   `Constructs and roles`:
     -   Attitude toward operational effectiveness
-
 -   `Operationalization`:
     -   Q9r–Q10r
     -   Q11–Q12rc,
@@ -1046,20 +1052,18 @@ R6: What are the members’ attitudes and beliefs about how effectively the cred
     -   nominal scale
     -   Interval
     -   Interval
+:::
 
-::::
-
-::::{.column width="50%"}
+::: {.column width="50%"}
 -   `Statistics`:
     -   DS / Chi-square goodness-of-fit test
     -   DS / Chi-square goodness-of-fit test
     -   DS / One group t-test
     -   DS / One group t-test
-::::
+:::
+:::::
 
-::::::
-
-# Test of H1 {background-color="steelblue"}
+# H1 Overview - One-way ANOVA {background-color="steelblue"}
 
 H1: Members’ awareness of the regular share accounts will influence their opinions on the adequacy of financial services in meeting members’ needs.
 
@@ -1089,7 +1093,7 @@ H1: Members’ awareness of the regular share accounts will influence their opin
 
 ## Visualization
 
----
+------------------------------------------------------------------------
 
 ### Frequency by groups
 
@@ -1106,7 +1110,7 @@ case31_clean |>
   theme(legend.position = "none")
 ```
 
----
+------------------------------------------------------------------------
 
 ### Mean value by groups
 
@@ -1130,14 +1134,12 @@ case31_clean |>
 
 ## ANOVA Test Procedure
 
----
-
+------------------------------------------------------------------------
 
 ### 1. Check normality assumption
 
-::::{.columns}
-
-:::{.column .fragment}
+::::: columns
+::: {.column .fragment}
 #### Overall test for q33
 
 ```{r}
@@ -1149,7 +1151,7 @@ case31_clean |>
 ```
 :::
 
-:::{.column .fragment}
+::: {.column .fragment}
 #### Test by awareness group
 
 ```{r}
@@ -1158,10 +1160,9 @@ case31_clean |>
   summarise(p_value = shapiro.test(pull(cur_data(), q33))$p.value)
 ```
 :::
+:::::
 
-::::
-
----
+------------------------------------------------------------------------
 
 ### 2. Honogeneity of variance
 
@@ -1171,7 +1172,7 @@ case31_clean |>
   leveneTest(q33 ~ q15r, data = _)
 ```
 
----
+------------------------------------------------------------------------
 
 ### 3. ANOVA Test
 
@@ -1182,7 +1183,7 @@ case31_clean |>
 
 ```
 
----
+------------------------------------------------------------------------
 
 ### 4. Post-hoc Analysis if ANOVA is significant
 
@@ -1192,31 +1193,31 @@ case31_clean |>
   TukeyHSD()
 ```
 
----
+------------------------------------------------------------------------
 
 ::: {.callout-note .large-callout}
 ### Insights about H1
 
-- Members' perception of adequacy of financial services is most negative among who have highest level of awareness of regualr savings account (`aware and have used it`), while it is not different between the two lower awareness groups (`aware but have not used it` vs. `unaware`)
+-   Members' perception of adequacy of financial services is most negative among who have highest level of awareness of regualr savings account (`aware and have used it`), while it is not different between the two lower awareness groups (`aware but have not used it` vs. `unaware`)
 :::
 
-# Test of H2 {background-color="black"}
+# H2: Overview - Paired Samples t-Test {background-color="black"}
 
 H2: Members will not be different in their opinion on CU’s loan rate (Q8r) and the degree to which they agree that CU’s loan rate is lower than competitors (Q30).
 
-# Test of H3a {background-color="black"}
+# H3a: Overview - Two-way ANOVA {background-color="black"}
 
 H3a: There will be interaction effect between the current loan use and location of residence on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs.
 
-# Test of H3b {background-color="black"}
+# H3b: Overview - Two-way ANCOVA {background-color="black"}
 
 H3b: Test H2a controlling for the impact of attitudes toward employee proficiency.
 
-# Test of H4 {background-color="black"}
+# H4: Overview - MANOVA {background-color="black"}
 
 H4: Compared with the members who have a loan, [those members who don’t have a loan]{style="color:red;"} currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions.
 
-# Test of H5 {background-color="steelblue"}
+# H5: Overview - Multiple Regression {background-color="steelblue"}
 
 ::: small-text
 H5a: Member belief about CU keeps personal `financial information confidential` will positively influence the [overall attitude toward credit union’s operational efficiency]{style="color:orange;"}.
@@ -1228,22 +1229,20 @@ H5c: `Member satisfaction with level of financial services in meeting needs` wil
 H5d: `Loan application simplicity and easiness` will positively influence the overall attitude toward credit union’s operational efficiency.
 :::
 
-# Test of H5 (cont'd) {background-color="steelblue"}
+. . .
 
 :::::: small-text
-
-:::: {.columns}
-
-:::{.column width="60%"}
+::::: columns
+::: {.column width="60%"}
 -   `Constructs and roles`:
     1.  Overall managerial and operational efficiency (DV)
-    2.  (a) Confidentiality of personal financial information (IV)
-    3.  (b) Loan application processing promptness (IV)
-    4.  (c) Adequacy of financial services in meeting needs (IV)
-    5.  (d) Simplicity and easiness of loan application (IV)
+    2.   Confidentiality of personal financial information (IV)
+    3.  Loan application processing promptness (IV)
+    4.  Adequacy of financial services in meeting needs (IV)
+    5.  Simplicity and easiness of loan application (IV)
 :::
 
-:::{.column width="40%"}
+::: {.column width="40%"}
 -   `Operationalization`:
     1.  q37r
     2.  q31
@@ -1253,21 +1252,264 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
 -   `Scale`:
     -   all of them are interval
 -   `Statistics`:
-    -   separate visualization, followed by multiple regression
+    -   separate visualization, followed by `multiple regression`
+:::
+:::::
+::::::
 
+## Checking Assumptions of Multiple Regression
+
+---
+
+### 1. Linearity Check
+
+:::{.panel-tabset}
+
+#### q31 vs. q37r
+```{r}
+#| output-location: column
+# Scatterplot for each predictor against the outcome
+ggplot(case31_clean, aes(x = q31, y = q37r)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", col = "blue") +
+  labs(title = "Linearity Check: q31 vs q37r")
+```
+
+#### q32 vs. q37r
+```{r}
+#| output-location: column
+# Scatterplot for each predictor against the outcome
+ggplot(case31_clean, aes(x = q32, y = q37r)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", col = "blue") +
+  labs(title = "Linearity Check: q32 vs q37r")
+```
+
+#### q33 vs. q37r
+```{r}
+#| output-location: column
+
+# Scatterplot for each predictor against the outcome
+ggplot(case31_clean, aes(x = q33, y = q37r)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", col = "blue") +
+  labs(title = "Linearity Check: q33 vs q37r")
+
+```
+
+#### q34 vs. q37r
+```{r}
+#| output-location: column
+
+# Scatterplot for each predictor against the outcome
+ggplot(case31_clean, aes(x = q34, y = q37r)) + 
+  geom_point() + 
+  geom_smooth(method = "lm", col = "blue") +
+  labs(title = "Linearity Check: q34 vs q37r")
+```
+
+#### Partial residual plots
+
+```{r}
+#| output-location: column
+
+library(car)
+lm_model <- case31_clean |> 
+  filter(!is.na(q37r)) |> 
+  lm(q37r ~ q31 + q32 + q33 + q34, data = _)
+crPlots(lm_model)
+
+```
+
+:::
+
+---
+
+### 2. Independence Check
+
+```{r}
+#| output-location: column
+
+library(lmtest)
+dwtest(lm_model)  # Durbin-Watson test for autocorrelation
+
+```
+
+---
+
+### 3. Homoscedasticity Check
+
+:::{.panel-tabset}
+#### Residuals vs. Fitted Plot
+```{r}
+#| output-location: column
+
+plot(lm_model, which = 1)  # Built-in residuals vs. fitted plot
+```
+
+#### bp test
+
+```{r}
+#| output-location: column
+
+library(lmtest)
+bptest(lm_model)  # Breusch-Pagan test for heteroscedasticity
+
+```
+:::
+
+---
+
+### 4. Normality of Residuals
+
+:::{.panel-tabset}
+#### Histogram of residuals
+
+```{r}
+#| output-location: column
+
+residuals <- residuals(lm_model)
+hist(residuals, breaks = 20, main = "Histogram of Residuals")
+
+```
+
+#### Q-Q Plot
+
+```{r}
+#| output-location: column
+
+qqnorm(residuals)
+qqline(residuals, col = "blue")
+
+```
+
+#### Test of normality
+
+```{r}
+#| output-location: column
+
+shapiro.test(residuals)  # Shapiro-Wilk test
+
+```
+:::
+
+---
+
+### 5. Multicollinearity Check
+
+- VIF \> 5: Possible multicollinearity.
+- VIF\ > 10: Strong multicollinearity, consider dropping or combining predictors.
+
+```{r}
+library(car)
+vif(lm_model)  # VIF values
+
+```
+
+---
+
+### 6. Outliers and Influential Observations
+
+:::{.panel-tabset}
+
+#### Cook's Distance
+
+```{r}
+#| output-location: column
+
+plot(lm_model, which = 4)  # Built-in Cook's distance plot
+
+```
+
+#### Leverage and DFBETAS
+
+```{r}
+#| output-location: column
+
+# Leverage Plot
+hatvalues <- hatvalues(lm_model)
+plot(hatvalues, main = "Leverage Values", ylab = "Leverage")
+
+# DFBETAS
+dfbetas <- dfbeta(lm_model)
+head(dfbetas)  # Shows influence of each observation
+
+```
+:::
+
+---
+
+### 7. Cross-validation
+
+:::: {.columns}
+
+::: {.column width="50%"}
+#### Define control for cross-validation
+```{r}
+library(caret)
+set.seed(123)
+
+train_control <- trainControl(method = "cv", number = 10)
+
+case31_clean <- case31_clean |> 
+  filter(!is.na(q37r)) |> 
+  mutate(q37r = as.numeric(q37r))
+
+```
+:::
+
+::: {.column width="50%"}
+
+#### Train the model
+
+```{r}
+cv_model <- train(
+  q37r ~ q31 + q32 + q33 + q34,
+  data = case31_clean,
+  method = "lm",
+  trControl = train_control)
+
+cv_model  # Check cross-validation results
+```
 :::
 
 ::::
 
-::::::
+---
 
-## Multiple Regression
+### Model Parameters
+
+#### Final Model Parameters from CV
+```{r}
+#| output-location: column
+
+summary(cv_model)
+```
+
+
+#### Multiple Regression & Results
 
 ```{r}
 #| eval: true
+#| output-location: column
 
 case31_clean |> 
   lm(q37r ~ q31 + q32 + q33 + q34, data = _)  |> 
   summary()
 ```
 
+---
+
+::: {.callout-note .large-callout}
+## Insights about H5
+
+
+- Assumptions of multiple regression are not violated severely. 
+  - Linearity assumption is okay in general.
+  - Homosckedasticiy assumption is confirmed
+  - Multicollinearity is not an issue.
+  - Normality assumption is not supported.
+-   As expected, `confidentiality` (*p* < .05), l`oan application process` (*p* < .001) and `adequacy of financial resources` (*p* < .001) are positively related to the overall efficiency.
+-   `Simplicity and easiness of loan application` is not significantly related to the overall efficiency (_p_ > .10)
+
+:::

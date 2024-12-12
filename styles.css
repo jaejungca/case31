@@ -1,14 +1,14 @@
 
 /* Apply a yellow background to first-level headings (h1) */
 h1 {
-    background-color: yellow; /* Yellow for first-level headings */
+    background-color: #E1B61B; /* Yellow for first-level headings */
     padding: 10px; /* Optional: Add padding for better appearance */
     border-radius: 5px; /* Optional: Add rounded corners */
-    margin: 0; /* Remove default margin for a cleaner look */
+    margin: 1; /* Remove default margin for a cleaner look */
 }
 
 h2 {
-    background-color: lightgreen; /* Yellow for first-level headings */
+    background-color: #7BC626; /* Yellow for first-level headings */
     padding: 10px; /* Optional: Add padding for better appearance */
     border-radius: 5px; /* Optional: Add rounded corners */
     margin: 0; /* Remove default margin for a cleaner look */
@@ -16,7 +16,7 @@ h2 {
 
 
 h3 {
-    background-color: #ccffdd; /* Yellow for first-level headings */
+    background-color: #2BBA37; /* Yellow for first-level headings */
     padding: 10px; /* Optional: Add padding for better appearance */
     border-radius: 5px; /* Optional: Add rounded corners */
     margin: 0; /* Remove default margin for a cleaner look */
@@ -24,7 +24,7 @@ h3 {
 
 
 h4 {
-    background-color: #b2c2bf; /* Yellow for first-level headings */
+    background-color: #97B673; /* Yellow for first-level headings */
     padding: 10px; /* Optional: Add padding for better appearance */
     border-radius: 5px; /* Optional: Add rounded corners */
     margin: 0; /* Remove default margin for a cleaner look */
@@ -51,4 +51,22 @@ h4 {
 /* Define a custom style for small text */
 .small-text {
   font-size: 20px;
+}
+
+/* Make h1 font size to be 2 times the fefault ffont-size */
+h1 {
+  font-size: 1.5em;
+}
+
+/* Make h2 font size to be 1.5 times the fefault ffont-size */
+h2 {
+  font-size: 1.3em;
+  
+/* Hover Effects */
+h1:hover, h2:hover, h3:hover, h4:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+}
+
 }

@@ -154,19 +154,27 @@ data_clean |>
 
 ------------------------------------------------------------------------
 
-### factor analysis
+### Factor analysis
 
+::: {.panel-tabset}
+
+#### Factor Analysis
 ```{r}
 data_clean |> 
   select(q3:q6) |> 
   factanal(factors = 1, rotation = "none")
+```
 
+#### Diagram
+```{r}
 data_clean |> 
   select(q3:q6) |> 
   fa(nfactors = 1, rotate = "none") |> 
   fa.diagram()
 
 ```
+
+:::
 
 ------------------------------------------------------------------------
 
