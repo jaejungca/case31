@@ -61,6 +61,7 @@ h1 {
 /* Make h2 font size to be 1.5 times the fefault ffont-size */
 h2 {
   font-size: 1.3em;
+}
   
 /* Hover Effects */
 h1:hover, h2:hover, h3:hover, h4:hover {
@@ -69,4 +70,8 @@ h1:hover, h2:hover, h3:hover, h4:hover {
     transition: all 0.2s ease-in-out;
 }
 
+.highlight-muted {
+    color: #6c757d; /* Muted gray color for de-emphasis */
+
 }
+

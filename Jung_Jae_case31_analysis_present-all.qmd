@@ -37,18 +37,49 @@ execute:
 
 # Introduction {background-color="#a13c65"}
 
--   Employees Federal Union (EFCU) is the credit union for a Fortune 500 firm.
+::: {style="font-size: 1.5em; text-align: center" .incremental}
+- Employees Federal Union (EFCU) is the credit union for a Fortune 500 firm.
+- This case illustrates:
+  - the entire research process
+  - How a presentation can be prepared with enhanced reproducibility 
+- This case can be used for 
+  - Introductory marketing research course (R1 - R6)
+  - Upper level marketing research course (H1 - H5)
+:::
+
+::: notes
+Slide zoom: hold alt + click
+:::
 
 ## Problem Definition
 
+::: {.fragment .fade-up .highlight-red}
 -   CU has a large amount of surplus fund.
--   It has also experienced a lower loan/share ratio than otehr credit unions of similar size.
+:::
+
+::: {.fragment .fade-up .highlight-red}
+-   It has also experienced a lower loan/share ratio than other credit unions of similar size.
+:::
+
+:::: {.fragment .fade-up}
+::: {.fragment .highlight-red}
 -   Average earnings on its investments have declined and profit margins are squeezed
+:::
+::::
 
 ## Research Objectives
 
 1.  To determine why its members are not borrowing money from the credit union.
 2.  To determine what the members' attitudes were toward the overall management and operations of the credit union.
+
+::: {.aside}
+_**Notes**_: The research objectives were developed by the board
+:::
+
+::: {.notes}
+My speaker notes go here
+Press "s" on your keyboard to create a speaker view slide that you can see on the other screen
+:::
 
 ## Significance of Research
 
@@ -247,11 +278,11 @@ execute:
 
 ## Data Preparation
 
+::: {.fragment .fade-up .highlight-red}
 -   Used R/RStudio for wrangling and visualization
+::::
 
-. . .
-
-::: incremental
+::: {.incremental}
 -   Data `wrangling and preparation` was done separately. Specifically, we did the following
     -   `Reverse coded`
     -   Removed non-responses (`NA`)
@@ -259,6 +290,7 @@ execute:
     -   Renamed variable names
     -   Relabeled variable labels and value labels if needed.
     -   The prepared data is saved as `Case 31 Data_efcu_Prepped.sav`, which will be used for data analysis.
+    
 :::
 
 ```{r}
@@ -344,9 +376,11 @@ pct_headqrt <- case31 |>
 
 ## Descriptive Statistics
 
+. . .
+
 ### Frequency Distribution
 
-::: {medium-text}
+::: {.large-text}
 ```{r}
 #| echo: false
 #| label: fig-freq
@@ -358,9 +392,12 @@ case31 |>
 ```
 :::
 
+. . . 
+
+
 ### Descriptive Stat
 
-::: {medium-text}
+::: {.large-text}
 ```{r}
 #| echo: false
 #| label: fig-desc-stat-savings
@@ -904,7 +941,7 @@ case31_clean |>
 
 :::::: small-text
 ::::: columns
-::: {.column width="50%"}
+::: {.column .fragment width="50%"}
 -   `Constructs and roles`:
     -   Member residence: IV
     -   operatoinal effectiveness: DV
@@ -916,7 +953,7 @@ case31_clean |>
     -   q37r
 :::
 
-::: {.column width="50%"}
+::: {.column .fragment width="50%"}
 -   `Scale`:
     -   Nominal scale
     -   interval scales
@@ -1470,6 +1507,7 @@ cv_model <- train(
   trControl = train_control)
 
 cv_model  # Check cross-validation results
+cv_model$resample
 ```
 :::
 
@@ -1483,7 +1521,7 @@ cv_model  # Check cross-validation results
 ```{r}
 #| output-location: column
 
-summary(cv_model)
+summary(cv_model) # summary function returns final model fit based on entire data
 ```
 
 
