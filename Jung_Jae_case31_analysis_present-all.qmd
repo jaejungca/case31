@@ -1076,7 +1076,7 @@ awareness_long |>
 R6: What are the members’ attitudes and beliefs about how effectively the credit union is operated?
 
 ::::: {.columns .small-text}
-::: {.column width="50%"}
+::: {.column .fragment .highlight-blue width="50%"}
 -   `Constructs and roles`:
     -   Attitude toward operational effectiveness
 -   `Operationalization`:
@@ -1091,7 +1091,7 @@ R6: What are the members’ attitudes and beliefs about how effectively the cred
     -   Interval
 :::
 
-::: {.column width="50%"}
+::: {.column .fragment .highlight-blue width="50%"}
 -   `Statistics`:
     -   DS / Chi-square goodness-of-fit test
     -   DS / Chi-square goodness-of-fit test
@@ -1175,6 +1175,10 @@ case31_clean |>
 
 ### 1. Check normality assumption
 
+- The dependent variable should be approximately normally distributed within each group.
+- $H_0:$ The data are normally distributed
+- $H_1:$ The data are NOT normally distributed
+
 ::::: columns
 ::: {.column .fragment}
 #### Overall test for q33
@@ -1189,7 +1193,7 @@ case31_clean |>
 :::
 
 ::: {.column .fragment}
-#### Test by awareness group
+#### Test by awareness group on q33
 
 ```{r}
 case31_clean |> 
@@ -1197,11 +1201,33 @@ case31_clean |>
   summarise(p_value = shapiro.test(pull(cur_data(), q33))$p.value)
 ```
 :::
+
+::: {.column .fragment}
+#### Test of Normality on Residuals
+
+```{r}
+h1_aov_model <- case31_clean |> 
+  aov(q33 ~ q13r, data = _) 
+
+residuals(h1_aov_model) |> 
+  shapiro.test()
+```
+:::
+
 :::::
+
+::: notes
+- ANOVA's normality assumption applies to the residuals, not the raw dependent variable.
+- Residuals represent the unexplained variation after accounting for group means, which is what needs to be approximately normally distributed for valid ANOVA results.
+- The dependent variable might not follow a normal distribution, but if the residuals do, the ANOVA results are still valid.
+:::
 
 ------------------------------------------------------------------------
 
-### 2. Honogeneity of variance
+### 2. Homogeneity of variance
+
+- $H_0:$ Variance is the same across the groups
+- $H_1:$ The data is NOT normally distributed
 
 ```{r}
 library(car)
@@ -1213,29 +1239,78 @@ case31_clean |>
 
 ### 3. ANOVA Test
 
+- $H_0:$ All group means are equal ($\mu_1 = \mu_2 = \mu_3 = ... = \mu_k$)
+- $H_1:$ At least one pair of group means is different
+
+:::::: {.columns}
+
+::: {.column .fragment}
+#### Under homoskedasticity
 ```{r}
 case31_clean |> 
   aov(q33 ~ q13r, data = _) |> 
   summary()
-
 ```
+:::
+
+::: {.column .fragment}
+#### Since residuals are non-normal
+
+- Kruskal-Wallis Test
+  - non-parametric
+  - compares the medians of three or more independent groups to determine if they differ significantly.
+
+```{r}
+case31_clean |> 
+  kruskal.test(q33 ~ q13r, data = _)
+```
+
+:::
+
+::::::
+
+::: {.notes}
+- If variances are not the same across groups, use Welch's ANOVA or Kruskal-Wallis test
+```
+oneway.test(dependent_variable ~ group, data = your_data, var.equal = FALSE)
+```
+:::
 
 ------------------------------------------------------------------------
 
-### 4. Post-hoc Analysis if ANOVA is significant
+### 4. Post-hoc Analysis if not all group means are the same
 
+:::::: {columns}
+
+::: {.column .fragment}
+#### When ANOVA is significant
 ```{r}
 case31_clean |> 
   aov(q33 ~ q13r, data = _) |> 
   TukeyHSD()
 ```
+:::
+::: {.column .fragment}
+#### When Kruskal-Wallis is significant
+```{r}
+library(dunn.test)
 
+# Post-hoc pairwise comparisons
+dunn.test(as.numeric(case31_clean$q33), case31_clean$q13r, method = "bonferroni")
+```
+
+:::
+::::::
 ------------------------------------------------------------------------
 
-::: {.callout-note .large-callout}
+::: {.callout-note .incremental .large-callout}
 ### Insights about H1
 
--   Members' perception of adequacy of financial services is most negative among who have highest level of awareness of regualr savings account (`aware and have used it`), while it is not different between the two lower awareness groups (`aware but have not used it` vs. `unaware`)
+- Normality assumption of residuals from ANOVA was not met
+- However, homoskedasticity assumption is hold true
+- Both ANOVA and Kruskal-Wallis test is significant; Thus, post-hoc analysis is conducted.
+- Post-hoc analysis results are the same regardless of the methods.
+- Members' perception of adequacy of financial services is most negative among who have highest level of awareness of regualr savings account (`aware and have used it`), while it is not different between the two lower awareness groups (`aware but have not used it` vs. `unaware`)
 :::
 
 # H2: Overview - Paired Samples t-Test {background-color="black"}
@@ -1256,21 +1331,28 @@ H4: Compared with the members who have a loan, [those members who don’t have a
 
 # H5: Overview - Multiple Regression {background-color="steelblue"}
 
-::: small-text
+:::::: small-text
+
+:::{.fragment .fade-in-then-semi-out}
 H5a: Member belief about CU keeps personal `financial information confidential` will positively influence the [overall attitude toward credit union’s operational efficiency]{style="color:orange;"}.
-
+:::
+:::{.fragment .fade-in-then-semi-out}
 H5b: `Loan application processing promptness` will positively influence the overall attitude toward credit union’s operational efficiency.
-
+:::
+:::{.fragment .fade-in-then-semi-out}
 H5c: `Member satisfaction with level of financial services in meeting needs` will positively influence the overall attitude toward credit union’s operational efficiency.
-
+:::
+:::{.fragment .fade-in-then-semi-out}
 H5d: `Loan application simplicity and easiness` will positively influence the overall attitude toward credit union’s operational efficiency.
 :::
+
+::::::
 
 . . .
 
 :::::: small-text
 ::::: columns
-::: {.column width="60%"}
+::: {.column .fragment width="60%"}
 -   `Constructs and roles`:
     1.  Overall managerial and operational efficiency (DV)
     2.   Confidentiality of personal financial information (IV)
@@ -1279,7 +1361,7 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
     5.  Simplicity and easiness of loan application (IV)
 :::
 
-::: {.column width="40%"}
+::: {.column .fragment width="40%"}
 -   `Operationalization`:
     1.  q37r
     2.  q31
@@ -1308,7 +1390,7 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
 # Scatterplot for each predictor against the outcome
 ggplot(case31_clean, aes(x = q31, y = q37r)) + 
   geom_point() + 
-  geom_smooth(method = "lm", col = "blue") +
+  geom_smooth(col = "blue") +
   labs(title = "Linearity Check: q31 vs q37r")
 ```
 
@@ -1318,7 +1400,7 @@ ggplot(case31_clean, aes(x = q31, y = q37r)) +
 # Scatterplot for each predictor against the outcome
 ggplot(case31_clean, aes(x = q32, y = q37r)) + 
   geom_point() + 
-  geom_smooth(method = "lm", col = "blue") +
+  geom_smooth(col = "blue") +
   labs(title = "Linearity Check: q32 vs q37r")
 ```
 
@@ -1329,7 +1411,7 @@ ggplot(case31_clean, aes(x = q32, y = q37r)) +
 # Scatterplot for each predictor against the outcome
 ggplot(case31_clean, aes(x = q33, y = q37r)) + 
   geom_point() + 
-  geom_smooth(method = "lm", col = "blue") +
+  geom_smooth(col = "blue") +
   labs(title = "Linearity Check: q33 vs q37r")
 
 ```
@@ -1341,11 +1423,14 @@ ggplot(case31_clean, aes(x = q33, y = q37r)) +
 # Scatterplot for each predictor against the outcome
 ggplot(case31_clean, aes(x = q34, y = q37r)) + 
   geom_point() + 
-  geom_smooth(method = "lm", col = "blue") +
+  geom_smooth(col = "blue") +
   labs(title = "Linearity Check: q34 vs q37r")
 ```
 
 #### Partial residual plots
+
+- visualize the relationship between a predictor and the response variable, accounting for the effects of other predictors in the model.
+- If the relationship between the predictor and the response is linear, the points in the plot should roughly follow a straight line.
 
 ```{r}
 #| output-location: column
@@ -1360,9 +1445,21 @@ crPlots(lm_model)
 
 :::
 
+::: notes
+
+- If the points show a curved or non-linear pattern, this indicates that a linear model may not be appropriate, and the predictor might require a transformation (e.g., log, quadratic).
+:::
+
 ---
 
 ### 2. Independence Check
+
+- $H_0:$ There is no first-order autocorrelation in the residuals (errors are independent).
+- $H_1:$ There is evidence of positive or negative autocorrelation.
+- Test statistics (d)
+  - $d \approx 2$: No autocorrelation
+  - $d < 2$: Positive autocorrelation
+  - $d > 2$: Negative autocorrelation
 
 ```{r}
 #| output-location: column
@@ -1385,6 +1482,9 @@ plot(lm_model, which = 1)  # Built-in residuals vs. fitted plot
 ```
 
 #### bp test
+
+- $H_0:$ The errors have constant variance (homoscedasticity).
+- $H_1:$ The errors exhibit heteroscedasticity (i.e., non-constant variance).
 
 ```{r}
 #| output-location: column
@@ -1421,6 +1521,8 @@ qqline(residuals, col = "blue")
 ```
 
 #### Test of normality
+- $H_0:$ The data is normally distributed
+- $H_1:$ The data is not normally distributed.
 
 ```{r}
 #| output-location: column
@@ -1538,16 +1640,23 @@ case31_clean |>
 
 ---
 
-::: {.callout-note .large-callout}
+:::::: {.callout-note .large-callout}
 ## Insights about H5
 
-
-- Assumptions of multiple regression are not violated severely. 
+::: {.fragment .shrink .highlight-blue}
+- Overall, the assumptions of multiple regression are supported. 
   - Linearity assumption is okay in general.
   - Homosckedasticiy assumption is confirmed
   - Multicollinearity is not an issue.
   - Normality assumption is not supported.
--   As expected, `confidentiality` (*p* < .05), l`oan application process` (*p* < .001) and `adequacy of financial resources` (*p* < .001) are positively related to the overall efficiency.
--   `Simplicity and easiness of loan application` is not significantly related to the overall efficiency (_p_ > .10)
-
 :::
+
+::: {.fragment .shrink .highlight-green}
+-   As expected, `confidentiality` (*p* < .05), l`oan application process` (*p* < .001) and `adequacy of financial resources` (*p* < .001) are positively related to the overall efficiency.
+:::
+
+::: {.fragment .shrink .highlight-red}
+-   `Simplicity and easiness of loan application` is not significantly related to the overall efficiency (_p_ > .10)
+:::
+
+::::::
