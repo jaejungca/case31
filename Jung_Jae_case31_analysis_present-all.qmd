@@ -33,18 +33,19 @@ editor: visual
 execute: 
   echo: true
   freeze: auto
+bibliography: references.bib
 ---
 
 # Introduction {background-color="#a13c65"}
 
-::: {style="font-size: 1.5em; text-align: center" .incremental}
-- Employees Federal Union (EFCU) is the credit union for a Fortune 500 firm.
-- This case illustrates:
-  - the entire research process
-  - How a presentation can be prepared with enhanced reproducibility 
-- This case can be used for 
-  - Introductory marketing research course (R1 - R6)
-  - Upper level marketing research course (H1 - H5)
+::: {.incremental style="font-size: 1.5em; text-align: center"}
+-   Employees Federal Union (EFCU) is the credit union for a Fortune 500 firm.
+-   This case illustrates:
+    -   the entire research process
+    -   How a presentation can be prepared with enhanced reproducibility
+-   This case can be used for
+    -   Introductory marketing research course (R1 - R6)
+    -   Upper level marketing research course (H1 - H5)
 :::
 
 ::: notes
@@ -53,13 +54,17 @@ Slide zoom: hold alt + click
 
 ## Problem Definition
 
-::: {.fragment .fade-up .highlight-red}
+:::: {.fragment .fade-up}
+::: {.fragment .highlight-red}
 -   CU has a large amount of surplus fund.
 :::
+::::
 
-::: {.fragment .fade-up .highlight-red}
+:::: {.fragment .fade-up}
+::: {.fragment .highlight-red}
 -   It has also experienced a lower loan/share ratio than other credit unions of similar size.
 :::
+::::
 
 :::: {.fragment .fade-up}
 ::: {.fragment .highlight-red}
@@ -72,25 +77,24 @@ Slide zoom: hold alt + click
 1.  To determine why its members are not borrowing money from the credit union.
 2.  To determine what the members' attitudes were toward the overall management and operations of the credit union.
 
-::: {.aside}
-_**Notes**_: The research objectives were developed by the board
+::: aside
+***Notes***: The research objectives were developed by the board
 :::
 
-::: {.notes}
-My speaker notes go here
-Press "s" on your keyboard to create a speaker view slide that you can see on the other screen
+::: notes
+My speaker notes go here Press "s" on your keyboard to create a speaker view slide that you can see on the other screen
 :::
 
 ## Significance of Research
 
--   The findings from the research will provide critical inforamtion that the managment can use to increase loan/ratio rate and increase profit margin.
+-   The findings from the research will provide critical information that the management can use to increase loan/ratio rate and increase profit margin.
 -   Thus, the the research is critical in turning around the company's struggling financial status.
 
 # Background and Research Questions/Hypotheses {background-color="#a13c65"}
 
 ## Information gathering
 
-::: {incremental}
+::: incremental
 -   To address the research objectives, a research firm was hired.
 -   The researchers from the consulting company interviewed the management and some customers.
 -   Based on the qualitative research and the researchers' own experience, they came up with some research questions and hypotheses.
@@ -193,13 +197,13 @@ Press "s" on your keyboard to create a speaker view slide that you can see on th
 -   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
 -   You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
 
+. . .
+
 ***H3a**: There will be interaction effect between the `current loan use` and `location of residence` on adequacy of current financial services such that in headquarter area, members who have a loan will agree, more than those who don’t have, that financial services meet the members’ needs, while in outside headquarter area, loan status doesn’t influence adequacy of financial services in meeting member needs.*
 
 . . .
 
 ***H3b**: Test H2a controlling for the impact of attitudes toward employee proficiency.*
-
-------------------------------------------------------------------------
 
 ## Loan Status and CU Loan Rate
 
@@ -209,6 +213,8 @@ Press "s" on your keyboard to create a speaker view slide that you can see on th
     -   You can use information you obtained from managers
 -   Weave the information from various sources to form a logic to support the relationships among the variables in the research question.
 -   You are labeling it "Hypothesis" when you have enough evidence to state the relationship with confidence.
+
+. . .
 
 ***H4**: Compared with the members who have a loan, [those members who don’t have a loan]{style="color:red;"} currently with the Credit Union will feel that that CU charges them with higher rates, and that they will agree less with the statement that CU’s loan rates are lower than those offered by other institutions.*
 
@@ -280,9 +286,9 @@ Press "s" on your keyboard to create a speaker view slide that you can see on th
 
 ::: {.fragment .fade-up .highlight-red}
 -   Used R/RStudio for wrangling and visualization
-::::
+:::
 
-::: {.incremental}
+::: incremental
 -   Data `wrangling and preparation` was done separately. Specifically, we did the following
     -   `Reverse coded`
     -   Removed non-responses (`NA`)
@@ -290,7 +296,6 @@ Press "s" on your keyboard to create a speaker view slide that you can see on th
     -   Renamed variable names
     -   Relabeled variable labels and value labels if needed.
     -   The prepared data is saved as `Case 31 Data_efcu_Prepped.sav`, which will be used for data analysis.
-    
 :::
 
 ```{r}
@@ -304,6 +309,8 @@ library(labelled)
 library(janitor) 
 library(sjPlot)
 library(psych)
+library(gt)
+library(gtsummary)
 set_theme(theme_minimal())
 ```
 
@@ -380,32 +387,31 @@ pct_headqrt <- case31 |>
 
 ### Frequency Distribution
 
-::: {.large-text}
 ```{r}
 #| echo: false
 #| label: fig-freq
 #| fig-cap: Response Frequency of Savings Rate (q7r)
+#| fig-cap-location: top
 
+library(gt)
 case31 |> 
   count(q7r) |> 
-  mutate(percent = n/sum(n))
+  mutate(percent = n/sum(n),
+         q7r = as_factor(q7r)) |> 
+  gt()
 ```
-:::
-
-. . . 
-
 
 ### Descriptive Stat
 
-::: {.large-text}
 ```{r}
 #| echo: false
 #| label: fig-desc-stat-savings
 #| fig-cap: Descriptive Statistics for Savings Rate (Q7r)
+#| fig-cap-location: margin
 
-describe(case31$q7r)
+describe(case31$q7r) |> 
+  gt()
 ```
-:::
 
 ------------------------------------------------------------------------
 
@@ -417,8 +423,8 @@ describe(case31$q7r)
 case31 |> 
   filter(!is.na(q7r)) |> 
   mutate(q7r = haven::as_factor(q7r)) |> 
-  ggplot(aes(q7r)) +
-  geom_bar() +
+  ggplot(aes(q7r, fill = q7r)) +
+  geom_bar(show.legend = FALSE) +
   labs(x = "Savings Rate",
        y = "# of Responses",
        title = "Frequency of Member Opinions on Savings Rates",
@@ -552,11 +558,11 @@ Participants perceived Employee proficiency (*M* = `4.21` out of 5.0) is statist
 
 R4: Are there any perceived differences on (a) attitude towards employee proficiency, (b) awareness of services, and (c) operational effectiveness between members who live in the area of the firm’s headquarters and members who live elsewhere?
 
-- R4a: Two Samples t-Test
-- R4b: Two-way cross-tabs, followed by Chi-square independence test
-- R4c: Two tests possible depending on variables to use.  
-  - 2-groups t-test
-  - Ch-square independence test
+-   R4a: Two Samples t-Test
+-   R4b: Two-way cross-tabs, followed by Chi-square independence test
+-   R4c: Two tests possible depending on variables to use.
+    -   2-groups t-test
+    -   Ch-square independence test
 
 ## R4a Analysis Overview (Two samples t-test)
 
@@ -670,6 +676,33 @@ case31 |>
 
 ------------------------------------------------------------------------
 
+#### Summary Table
+
+```{r}
+#| echo: true
+#| output-location: column-fragment
+#| label: tbl-att_emp_by_HQ
+#| tbl-cap: Do Customers Differ in their Attitudes toward Employee Proficiency depending on where they live?
+
+case31 |> 
+  mutate(q38 = haven::as_factor(q38)) |> 
+  tbl_summary(
+    include = c(q38, at_emp),
+    by = q38,
+    type = at_emp ~ "continuous2",
+    statistic = list(all_continuous() ~ c("{mean} ({sd})",
+                                          "{min}, {max}"))
+  ) |> 
+  add_difference() |> 
+  add_overall() |> 
+  add_n() |> 
+  modify_caption("**Test of Differences in Attitudes toward Employee Proficiency between customers who live in Headquarter area and those who live in non-headquarter area**") |> 
+  modify_spanning_header(
+    c(stat_1, stat_2) ~ "**Live in Headquarter Area?**") 
+```
+
+------------------------------------------------------------------------
+
 ::: {.callout-tip .large-callout}
 ### Summary insights about H4a
 
@@ -735,7 +768,7 @@ table(case31$q13r, case31$q38) |>
 
 #### Mosaic Plot
 
-::: small-text
+::: medium-text
 ```{r}
 #| echo: false
 #| label: fig-q13r-q38-mosaic
@@ -759,6 +792,10 @@ table(case31$q13r, case31$q38) |>
 ```
 :::
 :::::::
+
+::: aside
+**Note**: The various steps in in slide can be more effectively followed in a regular report. In a presentation like this, a simpler but more visually effective summary table, like the publication-ready table, using `gt-summary` package. Refer to @tbl-christmas_by_HQ.
+:::
 
 ------------------------------------------------------------------------
 
@@ -820,28 +857,36 @@ table(case31$q14r, case31$q38) |>
 
 ------------------------------------------------------------------------
 
-### q15r (Christmas club account) by q38
-
+### q15r by q38 with gt_summary table
+- q15r (Christmas club account)
 ```{r}
+#| output-location: column
+#| label: tbl-christmas_by_HQ
+#| tbl-cap: Christmas Club Account Awareness by Location of Residence
+
 case31 <- case31 |> 
   mutate(q15r = haven::as_factor(q15r))
 
-# cross-tab
-table(case31$q15r, case31$q38)
-
-# cross-tab: %
-table(case31$q15r, case31$q38) |> 
-  prop.table(margin = 2) * 100 
-
-# Mosaic Plot
-table(case31$q38, case31$q15r) |> 
-  mosaicplot(main = "Awareness of Christmas club account by Residence", 
-             color = TRUE, las = 1 )
-
-# Chi-square test of independence
-table(case31$q15r, case31$q38) |>
-  chisq.test() 
+case31 |> 
+  tbl_summary(
+    include = c(q15r, q38),
+    by = q38
+  ) |> 
+  add_p() |> 
+  modify_spanning_header(all_stat_cols() ~ "**Live in HQ Area?**") |> 
+  add_n() |> 
+  italicize_labels() |> 
+  #show_header_names()
+  modify_header(label ~ "**Awareness**") |> 
+  as_gt() |> 
+  tab_header(
+    title = md("**Chi-Square Test of Independece**"),
+    subtitle = md("*Christmas Club Account Awareness by Where Customers Live*")
+  )
 ```
+::: {.notes}
+The gt_summary package works with gt package using `as_gt()`
+:::
 
 ------------------------------------------------------------------------
 
@@ -985,6 +1030,34 @@ R5: How well are the members aware of the services offered by the credit union?
 
 ## q13r
 
+------------------------------------------------------------------------
+
+### Summary table
+
+::: medium-text
+```{r}
+#| output-location: column
+#| label: tbl-q13r
+#| tbl-cap: Regular Share Account Awareness Frequency
+
+case31_clean |> 
+  tbl_summary(
+    include = q13r,
+    type = all_categorical() ~ "categorical"
+  ) |> 
+  italicize_labels() |> 
+  #show_header_names()
+  modify_header(label ~ "**Awareness**") |> 
+  modify_caption("**Chi-Square Goodness of Fit Test**:<br>*Regular Share Account Awareness*")
+```
+:::
+
+::: notes
+Unfortunately, chi-square-goodness-of-fit statistics cannot be calculated directly in gt_summary
+:::
+
+------------------------------------------------------------------------
+
 ### Barplot
 
 ```{r}
@@ -1006,9 +1079,9 @@ case31_clean |>
 ```{r}
 #| output-location: fragment
 
-p = c(1/3, 1/3, 1/3)
+expected = c(1/3, 1/3, 1/3)
 table(case31_clean$q13r) |> 
-  chisq.test(p = p)
+  chisq.test(p = expected)
 ```
 :::
 
@@ -1017,7 +1090,7 @@ table(case31_clean$q13r) |>
 ::: {.callout-important .large-callout}
 ### Insights
 
--   There is statistically significnat evidence that the observed data doesn't follow from the theoretical distribution
+-   There is statistically significant evidence that the observed data doesn't follow from the theoretical distribution
 -   the level of members' awareness of regular share account is different across the three levels with "unawareness being highest
 :::
 
@@ -1175,11 +1248,11 @@ case31_clean |>
 
 ### 1. Check normality assumption
 
-- The dependent variable should be approximately normally distributed within each group.
-- $H_0:$ The data are normally distributed
-- $H_1:$ The data are NOT normally distributed
+-   The dependent variable should be approximately normally distributed within each group.
+-   $H_0:$ The data are normally distributed
+-   $H_1:$ The data are NOT normally distributed
 
-::::: columns
+:::::: columns
 ::: {.column .fragment}
 #### Overall test for q33
 
@@ -1213,21 +1286,20 @@ residuals(h1_aov_model) |>
   shapiro.test()
 ```
 :::
-
-:::::
+::::::
 
 ::: notes
-- ANOVA's normality assumption applies to the residuals, not the raw dependent variable.
-- Residuals represent the unexplained variation after accounting for group means, which is what needs to be approximately normally distributed for valid ANOVA results.
-- The dependent variable might not follow a normal distribution, but if the residuals do, the ANOVA results are still valid.
+-   ANOVA's normality assumption applies to the residuals, not the raw dependent variable.
+-   Residuals represent the unexplained variation after accounting for group means, which is what needs to be approximately normally distributed for valid ANOVA results.
+-   The dependent variable might not follow a normal distribution, but if the residuals do, the ANOVA results are still valid.
 :::
 
 ------------------------------------------------------------------------
 
 ### 2. Homogeneity of variance
 
-- $H_0:$ Variance is the same across the groups
-- $H_1:$ The data is NOT normally distributed
+-   $H_0:$ Variance is the same across the groups
+-   $H_1:$ The data is NOT normally distributed
 
 ```{r}
 library(car)
@@ -1239,13 +1311,13 @@ case31_clean |>
 
 ### 3. ANOVA Test
 
-- $H_0:$ All group means are equal ($\mu_1 = \mu_2 = \mu_3 = ... = \mu_k$)
-- $H_1:$ At least one pair of group means is different
+-   $H_0:$ All group means are equal ($\mu_1 = \mu_2 = \mu_3 = ... = \mu_k$)
+-   $H_1:$ At least one pair of group means is different
 
-:::::: {.columns}
-
+::::: columns
 ::: {.column .fragment}
 #### Under homoskedasticity
+
 ```{r}
 case31_clean |> 
   aov(q33 ~ q13r, data = _) |> 
@@ -1256,61 +1328,110 @@ case31_clean |>
 ::: {.column .fragment}
 #### Since residuals are non-normal
 
-- Kruskal-Wallis Test
-  - non-parametric
-  - compares the medians of three or more independent groups to determine if they differ significantly.
+-   Kruskal-Wallis Test
+    -   non-parametric
+    -   compares the medians of three or more independent groups to determine if they differ significantly.
 
 ```{r}
 case31_clean |> 
   kruskal.test(q33 ~ q13r, data = _)
 ```
-
 :::
+:::::
 
-::::::
+::: notes
+-   If variances are not the same across groups, use Welch's ANOVA or Kruskal-Wallis test
 
-::: {.notes}
-- If variances are not the same across groups, use Welch's ANOVA or Kruskal-Wallis test
-```
+```         
 oneway.test(dependent_variable ~ group, data = your_data, var.equal = FALSE)
 ```
 :::
 
 ------------------------------------------------------------------------
 
-### 4. Post-hoc Analysis if not all group means are the same
+### 4. Summary Table
 
-:::::: {columns}
+:::: medium-text
+```{r}
+#| echo: true
+#| output-location: column-fragment
+#| label: tbl-adequcy_of_finanical_services_by_q13r
+#| tbl-cap: Does Awareness of Regular Share Account Affects Members' Perceived Adequacy of Financial Services in Meeting their Needs?
 
+anova_model <- case31_clean |> 
+  aov(q33 ~ q13r, data = _) 
+
+anova_summary <- summary(anova_model)
+
+anova_pvalue <- anova_summary[[1]][["Pr(>F)"]][1]
+
+case31_clean |> 
+  mutate(q33 = as.numeric(q33)) |> 
+  tbl_summary(
+    include = c(q13r, q33),
+    by = q13r,
+    type = q33 ~ "continuous2",
+    statistic = list(all_continuous() ~ c("{mean} ({sd})",
+                                          "{min}, {max}")),
+    label = q33 ~ "Adequacy of Financial Services"
+  ) |> 
+  modify_spanning_header(
+    all_stat_cols() ~ "**Regular Share Account Awareness Levels**") |> 
+  add_overall() |> 
+  modify_caption("**Test of Differences in Perceived Adequacy of Financial Services in Meeting Memberss Needs:**<br>_Diffential Effect by Awareness of Regular Share Account (q13r)_") |> 
+  italicize_labels() |> 
+  modify_footnote(
+    c(stat_1, stat_2, stat_3) ~ glue::glue("One-way ANOVA with equal variance assummed p-value: {format.pval(anova_pvalue, digits = 3)}")) |> 
+  #show_header_names()
+  modify_header(label ~ "**Variable**")
+```
+
+::: {.aside}
+**Note**: ANOVA with more than 2 levels cannot be computed in `gt_summary()`[@sjoberg2021]. Thus, p-value should be obtained separately from aov and added to the table as a footnote.
+:::
+::::
+
+---
+
+### 5. Post-hoc Analysis if not all group means are the same
+
+::::: {columns}
 ::: {.column .fragment}
 #### When ANOVA is significant
+
 ```{r}
 case31_clean |> 
   aov(q33 ~ q13r, data = _) |> 
   TukeyHSD()
 ```
 :::
+
 ::: {.column .fragment}
 #### When Kruskal-Wallis is significant
+
 ```{r}
 library(dunn.test)
 
 # Post-hoc pairwise comparisons
 dunn.test(as.numeric(case31_clean$q33), case31_clean$q13r, method = "bonferroni")
 ```
-
 :::
-::::::
+:::::
+
+------------------------------------------------------------------------
+
+
+
 ------------------------------------------------------------------------
 
 ::: {.callout-note .incremental .large-callout}
 ### Insights about H1
 
-- Normality assumption of residuals from ANOVA was not met
-- However, homoskedasticity assumption is hold true
-- Both ANOVA and Kruskal-Wallis test is significant; Thus, post-hoc analysis is conducted.
-- Post-hoc analysis results are the same regardless of the methods.
-- Members' perception of adequacy of financial services is most negative among who have highest level of awareness of regualr savings account (`aware and have used it`), while it is not different between the two lower awareness groups (`aware but have not used it` vs. `unaware`)
+-   Normality assumption of residuals from ANOVA was not met
+-   However, homoskedasticity assumption is hold true
+-   Both ANOVA and Kruskal-Wallis test is significant; Thus, post-hoc analysis is conducted.
+-   Post-hoc analysis results are the same regardless of the methods.
+-   Members' perception of adequacy of financial services is most negative among who have highest level of awareness of regualr savings account (`aware and have used it`), while it is not different between the two lower awareness groups (`aware but have not used it` vs. `unaware`)
 :::
 
 # H2: Overview - Paired Samples t-Test {background-color="black"}
@@ -1331,22 +1452,23 @@ H4: Compared with the members who have a loan, [those members who don’t have a
 
 # H5: Overview - Multiple Regression {background-color="steelblue"}
 
-:::::: small-text
-
-:::{.fragment .fade-in-then-semi-out}
+::::::: small-text
+::: {.fragment .fade-in-then-semi-out}
 H5a: Member belief about CU keeps personal `financial information confidential` will positively influence the [overall attitude toward credit union’s operational efficiency]{style="color:orange;"}.
 :::
-:::{.fragment .fade-in-then-semi-out}
+
+::: {.fragment .fade-in-then-semi-out}
 H5b: `Loan application processing promptness` will positively influence the overall attitude toward credit union’s operational efficiency.
 :::
-:::{.fragment .fade-in-then-semi-out}
+
+::: {.fragment .fade-in-then-semi-out}
 H5c: `Member satisfaction with level of financial services in meeting needs` will positively influence the overall attitude toward credit union’s operational efficiency.
 :::
-:::{.fragment .fade-in-then-semi-out}
+
+::: {.fragment .fade-in-then-semi-out}
 H5d: `Loan application simplicity and easiness` will positively influence the overall attitude toward credit union’s operational efficiency.
 :::
-
-::::::
+:::::::
 
 . . .
 
@@ -1355,7 +1477,7 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
 ::: {.column .fragment width="60%"}
 -   `Constructs and roles`:
     1.  Overall managerial and operational efficiency (DV)
-    2.   Confidentiality of personal financial information (IV)
+    2.  Confidentiality of personal financial information (IV)
     3.  Loan application processing promptness (IV)
     4.  Adequacy of financial services in meeting needs (IV)
     5.  Simplicity and easiness of loan application (IV)
@@ -1378,13 +1500,13 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
 
 ## Checking Assumptions of Multiple Regression
 
----
+------------------------------------------------------------------------
 
 ### 1. Linearity Check
 
-:::{.panel-tabset}
-
+::: panel-tabset
 #### q31 vs. q37r
+
 ```{r}
 #| output-location: column
 # Scatterplot for each predictor against the outcome
@@ -1395,6 +1517,7 @@ ggplot(case31_clean, aes(x = q31, y = q37r)) +
 ```
 
 #### q32 vs. q37r
+
 ```{r}
 #| output-location: column
 # Scatterplot for each predictor against the outcome
@@ -1405,6 +1528,7 @@ ggplot(case31_clean, aes(x = q32, y = q37r)) +
 ```
 
 #### q33 vs. q37r
+
 ```{r}
 #| output-location: column
 
@@ -1417,6 +1541,7 @@ ggplot(case31_clean, aes(x = q33, y = q37r)) +
 ```
 
 #### q34 vs. q37r
+
 ```{r}
 #| output-location: column
 
@@ -1429,8 +1554,8 @@ ggplot(case31_clean, aes(x = q34, y = q37r)) +
 
 #### Partial residual plots
 
-- visualize the relationship between a predictor and the response variable, accounting for the effects of other predictors in the model.
-- If the relationship between the predictor and the response is linear, the points in the plot should roughly follow a straight line.
+-   visualize the relationship between a predictor and the response variable, accounting for the effects of other predictors in the model.
+-   If the relationship between the predictor and the response is linear, the points in the plot should roughly follow a straight line.
 
 ```{r}
 #| output-location: column
@@ -1442,24 +1567,22 @@ lm_model <- case31_clean |>
 crPlots(lm_model)
 
 ```
-
 :::
 
 ::: notes
-
-- If the points show a curved or non-linear pattern, this indicates that a linear model may not be appropriate, and the predictor might require a transformation (e.g., log, quadratic).
+-   If the points show a curved or non-linear pattern, this indicates that a linear model may not be appropriate, and the predictor might require a transformation (e.g., log, quadratic).
 :::
 
----
+------------------------------------------------------------------------
 
 ### 2. Independence Check
 
-- $H_0:$ There is no first-order autocorrelation in the residuals (errors are independent).
-- $H_1:$ There is evidence of positive or negative autocorrelation.
-- Test statistics (d)
-  - $d \approx 2$: No autocorrelation
-  - $d < 2$: Positive autocorrelation
-  - $d > 2$: Negative autocorrelation
+-   $H_0:$ There is no first-order autocorrelation in the residuals (errors are independent).
+-   $H_1:$ There is evidence of positive or negative autocorrelation.
+-   Test statistics (d)
+    -   $d \approx 2$: No autocorrelation
+    -   $d < 2$: Positive autocorrelation
+    -   $d > 2$: Negative autocorrelation
 
 ```{r}
 #| output-location: column
@@ -1469,12 +1592,13 @@ dwtest(lm_model)  # Durbin-Watson test for autocorrelation
 
 ```
 
----
+------------------------------------------------------------------------
 
 ### 3. Homoscedasticity Check
 
-:::{.panel-tabset}
+::: panel-tabset
 #### Residuals vs. Fitted Plot
+
 ```{r}
 #| output-location: column
 
@@ -1483,8 +1607,8 @@ plot(lm_model, which = 1)  # Built-in residuals vs. fitted plot
 
 #### bp test
 
-- $H_0:$ The errors have constant variance (homoscedasticity).
-- $H_1:$ The errors exhibit heteroscedasticity (i.e., non-constant variance).
+-   $H_0:$ The errors have constant variance (homoscedasticity).
+-   $H_1:$ The errors exhibit heteroscedasticity (i.e., non-constant variance).
 
 ```{r}
 #| output-location: column
@@ -1495,11 +1619,11 @@ bptest(lm_model)  # Breusch-Pagan test for heteroscedasticity
 ```
 :::
 
----
+------------------------------------------------------------------------
 
 ### 4. Normality of Residuals
 
-:::{.panel-tabset}
+::: panel-tabset
 #### Histogram of residuals
 
 ```{r}
@@ -1521,8 +1645,9 @@ qqline(residuals, col = "blue")
 ```
 
 #### Test of normality
-- $H_0:$ The data is normally distributed
-- $H_1:$ The data is not normally distributed.
+
+-   $H_0:$ The data is normally distributed
+-   $H_1:$ The data is not normally distributed.
 
 ```{r}
 #| output-location: column
@@ -1532,12 +1657,12 @@ shapiro.test(residuals)  # Shapiro-Wilk test
 ```
 :::
 
----
+------------------------------------------------------------------------
 
 ### 5. Multicollinearity Check
 
-- VIF \> 5: Possible multicollinearity.
-- VIF\ > 10: Strong multicollinearity, consider dropping or combining predictors.
+-   VIF \> 5: Possible multicollinearity.
+-   VIF \> 10: Strong multicollinearity, consider dropping or combining predictors.
 
 ```{r}
 library(car)
@@ -1545,12 +1670,11 @@ vif(lm_model)  # VIF values
 
 ```
 
----
+------------------------------------------------------------------------
 
 ### 6. Outliers and Influential Observations
 
-:::{.panel-tabset}
-
+::: panel-tabset
 #### Cook's Distance
 
 ```{r}
@@ -1576,14 +1700,14 @@ head(dfbetas)  # Shows influence of each observation
 ```
 :::
 
----
+------------------------------------------------------------------------
 
 ### 7. Cross-validation
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
 #### Define control for cross-validation
+
 ```{r}
 library(caret)
 set.seed(123)
@@ -1598,7 +1722,6 @@ case31_clean <- case31_clean |>
 :::
 
 ::: {.column width="50%"}
-
 #### Train the model
 
 ```{r}
@@ -1612,20 +1735,23 @@ cv_model  # Check cross-validation results
 cv_model$resample
 ```
 :::
+:::::
 
-::::
-
----
+------------------------------------------------------------------------
 
 ### Model Parameters
 
+::: {.panel-tabset}
+
 #### Final Model Parameters from CV
+
 ```{r}
 #| output-location: column
 
 summary(cv_model) # summary function returns final model fit based on entire data
 ```
 
+---
 
 #### Multiple Regression & Results
 
@@ -1638,25 +1764,85 @@ case31_clean |>
   summary()
 ```
 
+:::
+
 ---
+
+### Summary Table
+
+:::::: {.columns}
+
+::: {.column}
+```{r}
+#| label: tbl-h5-reg-4vars
+#| tbl-cap: Regression Analysis
+#| output-location: fragment
+#| echo: false
+m_h5 <- case31_clean |> 
+  lm(q37r ~ q31 + q32 + q33 + q34, data = _) 
+
+#summary(m_h5)$coefficients
+
+m_h5 |> 
+  tbl_regression() |>
+  add_vif() |> 
+  add_q() |> 
+  italicize_labels() |> 
+  modify_header(label ~ "**Variables**") |> 
+  as_gt() |> 
+  tab_header(title = md("**Factors that Affect Overall Efficiency**"))
+  
+```
+:::
+
+::: {.column .fragment}
+```{r}
+#| label: tbl-h5-reg-5vars
+#| tbl-cap: Regression Analysis with Customer Locatoin Controlled
+#| output-location: fragment
+#| echo: false
+m_h5_2 <- case31_clean |> 
+  lm(q37r ~ q38 + q31 + q32 + q33 + q34, data = _) 
+
+#summary(m_h5_2)
+
+m_h5_2 |> 
+  tbl_regression() |>
+  add_vif() |> 
+  add_q() |> 
+  italicize_labels() |> 
+  modify_header(label ~ "**Variables**") |> 
+  as_gt() |> 
+  tab_header(title = md("**Factors that Affect Overall Efficiency**"),
+             subtitle = "Controlling for the location of residency"
+             )
+```
+:::
+
+::::::
+
+------------------------------------------------------------------------
 
 :::::: {.callout-note .large-callout}
 ## Insights about H5
 
 ::: {.fragment .shrink .highlight-blue}
-- Overall, the assumptions of multiple regression are supported. 
-  - Linearity assumption is okay in general.
-  - Homosckedasticiy assumption is confirmed
-  - Multicollinearity is not an issue.
-  - Normality assumption is not supported.
+-   Overall, the assumptions of multiple regression are supported.
+    -   Linearity assumption is okay in general.
+    -   Homosckedasticiy assumption is confirmed
+    -   Multicollinearity is not an issue.
+    -   Normality assumption is not supported.
 :::
 
 ::: {.fragment .shrink .highlight-green}
--   As expected, `confidentiality` (*p* < .05), l`oan application process` (*p* < .001) and `adequacy of financial resources` (*p* < .001) are positively related to the overall efficiency.
+-   As expected, `confidentiality` (*p* \< .05), `loan application process` (*p* \< .001) and `adequacy of financial resources` (*p* \< .001) are positively related to the overall efficiency.
 :::
 
 ::: {.fragment .shrink .highlight-red}
--   `Simplicity and easiness of loan application` is not significantly related to the overall efficiency (_p_ > .10)
+-   `Simplicity and easiness of loan application` is not significantly related to the overall efficiency (*p* \> .10)
 :::
-
 ::::::
+
+## References
+
+- <https://www.danieldsjoberg.com/gtsummary/>
