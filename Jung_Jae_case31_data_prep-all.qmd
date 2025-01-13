@@ -5,12 +5,12 @@ author: "Jae Jung"
 institute: "IBM 3302, Cal Poly Pomona"
 date: "`r Sys.Date()`"
 format: 
-  revealjs:
+  html:
     footer: Case 31 Project
     transition: slide
     transition-speed: default
     toc: true
-    toc-depth: 1
+    toc-depth: 4
     slide-number: true
     scrollable: true
     smaller: true
@@ -20,8 +20,11 @@ format:
     number-sections: true
     embed-resources: true
     self-contained-math: true
+  pdf: default
+  docx: default
 editor: visual
 execute: 
+  message: false
   echo: true
   freeze: auto
 ---
@@ -31,6 +34,7 @@ execute:
 ## Loading common packages
 
 ```{r}
+#| message: false
 # install.packages("haven")
 library(tidyverse)
 library(haven) 
@@ -74,12 +78,13 @@ data |> # ctr + shift + M
 ------------------------------------------------------------------------
 
 ```{r}
+five_pt_likert <-  c("Strongly Disagree" = 1,
+                      "Disagree" = 2,
+                      "Uncertain" = 3,
+                      "Agree" = 4,
+                      "Strongly Agree" = 5)
 data_clean <- data |> 
-  set_value_labels(q3 = c("Strongly Disagree" = 1,
-                          "Disagree" = 2,
-                          "Uncertain" = 3,
-                          "Agree" = 4,
-                          "Strongly Agree" = 5)) |> 
+  set_value_labels(q3 = five_pt_likert) |> 
   set_variable_labels(q3 = "Employees are Courteous")
 
 data_clean |> 
@@ -88,7 +93,8 @@ data_clean |>
 
 data_clean |> 
   select(q3) |> 
-  val_labels()
+  val_labels() |> 
+  unique()
 ```
 
 ------------------------------------------------------------------------
@@ -98,11 +104,7 @@ data_clean |>
 ```{r}
 data_clean <-  data_clean |> 
   set_variable_labels(q4 = "Employees are helpful") |> 
-  set_value_labels(q4 = c("Strongly Disagree" = 1,
-                          "Disagree" = 2,
-                          "Uncertain" = 3,
-                          "Agree" = 4,
-                          "Strongly Agree" = 5)) 
+  set_value_labels(q4 = five_pt_likert) 
 
 data_clean |> 
   select(q4) |>
@@ -120,17 +122,10 @@ data_clean |>
 ```{r}
 data_clean <- data_clean |> 
   set_variable_labels(q5 = "Employees are professional") |> 
-  set_value_labels(q5 = c("Strongly Disagree" = 1,
-                          "Disagree" = 2,
-                          "Uncertain" = 3,
-                          "Agree" = 4,
-                          "Strongly Agree" = 5)) |> 
+  set_value_labels(q5 = five_pt_likert) |> 
   set_variable_labels(q6 = "Employees are available") |> 
-  set_value_labels(q6 = c("Strongly Disagree" = 1,
-                          "Disagree" = 2,
-                          "Uncertain" = 3,
-                          "Agree" = 4,
-                          "Strongly Agree" = 5))
+  set_value_labels(q6 = five_pt_likert)
+
 data_clean |> 
   select(q5, q6) |>
   var_label()
@@ -156,9 +151,9 @@ data_clean |>
 
 ### Factor analysis
 
-::: {.panel-tabset}
-
+::: panel-tabset
 #### Factor Analysis
+
 ```{r}
 data_clean |> 
   select(q3:q6) |> 
@@ -166,6 +161,7 @@ data_clean |>
 ```
 
 #### Diagram
+
 ```{r}
 data_clean |> 
   select(q3:q6) |> 
@@ -173,7 +169,6 @@ data_clean |>
   fa.diagram()
 
 ```
-
 :::
 
 ------------------------------------------------------------------------
@@ -212,7 +207,7 @@ describe(data_clean$at_emp)
 
 ```
 
-## q7r {.smaller}
+## q7r: Savings Rate {.smaller}
 
 ::::: columns
 ::: {.column width="40%"}
@@ -244,7 +239,7 @@ data_clean |> count(q7r)
 :::
 :::::
 
-## q8r
+## q8r: Fund borrowing rates
 
 ```{r}
 #| output-location: fragment
@@ -276,7 +271,7 @@ data_clean |> count(q8r)
 
 ------------------------------------------------------------------------
 
-## q9r
+## q9r: Statement Frequency
 
 ```{r}
 #| output-location: fragment
@@ -305,7 +300,7 @@ data_clean |> count(q9r)
 
 ------------------------------------------------------------------------
 
-## q10r
+## q10r: Statement Accuracy
 
 ```{r}
 #| output-location: fragment
@@ -328,7 +323,15 @@ data_clean <- data_clean |>
 data_clean |> count(q10r)  
 ```
 
-## q13r
+## Awareness of Financial Services
+
+```{r}
+aware_scale_3 <- c("Unaware" = 1,
+                   "Aware but Have Not Used" = 2,
+                   "Aware and Have Used" = 3)
+```
+
+### q13r
 
 ```{r}
 #| output-location: fragment
@@ -344,13 +347,39 @@ data_clean |> count(q13)
 data_clean <- data_clean |> 
   mutate(q13r = 4 - q13) |> 
   set_variable_labels(q13r = "Regular share account") |> 
-  set_value_labels(q13r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  set_value_labels(q13r = aware_scale_3)
+
 data_clean |> count(q13r)  
 ```
 
-## q14r
+### Creating a function
+
+```{r}
+library(rlang)
+
+aware_recode <- function(tbl, var, var_label) {
+  
+  varr <- paste0(rlang::as_string(ensym(var)), "r")
+  
+  tbl <- tbl |> 
+  mutate(!!varr := 4 - as.numeric({{var}})) |> 
+  set_variable_labels(!!varr := var_label) |> 
+  set_value_labels(!!varr := aware_scale_3)
+  
+  return(tbl)
+ 
+}
+
+
+data_clean <- data_clean |> 
+  aware_recode(q15, "Special subaccounts")
+
+data_clean |> 
+  count(q15r)
+```
+
+
+### q14r
 
 ```{r}
 #| output-location: fragment
@@ -364,16 +393,47 @@ data_clean |> count(q14)
 #| output-location: fragment
 
 data_clean <- data_clean |> 
-  mutate(q14r = 4 - q14) |> 
-  set_variable_labels(q14r = "Special subaccounts") |> 
-  set_value_labels(q14r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q14, "Special subaccounts")
+
 data_clean |> count(q14r)  
 
 ```
 
-## q15r
+### q15r-q26
+
+#### functions that didn't work
+
+```{r}
+#| eval: false
+#| echo: false
+
+library(purrr)
+
+aware_recode <- function(tbl, var, var_label) {
+  
+  varr <- paste0(rlang::as_string(ensym(var)), "r")
+  
+  tbl <- tbl |> 
+  mutate(!!sym(varr) := 4 - as.numeric({{var}})) |> 
+  set_variable_labels(!!sym(varr) := var_label) |> 
+  set_value_labels(!!sym(varr) := aware_scale_3)
+  
+  return(tbl)
+ 
+}
+
+variables <- c("q15", "q16", "q17", "q18", "q19", "q20", "q21", "q22", "q23", "q24", "q25", "q26")
+
+variables <- c("q15", "q16", "q17")
+labels <- c("Christmas club account", "IRA", "Master credit card")
+
+data_clean_new <- map2(
+  variables, labels, ~ aware_recode(data_clean, .x, .y)
+  ) 
+```
+
+
+### q15r
 
 ```{r}
 #| output-location: fragment
@@ -387,15 +447,12 @@ data_clean |> count(q15)
 #| output-location: fragment
 
 data_clean <- data_clean |> 
-  mutate(q15r = 4 - q15) |> 
-  set_variable_labels(q15r = "Christmas club account") |> 
-  set_value_labels(q15r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q15, "Christmas club account")
+
 data_clean |> count(q15r)  
 ```
 
-## q16r
+### q16r
 
 ```{r}
 #| output-location: fragment
@@ -409,15 +466,12 @@ data_clean |> count(q16)
 #| output-location: fragment
 
 data_clean <- data_clean |> 
-  mutate(q16r = 4 - q16) |> 
-  set_variable_labels(q16r = "IRA") |> 
-  set_value_labels(q16r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q16, "IRA")
+  
 data_clean |> count(q16r)  
 ```
 
-## q17r
+### q17r
 
 ```{r}
 #| output-location: fragment
@@ -431,15 +485,12 @@ data_clean |> count(q17)
 #| output-location: fragment
 
 data_clean <- data_clean |> 
-  mutate(q17r = 4 - q17) |> 
-  set_variable_labels(q17r = "Master credit card") |> 
-  set_value_labels(q17r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q17, "Master credit card")
+  
 data_clean |> count(q17r)  
 ```
 
-## q18r
+### q18r
 
 ```{r}
 #| output-location: fragment
@@ -453,15 +504,12 @@ data_clean |> count(q18)
 #| output-location: fragment
 
 data_clean <- data_clean |> 
-  mutate(q18r = 4 - q18) |> 
-  set_variable_labels(q18r = "Signature loans") |> 
-  set_value_labels(q18r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q18, "Signature loans")
+
 data_clean |> count(q18r)  
 ```
 
-## q19r
+### q19r
 
 ```{r}
 #| output-location: fragment
@@ -475,15 +523,12 @@ data_clean |> count(q19)
 #| output-location: fragment
 
 data_clean <- data_clean |> 
-  mutate(q19r = 4 - q19) |> 
-  set_variable_labels(q19r = "New car loans") |> 
-  set_value_labels(q19r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q19, "New car loans")
+
 data_clean |> count(q19r)  
 ```
 
-## q20r
+### q20r
 
 ```{r}
 #| output-location: fragment
@@ -497,15 +542,12 @@ data_clean |> count(q20)
 #| output-location: fragment
 
 data_clean <- data_clean |> 
-  mutate(q20r = 4 - q20) |> 
-  set_variable_labels(q20r = "Late model car loans") |> 
-  set_value_labels(q20r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q20, "Late model car loans")
+
 data_clean |> count(q20r)  
 ```
 
-## q21r
+### q21r
 
 ```{r}
 #| output-location: fragment
@@ -519,113 +561,76 @@ data_clean |> count(q21)
 #| output-location: fragment
 
 data_clean <- data_clean |> 
-  mutate(q21r = 4 - q21) |> 
-  set_variable_labels(q21r = "Older model car loans") |> 
-  set_value_labels(q21r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q21, "Older model car loans")
+
 data_clean |> count(q21r)  
 ```
 
-## q22r
+### q22r
 
 ```{r}
 data_clean |> count(q22)
 
 data_clean <- data_clean |> 
-  mutate(q22r = 4 - q22) |> 
-  set_variable_labels(q22r = "Household goods loans") |> 
-  set_value_labels(q22r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q22, "Household goods loans")
+
 data_clean |> count(q22r)  
 ```
 
-## q23r
+### q23r
 
 ```{r}
 data_clean |> count(q23)
 
 data_clean <- data_clean |> 
-  mutate(q23r = 4 - q23) |> 
-  set_variable_labels(q23r = "Recreational loans") |> 
-  set_value_labels(q23r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q23, "Recreational loans")
+
 data_clean |> count(q23r)  
 ```
 
-## q24r
+### q24r
 
 ```{r}
 data_clean |> count(q24)
 
 data_clean <- data_clean |> 
-  mutate(q24r = 4 - q24) |> 
-  set_variable_labels(q24r = "Share collateralized loan") |> 
-  set_value_labels(q24r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q24, "Share collateralized loan")
+
 data_clean |> count(q24r)  
 ```
 
-## q25r
+### q25r
 
 ```{r}
 data_clean |> count(q25)
 
 data_clean <- data_clean |> 
-  mutate(q25r = 4 - q25) |> 
-  set_variable_labels(q25r = "IRA loans") |> 
-  set_value_labels(q25r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q25, "IRA loans")
+
 data_clean |> count(q25r)  
 ```
 
-## q26r
+### q26r
 
 ```{r}
 data_clean |> count(q26)
 
 data_clean <- data_clean |> 
-  mutate(q26r = 4 - q26) |> 
-  set_variable_labels(q26r = "Line of credit loans") |> 
-  set_value_labels(q26r = c("Unaware" = 1,
-                           "Aware but Have Not Used" = 2,
-                           "Aware and Have Used" = 3))
+  aware_recode(q26, "Line of credit loans")
+
 data_clean |> count(q26r)  
 ```
 
 ## q30 - q34 {.smaller}
 
 ```{r}
-data_clean <-  data_clean |> 
-  set_value_labels(q30 = c("Strongly Disagree" = 1,
-                          "Disagree" = 2,
-                          "Uncertain" = 3,
-                          "Agree" = 4,
-                          "Strongly Agree" = 5)) |> 
-  set_value_labels(q31 = c("Strongly Disagree" = 1,
-                          "Disagree" = 2,
-                          "Uncertain" = 3,
-                          "Agree" = 4,
-                          "Strongly Agree" = 5))|> 
-  set_value_labels(q32 = c("Strongly Disagree" = 1,
-                          "Disagree" = 2,
-                          "Uncertain" = 3,
-                          "Agree" = 4,
-                          "Strongly Agree" = 5))|> 
-  set_value_labels(q33 = c("Strongly Disagree" = 1,
-                          "Disagree" = 2,
-                          "Uncertain" = 3,
-                          "Agree" = 4,
-                          "Strongly Agree" = 5))|> 
-  set_value_labels(q34 = c("Strongly Disagree" = 1,
-                          "Disagree" = 2,
-                          "Uncertain" = 3,
-                          "Agree" = 4,
-                          "Strongly Agree" = 5))
+
+data_clean <- data_clean |> 
+  set_value_labels(q30 = five_pt_likert,
+                   q31 = five_pt_likert,
+                   q32 = five_pt_likert,
+                   q33 = five_pt_likert,
+                   q34 = five_pt_likert) 
 ```
 
 ## q37r
@@ -690,31 +695,6 @@ data_preped |>
 
 ```
 
-```{r}
-#| eval: false
-
-# Extract variable labels
-var_labels <- get_label(data)
-var_labels <- var_labels |> 
-  t() |> 
-  as.data.frame()
-dim(var_labels)
-var_labels
-
-# Convert data to labeled values
-labeled_data <- as_label(data)
-dim(labeled_data)
-labeled_data <- labeled_data |> 
-  as.data.frame()
-
-# Add labels as the first row
-output_data <- bind_rows(
-  var_labels, labeled_data)
-
-# Save to Excel
-write_xlsx(output_data, path = "Case 31 Data_efcu_Prepped_labels.xlsx")
-
-```
 
 # Appendix
 
@@ -730,3 +710,23 @@ data_clean |>
   )() |> 
   select(row_mean)
 ```
+
+## Alternative way to create a recode function for awareness
+
+```{r}
+aware_recode <- function(tbl, var, var_label) {
+  
+  varr <- paste0(deparse(substitute(var)), "r")
+  
+  tbl <- tbl |> 
+  mutate(!!sym(varr) := 4 - {{var}}
+         ) |> 
+  set_variable_labels(!!sym(varr) := var_label) |> 
+  set_value_labels(!!sym(varr) := aware_scale_3)
+  
+  return(tbl)
+ 
+}
+
+```
+

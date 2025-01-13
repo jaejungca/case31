@@ -1,9 +1,9 @@
 ---
-title: "Data Analysis for Case 31"
+title: "Presentatoin for Case 31"
 subtitle: "Sample Presentation"
 author: "Jae Jung"
 institute: "IBM 3302, Cal Poly Pomona"
-date: "Dec. 2, 2024"
+date: "`r Sys.Date()`"
 format: 
   revealjs:
     theme: serif
@@ -858,7 +858,9 @@ table(case31$q14r, case31$q38) |>
 ------------------------------------------------------------------------
 
 ### q15r by q38 with gt_summary table
-- q15r (Christmas club account)
+
+-   q15r (Christmas club account)
+
 ```{r}
 #| output-location: column
 #| label: tbl-christmas_by_HQ
@@ -884,7 +886,8 @@ case31 |>
     subtitle = md("*Christmas Club Account Awareness by Where Customers Live*")
   )
 ```
-::: {.notes}
+
+::: notes
 The gt_summary package works with gt package using `as_gt()`
 :::
 
@@ -1386,12 +1389,12 @@ case31_clean |>
   modify_header(label ~ "**Variable**")
 ```
 
-::: {.aside}
+::: aside
 **Note**: ANOVA with more than 2 levels cannot be computed in `gt_summary()`[@sjoberg2021]. Thus, p-value should be obtained separately from aov and added to the table as a footnote.
 :::
 ::::
 
----
+------------------------------------------------------------------------
 
 ### 5. Post-hoc Analysis if not all group means are the same
 
@@ -1419,8 +1422,6 @@ dunn.test(as.numeric(case31_clean$q33), case31_clean$q13r, method = "bonferroni"
 :::::
 
 ------------------------------------------------------------------------
-
-
 
 ------------------------------------------------------------------------
 
@@ -1741,8 +1742,7 @@ cv_model$resample
 
 ### Model Parameters
 
-::: {.panel-tabset}
-
+::: panel-tabset
 #### Final Model Parameters from CV
 
 ```{r}
@@ -1751,7 +1751,7 @@ cv_model$resample
 summary(cv_model) # summary function returns final model fit based on entire data
 ```
 
----
+------------------------------------------------------------------------
 
 #### Multiple Regression & Results
 
@@ -1763,16 +1763,14 @@ case31_clean |>
   lm(q37r ~ q31 + q32 + q33 + q34, data = _)  |> 
   summary()
 ```
-
 :::
 
----
+------------------------------------------------------------------------
 
 ### Summary Table
 
-:::::: {.columns}
-
-::: {.column}
+::::: columns
+::: column
 ```{r}
 #| label: tbl-h5-reg-4vars
 #| tbl-cap: Regression Analysis
@@ -1818,8 +1816,7 @@ m_h5_2 |>
              )
 ```
 :::
-
-::::::
+:::::
 
 ------------------------------------------------------------------------
 
@@ -1845,4 +1842,4 @@ m_h5_2 |>
 
 ## References
 
-- <https://www.danieldsjoberg.com/gtsummary/>
+-   <https://www.danieldsjoberg.com/gtsummary/>
