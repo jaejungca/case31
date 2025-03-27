@@ -2,7 +2,7 @@
 title: "Data Preparation for Case 31"
 subtitle: "Complete Version"
 author: "Jae Jung"
-institute: "IBM 3302, Cal Poly Pomona"
+institute: "Cal Poly Pomona"
 date: "`r Sys.Date()`"
 format: 
   html:
@@ -87,6 +87,7 @@ data_clean <- data |>
   set_value_labels(q3 = five_pt_likert) |> 
   set_variable_labels(q3 = "Employees are Courteous")
 
+# confirmation
 data_clean |> 
   select(q3) |> 
   var_label() 
@@ -112,7 +113,8 @@ data_clean |>
 
 data_clean |> 
   select(q4) |> 
-  val_labels()
+  val_labels() |> 
+  unique()
 ```
 
 ------------------------------------------------------------------------
@@ -131,8 +133,14 @@ data_clean |>
   var_label()
 
 data_clean |> 
-  select(q5, q6) |> 
-  val_labels()
+  select(q5) |> 
+  val_labels() |> 
+  unique()
+
+data_clean |> 
+  select(q6) |> 
+  val_labels() |> 
+  unique()
 ```
 
 ------------------------------------------------------------------------
@@ -370,14 +378,7 @@ aware_recode <- function(tbl, var, var_label) {
  
 }
 
-
-data_clean <- data_clean |> 
-  aware_recode(q15, "Special subaccounts")
-
-data_clean |> 
-  count(q15r)
 ```
-
 
 ### q14r
 
@@ -409,19 +410,6 @@ data_clean |> count(q14r)
 
 library(purrr)
 
-aware_recode <- function(tbl, var, var_label) {
-  
-  varr <- paste0(rlang::as_string(ensym(var)), "r")
-  
-  tbl <- tbl |> 
-  mutate(!!sym(varr) := 4 - as.numeric({{var}})) |> 
-  set_variable_labels(!!sym(varr) := var_label) |> 
-  set_value_labels(!!sym(varr) := aware_scale_3)
-  
-  return(tbl)
- 
-}
-
 variables <- c("q15", "q16", "q17", "q18", "q19", "q20", "q21", "q22", "q23", "q24", "q25", "q26")
 
 variables <- c("q15", "q16", "q17")
@@ -431,7 +419,6 @@ data_clean_new <- map2(
   variables, labels, ~ aware_recode(data_clean, .x, .y)
   ) 
 ```
-
 
 ### q15r
 
@@ -695,7 +682,6 @@ data_preped |>
 
 ```
 
-
 # Appendix
 
 ## alternative way using select(): in this case, we need to use anonymous function
@@ -714,6 +700,8 @@ data_clean |>
 ## Alternative way to create a recode function for awareness
 
 ```{r}
+#| eval: false
+#| 
 aware_recode <- function(tbl, var, var_label) {
   
   varr <- paste0(deparse(substitute(var)), "r")
@@ -730,3 +718,20 @@ aware_recode <- function(tbl, var, var_label) {
 
 ```
 
+## Alternative way to another recode function for awareness
+
+```{r}
+#| eval: false
+aware_recode_alt <- function(tbl, var, var_label) {
+  
+  varr <- paste0(rlang::as_string(ensym(var)), "r")
+  
+  tbl <- tbl |> 
+  mutate(!!sym(varr) := 4 - as.numeric({{var}})) |> 
+  set_variable_labels(!!sym(varr) := var_label) |> 
+  set_value_labels(!!sym(varr) := aware_scale_3)
+  
+  return(tbl)
+ 
+}
+```
