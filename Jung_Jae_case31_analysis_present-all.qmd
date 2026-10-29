@@ -2,7 +2,7 @@
 title: "Presentatoin for Case 31"
 subtitle: "Sample Presentation"
 author: "Jae Jung"
-institute: "IBM 3302, Cal Poly Pomona"
+institute: "Cal Poly Pomona"
 date: "`r Sys.Date()`"
 format: 
   revealjs:
@@ -301,12 +301,12 @@ My speaker notes go here Press "s" on your keyboard to create a speaker view sli
 ```{r}
 #| echo: false
 
-### Libraries 
+### Libraries
 #### Loading common packages
 library(tidyverse)
-library(haven) 
-library(labelled) 
-library(janitor) 
+library(haven)
+library(labelled)
+library(janitor)
 library(sjPlot)
 library(psych)
 library(gt)
@@ -323,7 +323,6 @@ case31 <- read_sav("Case 31 Data_efcu_Prepped.sav")
 dim(case31)
 ncol(case31)
 nrow(case31)
-
 ```
 
 ## Variables in the data
@@ -335,7 +334,7 @@ nrow(case31)
 #| echo: false
 
 # generate data dictionary
-case31 |> 
+case31 |>
   view_df()
 ```
 :::
@@ -346,10 +345,10 @@ case31 |>
 #| echo: false
 #| output: false
 
-pct_headqrt <- case31 |> 
-  count(q38) |> 
-  mutate(percent = n/sum(n)) |> 
-  filter(q38 == 1) |> 
+pct_headqrt <- case31 |>
+  count(q38) |>
+  mutate(percent = n / sum(n)) |>
+  filter(q38 == 1) |>
   select(percent)
 ```
 
@@ -394,10 +393,9 @@ pct_headqrt <- case31 |>
 #| fig-cap-location: top
 
 library(gt)
-case31 |> 
-  count(q7r) |> 
-  mutate(percent = n/sum(n),
-         q7r = as_factor(q7r)) |> 
+case31 |>
+  count(q7r) |>
+  mutate(percent = n / sum(n), q7r = as_factor(q7r)) |>
   gt()
 ```
 
@@ -409,7 +407,7 @@ case31 |>
 #| fig-cap: Descriptive Statistics for Savings Rate (Q7r)
 #| fig-cap-location: margin
 
-describe(case31$q7r) |> 
+describe(case31$q7r) |>
   gt()
 ```
 
@@ -420,15 +418,17 @@ describe(case31$q7r) |>
 #| label: fig-hist-savings-rate
 #| fig-cap: Histogram for Savings Rate (Q7r)
 
-case31 |> 
-  filter(!is.na(q7r)) |> 
-  mutate(q7r = haven::as_factor(q7r)) |> 
+case31 |>
+  filter(!is.na(q7r)) |>
+  mutate(q7r = haven::as_factor(q7r)) |>
   ggplot(aes(q7r, fill = q7r)) +
   geom_bar(show.legend = FALSE) +
-  labs(x = "Savings Rate",
-       y = "# of Responses",
-       title = "Frequency of Member Opinions on Savings Rates",
-       caption = "1 = Very Low ... 5 = Very High")
+  labs(
+    x = "Savings Rate",
+    y = "# of Responses",
+    title = "Frequency of Member Opinions on Savings Rates",
+    caption = "1 = Very Low ... 5 = Very High"
+  )
 ```
 
 ------------------------------------------------------------------------
@@ -443,10 +443,10 @@ case31 |>
 #| output-location: column-fragment
 
 mean_q7r <- case31 |> #count(q7r)
-  summarise(mean = mean(q7r, na.rm = TRUE)) |> 
+  summarise(mean = mean(q7r, na.rm = TRUE)) |>
   round(2)
 
-case31 |> 
+case31 |>
   t.test(q7r ~ 1, mu = 3, data = _)
 ```
 :::
@@ -511,20 +511,32 @@ describe(case31$at_emp)
 #| echo: false
 #| fig-cap: Histogram of Employee Proficiencies (at_emp) with a Mean line
 
-case31 |> 
+case31 |>
   ggplot(aes(at_emp)) +
   geom_histogram(binwidth = 0.5, color = "black", fill = "lightblue") +
-  geom_vline(aes(xintercept = mean(at_emp, na.rm = TRUE)),
-             color = "red", linetype = "dashed", size = 1) +
-  geom_text(aes(x = mean(at_emp, na.rm = TRUE), 
-                y = 30, 
-                label = paste0("Mean = ", round(mean(at_emp), 2))),
-            color = "red", angle = 90, vjust = -0.5, hjust = 2.2) +
-  labs(title = "Histogram of Employee Proficiencies with a Mean line",
-       x = "Employee Prociency",
-       y = "Count") +
+  geom_vline(
+    aes(xintercept = mean(at_emp, na.rm = TRUE)),
+    color = "red",
+    linetype = "dashed",
+    size = 1
+  ) +
+  geom_text(
+    aes(
+      x = mean(at_emp, na.rm = TRUE),
+      y = 30,
+      label = paste0("Mean = ", round(mean(at_emp), 2))
+    ),
+    color = "red",
+    angle = 90,
+    vjust = -0.5,
+    hjust = 2.2
+  ) +
+  labs(
+    title = "Histogram of Employee Proficiencies with a Mean line",
+    x = "Employee Prociency",
+    y = "Count"
+  ) +
   scale_x_continuous(limits = c(1, NA))
-  
 ```
 
 ## Reliability/factor analysis
@@ -541,7 +553,7 @@ case31 |>
 
 ```{r}
 #| output-location: fragment
-case31 |> 
+case31 |>
   t.test(at_emp ~ 1, mu = 4, data = _)
 ```
 :::
@@ -602,15 +614,16 @@ R4a: Are there any perceived differences on attitude towards employee proficienc
 #| echo: false
 #| label: fig-box-at-emp-by-residence
 #| fig-cap: Attitudes toward employee proficiency by residence
-case31 |> 
-  mutate(q38 = haven::as_factor(q38)) |> 
+case31 |>
+  mutate(q38 = haven::as_factor(q38)) |>
   ggplot(aes(q38, at_emp, fill = q38)) +
   geom_boxplot() +
-  labs(x = "Live in HQ Area",
-       y = "Attitudes toward Employee Proficiency",
-       title = "Does Employee Proficiency differ by where customers live?") +
+  labs(
+    x = "Live in HQ Area",
+    y = "Attitudes toward Employee Proficiency",
+    title = "Does Employee Proficiency differ by where customers live?"
+  ) +
   theme(legend.position = "none")
-
 ```
 
 ------------------------------------------------------------------------
@@ -621,15 +634,17 @@ case31 |>
 #| echo: false
 #| label: fig-bar-at-emp-by-residence
 #| fig-cap: Attitudes toward employee proficiency by residence
-case31 |> 
-  mutate(q38 = haven::as_factor(q38)) |> 
-  group_by(q38) |> 
-  summarize(mean = mean(at_emp, na.rm = TRUE)) |> 
+case31 |>
+  mutate(q38 = haven::as_factor(q38)) |>
+  group_by(q38) |>
+  summarize(mean = mean(at_emp, na.rm = TRUE)) |>
   ggplot(aes(q38, mean, fill = q38)) +
   geom_col() +
-  labs(x = "Live in HQ Area",
-       y = "Attitudes toward Employee Proficiency",
-       title = "Does Employee Proficiency differ by where customers live?") +
+  labs(
+    x = "Live in HQ Area",
+    y = "Attitudes toward Employee Proficiency",
+    title = "Does Employee Proficiency differ by where customers live?"
+  ) +
   theme(legend.position = "none")
 ```
 
@@ -647,8 +662,8 @@ case31 |>
 
 library(car)
 
-case31 |> 
-  mutate(q38 = haven::as_factor(q38)) |> 
+case31 |>
+  mutate(q38 = haven::as_factor(q38)) |>
   leveneTest(at_emp ~ q38, data = _)
 ```
 :::
@@ -657,8 +672,8 @@ case31 |>
 
 ::: medium-text
 ```{r}
-case31 |> 
-  mutate(q38 = haven::as_factor(q38)) |> 
+case31 |>
+  mutate(q38 = haven::as_factor(q38)) |>
   var.test(at_emp ~ q38, data = _)
 ```
 :::
@@ -668,8 +683,8 @@ case31 |>
 ::: medium-text
 ```{r}
 # t.test: assuming var are equal
-case31 |> 
-  t.test(at_emp ~ q38, data = _, var.equal = TRUE) 
+case31 |>
+  t.test(at_emp ~ q38, data = _, var.equal = TRUE)
 ```
 :::
 ::::::
@@ -684,21 +699,23 @@ case31 |>
 #| label: tbl-att_emp_by_HQ
 #| tbl-cap: Do Customers Differ in their Attitudes toward Employee Proficiency depending on where they live?
 
-case31 |> 
-  mutate(q38 = haven::as_factor(q38)) |> 
+case31 |>
+  mutate(q38 = haven::as_factor(q38)) |>
   tbl_summary(
     include = c(q38, at_emp),
     by = q38,
     type = at_emp ~ "continuous2",
-    statistic = list(all_continuous() ~ c("{mean} ({sd})",
-                                          "{min}, {max}"))
-  ) |> 
-  add_difference() |> 
-  add_overall() |> 
-  add_n() |> 
-  modify_caption("**Test of Differences in Attitudes toward Employee Proficiency between customers who live in Headquarter area and those who live in non-headquarter area**") |> 
+    statistic = list(all_continuous() ~ c("{mean} ({sd})", "{min}, {max}"))
+  ) |>
+  add_difference() |>
+  add_overall() |>
+  add_n() |>
+  modify_caption(
+    "**Test of Differences in Attitudes toward Employee Proficiency between customers who live in Headquarter area and those who live in non-headquarter area**"
+  ) |>
   modify_spanning_header(
-    c(stat_1, stat_2) ~ "**Live in Headquarter Area?**") 
+    c(stat_1, stat_2) ~ "**Live in Headquarter Area?**"
+  )
 ```
 
 ------------------------------------------------------------------------
@@ -748,9 +765,8 @@ R4b: Are there any perceived differences on awareness of services between member
 
 ::: medium-text
 ```{r}
-case31 <- case31 |> 
-  mutate(q13r = haven::as_factor(q13r),
-         q38 = haven::as_factor(q38))
+case31 <- case31 |>
+  mutate(q13r = haven::as_factor(q13r), q38 = haven::as_factor(q38))
 ```
 :::
 
@@ -761,8 +777,9 @@ case31 <- case31 |>
 table(case31$q13r, case31$q38)
 
 # cross-tab: %
-table(case31$q13r, case31$q38) |> 
-  prop.table(margin = 2) * 100 
+table(case31$q13r, case31$q38) |>
+  prop.table(margin = 2) *
+  100
 ```
 :::
 
@@ -774,9 +791,12 @@ table(case31$q13r, case31$q38) |>
 #| label: fig-q13r-q38-mosaic
 #| fig-cap: Association of the awareness of regular share account by residence
 
-table(case31$q38, case31$q13r) |> 
-  mosaicplot(main = "Awareness of Regular share account by Residence", 
-             color = TRUE, las = 1 )
+table(case31$q38, case31$q13r) |>
+  mosaicplot(
+    main = "Awareness of Regular share account by Residence",
+    color = TRUE,
+    las = 1
+  )
 ```
 :::
 
@@ -788,7 +808,7 @@ table(case31$q38, case31$q13r) |>
 ::: medium-text
 ```{r}
 table(case31$q13r, case31$q38) |>
-  chisq.test() 
+  chisq.test()
 ```
 :::
 :::::::
@@ -815,7 +835,7 @@ table(case31$q13r, case31$q38) |>
 
 ::: medium-text
 ```{r}
-case31 <- case31 |> 
+case31 <- case31 |>
   mutate(q14r = haven::as_factor(q14r))
 ```
 :::
@@ -829,8 +849,9 @@ case31 <- case31 |>
 table(case31$q14r, case31$q38)
 
 # cross-tab: %
-table(case31$q14r, case31$q38) |> 
-  prop.table(margin = 2) * 100 
+table(case31$q14r, case31$q38) |>
+  prop.table(margin = 2) *
+  100
 ```
 :::
 
@@ -839,9 +860,12 @@ table(case31$q14r, case31$q38) |>
 ::: medium-text
 ```{r}
 #| echo: false
-table(case31$q38, case31$q14r) |> 
-  mosaicplot(main = "Awareness of Special Sub accounts by Residence", 
-             color = TRUE, las = 1 )
+table(case31$q38, case31$q14r) |>
+  mosaicplot(
+    main = "Awareness of Special Sub accounts by Residence",
+    color = TRUE,
+    las = 1
+  )
 ```
 :::
 
@@ -850,7 +874,7 @@ table(case31$q38, case31$q14r) |>
 ::: medium-text
 ```{r}
 table(case31$q14r, case31$q38) |>
-  chisq.test() 
+  chisq.test()
 ```
 :::
 :::::::
@@ -866,21 +890,21 @@ table(case31$q14r, case31$q38) |>
 #| label: tbl-christmas_by_HQ
 #| tbl-cap: Christmas Club Account Awareness by Location of Residence
 
-case31 <- case31 |> 
+case31 <- case31 |>
   mutate(q15r = haven::as_factor(q15r))
 
-case31 |> 
+case31 |>
   tbl_summary(
     include = c(q15r, q38),
     by = q38
-  ) |> 
-  add_p() |> 
-  modify_spanning_header(all_stat_cols() ~ "**Live in HQ Area?**") |> 
-  add_n() |> 
-  italicize_labels() |> 
+  ) |>
+  add_p() |>
+  modify_spanning_header(all_stat_cols() ~ "**Live in HQ Area?**") |>
+  add_n() |>
+  italicize_labels() |>
   #show_header_names()
-  modify_header(label ~ "**Awareness**") |> 
-  as_gt() |> 
+  modify_header(label ~ "**Awareness**") |>
+  as_gt() |>
   tab_header(
     title = md("**Chi-Square Test of Independece**"),
     subtitle = md("*Christmas Club Account Awareness by Where Customers Live*")
@@ -896,22 +920,23 @@ The gt_summary package works with gt package using `as_gt()`
 ### Further cleaning
 
 ```{r}
-case31_clean <- case31 |> 
-  mutate(q13r = haven::as_factor(q13r),
-         q14r = haven::as_factor(q14r),
-         q15r = haven::as_factor(q15r),
-         q16r = haven::as_factor(q16r),
-         q17r = haven::as_factor(q17r),
-         q18r = haven::as_factor(q18r),
-         q19r = haven::as_factor(q19r),
-         q20r = haven::as_factor(q20r),
-         q21r = haven::as_factor(q21r),
-         q22r = haven::as_factor(q22r),
-         q23r = haven::as_factor(q23r),
-         q24r = haven::as_factor(q24r),
-         q25r = haven::as_factor(q25r),
-         q26r = haven::as_factor(q26r)
-         )
+case31_clean <- case31 |>
+  mutate(
+    q13r = haven::as_factor(q13r),
+    q14r = haven::as_factor(q14r),
+    q15r = haven::as_factor(q15r),
+    q16r = haven::as_factor(q16r),
+    q17r = haven::as_factor(q17r),
+    q18r = haven::as_factor(q18r),
+    q19r = haven::as_factor(q19r),
+    q20r = haven::as_factor(q20r),
+    q21r = haven::as_factor(q21r),
+    q22r = haven::as_factor(q22r),
+    q23r = haven::as_factor(q23r),
+    q24r = haven::as_factor(q24r),
+    q25r = haven::as_factor(q25r),
+    q26r = haven::as_factor(q26r)
+  )
 ```
 
 ------------------------------------------------------------------------
@@ -921,21 +946,20 @@ case31_clean <- case31 |>
 ```{r}
 
 chisq_ind_test <- function(data, var) {
-  
   library(dplyr)
   library(rlang)
   library(glue)
-  
-  var <- enquo(var)  # Capture the column as a quosure
-  
+
+  var <- enquo(var) # Capture the column as a quosure
+
   # Remove NA's
-  data <- data |> 
+  data <- data |>
     filter(!is.na(!!var), !is.na(q38))
-  
+
   # Remove unused levels to avoid errors in chi-square test
-  data <- data |> 
-  mutate(!!var := droplevels(!!var)) # dynamic column name
-  
+  data <- data |>
+    mutate(!!var := droplevels(!!var)) # dynamic column name
+
   # Cross-tab
   tab <- table(pull(data, !!var), data$q38)
 
@@ -944,11 +968,12 @@ chisq_ind_test <- function(data, var) {
 
   # Mosaic Plot
   tab_c <- table(data$q38, pull(data, !!var))
-  
+
   mosaicplot(
     tab_c,
     main = glue::glue("Awareness of {quo_name(var)} by Residence"),
-    color = TRUE, las = 1
+    color = TRUE,
+    las = 1
   )
 
   # Chi-square test of independence
@@ -961,7 +986,6 @@ chisq_ind_test <- function(data, var) {
     chi_square = chi_sq_result
   )
 }
-
 ```
 
 ------------------------------------------------------------------------
@@ -970,16 +994,31 @@ chisq_ind_test <- function(data, var) {
 
 ```{r}
 #| output-location: slide
-awareness <- vars(q13r, q14r, q15r, q16r, q17r, q18r, q19r, q20r, q21r, q22r, q23r, q24r, q25r, q26r) # Quote the variables
+awareness <- vars(
+  q13r,
+  q14r,
+  q15r,
+  q16r,
+  q17r,
+  q18r,
+  q19r,
+  q20r,
+  q21r,
+  q22r,
+  q23r,
+  q24r,
+  q25r,
+  q26r
+) # Quote the variables
 
-awareness |> 
+awareness |>
   map(~ chisq_ind_test(case31_clean, !!.x))
 ```
 
 #### testing for q26r by q38
 
 ```{r}
-case31_clean |> 
+case31_clean |>
   chisq_ind_test(q26r)
 ```
 
@@ -1043,15 +1082,17 @@ R5: How well are the members aware of the services offered by the credit union?
 #| label: tbl-q13r
 #| tbl-cap: Regular Share Account Awareness Frequency
 
-case31_clean |> 
+case31_clean |>
   tbl_summary(
     include = q13r,
     type = all_categorical() ~ "categorical"
-  ) |> 
-  italicize_labels() |> 
+  ) |>
+  italicize_labels() |>
   #show_header_names()
-  modify_header(label ~ "**Awareness**") |> 
-  modify_caption("**Chi-Square Goodness of Fit Test**:<br>*Regular Share Account Awareness*")
+  modify_header(label ~ "**Awareness**") |>
+  modify_caption(
+    "**Chi-Square Goodness of Fit Test**:<br>*Regular Share Account Awareness*"
+  )
 ```
 :::
 
@@ -1082,8 +1123,8 @@ case31_clean |>
 ```{r}
 #| output-location: fragment
 
-expected = c(1/3, 1/3, 1/3)
-table(case31_clean$q13r) |> 
+expected <- c(1 / 3, 1 / 3, 1 / 3)
+table(case31_clean$q13r) |>
   chisq.test(p = expected)
 ```
 :::
@@ -1103,13 +1144,14 @@ table(case31_clean$q13r) |>
 #| output-location: fragment
 # data
 
-awareness_long <- case31_clean |> 
-  select(q13r:q26r) |> 
-  pivot_longer(cols = everything(),
-               names_to = "services",
-               values_to = "aware_level")
+awareness_long <- case31_clean |>
+  select(q13r:q26r) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = "services",
+    values_to = "aware_level"
+  )
 awareness_long
-
 ```
 
 ------------------------------------------------------------------------
@@ -1117,23 +1159,25 @@ awareness_long
 ```{r}
 #| output-location: fragment
 # Expected proportions (e.g., equal distribution across levels)
-exp_p <- c(`Unaware` = 1/3, 
-           `Aware but Have Not Used` = 1/3, 
-           `Aware and Have Used` = 1/3) 
+exp_p <- c(
+  `Unaware` = 1 / 3,
+  `Aware but Have Not Used` = 1 / 3,
+  `Aware and Have Used` = 1 / 3
+)
 
 # Perform chi-square goodness of fit for each product
-awareness_long |> 
-  group_by(services) |> 
-  count(aware_level) |> 
+awareness_long |>
+  group_by(services) |>
+  count(aware_level) |>
   complete(aware_level = names(exp_p), fill = list(n = 0)) |> # tidyr
-  group_by(services) |> 
+  group_by(services) |>
   summarise(
     chisq_test = list(chisq.test(
       x = n,
       p = exp_p[levels(factor(aware_level))]
-  ))
-  ) |> 
-  mutate(tidy_results = map(chisq_test, broom::tidy)) |> 
+    ))
+  ) |>
+  mutate(tidy_results = map(chisq_test, broom::tidy)) |>
   unnest(tidy_results)
 ```
 
@@ -1215,8 +1259,8 @@ H1: Members’ awareness of the regular share accounts will influence their opin
 #| label: fig-q33-q13r-histogram
 #| fig-cap: Frequency Distribution of Adequacy of Financial Services in Meeting Members' Needs (q33) by Their Awareness of Regular Share Accounts (q13r)
 
-case31_clean |> 
-  group_by(q13r) |> 
+case31_clean |>
+  group_by(q13r) |>
   ggplot(aes(q33, fill = q13r)) +
   geom_histogram(binwidth = 0.5) +
   facet_wrap(~q13r) +
@@ -1232,17 +1276,18 @@ case31_clean |>
 #| label: fig-q33-q13r-barplot
 #| fig-cap: Mean VAlue of Adequacy of Financial Services in Meeting Members' Needs (q33) by Their Awareness of Regular Share Accounts (q13r)
 
-case31_clean |> 
-  group_by(q13r) |> 
-  summarize(mean = mean(q33)) |> 
+case31_clean |>
+  group_by(q13r) |>
+  summarize(mean = mean(q33)) |>
   ggplot(aes(mean, q13r, fill = q13r)) +
   geom_col() +
-  geom_text(aes(label = glue::glue("{round(mean, 2)}")),
-            hjust = -0.1) +
+  geom_text(aes(label = glue::glue("{round(mean, 2)}")), hjust = -0.1) +
   theme(legend.position = "none") +
-  labs(x = "Average Value of Adequacy of Financial Services in Meeting Members' Needs",
-       y = "Level of Awareness of Regular Share Account",
-       title = "Impact of Awareness of Services on Perceived Adequcey of Financial Services")
+  labs(
+    x = "Average Value of Adequacy of Financial Services in Meeting Members' Needs",
+    y = "Level of Awareness of Regular Share Account",
+    title = "Impact of Awareness of Services on Perceived Adequcey of Financial Services"
+  )
 ```
 
 ## ANOVA Test Procedure
@@ -1260,10 +1305,10 @@ case31_clean |>
 #### Overall test for q33
 
 ```{r}
-# Shapiro-Wilk normality test 
+# Shapiro-Wilk normality test
 
-case31_clean |> 
-  pull(q33) |> 
+case31_clean |>
+  pull(q33) |>
   shapiro.test()
 ```
 :::
@@ -1272,8 +1317,8 @@ case31_clean |>
 #### Test by awareness group on q33
 
 ```{r}
-case31_clean |> 
-  group_by(q13r) |> 
+case31_clean |>
+  group_by(q13r) |>
   summarise(p_value = shapiro.test(pull(cur_data(), q33))$p.value)
 ```
 :::
@@ -1282,10 +1327,10 @@ case31_clean |>
 #### Test of Normality on Residuals
 
 ```{r}
-h1_aov_model <- case31_clean |> 
-  aov(q33 ~ q13r, data = _) 
+h1_aov_model <- case31_clean |>
+  aov(q33 ~ q13r, data = _)
 
-residuals(h1_aov_model) |> 
+residuals(h1_aov_model) |>
   shapiro.test()
 ```
 :::
@@ -1306,7 +1351,7 @@ residuals(h1_aov_model) |>
 
 ```{r}
 library(car)
-case31_clean |> 
+case31_clean |>
   leveneTest(q33 ~ q15r, data = _)
 ```
 
@@ -1322,8 +1367,8 @@ case31_clean |>
 #### Under homoskedasticity
 
 ```{r}
-case31_clean |> 
-  aov(q33 ~ q13r, data = _) |> 
+case31_clean |>
+  aov(q33 ~ q13r, data = _) |>
   summary()
 ```
 :::
@@ -1336,7 +1381,7 @@ case31_clean |>
     -   compares the medians of three or more independent groups to determine if they differ significantly.
 
 ```{r}
-case31_clean |> 
+case31_clean |>
   kruskal.test(q33 ~ q13r, data = _)
 ```
 :::
@@ -1361,30 +1406,35 @@ oneway.test(dependent_variable ~ group, data = your_data, var.equal = FALSE)
 #| label: tbl-adequcy_of_finanical_services_by_q13r
 #| tbl-cap: Does Awareness of Regular Share Account Affects Members' Perceived Adequacy of Financial Services in Meeting their Needs?
 
-anova_model <- case31_clean |> 
-  aov(q33 ~ q13r, data = _) 
+anova_model <- case31_clean |>
+  aov(q33 ~ q13r, data = _)
 
 anova_summary <- summary(anova_model)
 
 anova_pvalue <- anova_summary[[1]][["Pr(>F)"]][1]
 
-case31_clean |> 
-  mutate(q33 = as.numeric(q33)) |> 
+case31_clean |>
+  mutate(q33 = as.numeric(q33)) |>
   tbl_summary(
     include = c(q13r, q33),
     by = q13r,
     type = q33 ~ "continuous2",
-    statistic = list(all_continuous() ~ c("{mean} ({sd})",
-                                          "{min}, {max}")),
+    statistic = list(all_continuous() ~ c("{mean} ({sd})", "{min}, {max}")),
     label = q33 ~ "Adequacy of Financial Services"
-  ) |> 
+  ) |>
   modify_spanning_header(
-    all_stat_cols() ~ "**Regular Share Account Awareness Levels**") |> 
-  add_overall() |> 
-  modify_caption("**Test of Differences in Perceived Adequacy of Financial Services in Meeting Memberss Needs:**<br>_Diffential Effect by Awareness of Regular Share Account (q13r)_") |> 
-  italicize_labels() |> 
+    all_stat_cols() ~ "**Regular Share Account Awareness Levels**"
+  ) |>
+  add_overall() |>
+  modify_caption(
+    "**Test of Differences in Perceived Adequacy of Financial Services in Meeting Memberss Needs:**<br>_Diffential Effect by Awareness of Regular Share Account (q13r)_"
+  ) |>
+  italicize_labels() |>
   modify_footnote(
-    c(stat_1, stat_2, stat_3) ~ glue::glue("One-way ANOVA with equal variance assummed p-value: {format.pval(anova_pvalue, digits = 3)}")) |> 
+    c(stat_1, stat_2, stat_3) ~ glue::glue(
+      "One-way ANOVA with equal variance assummed p-value: {format.pval(anova_pvalue, digits = 3)}"
+    )
+  ) |>
   #show_header_names()
   modify_header(label ~ "**Variable**")
 ```
@@ -1403,8 +1453,8 @@ case31_clean |>
 #### When ANOVA is significant
 
 ```{r}
-case31_clean |> 
-  aov(q33 ~ q13r, data = _) |> 
+case31_clean |>
+  aov(q33 ~ q13r, data = _) |>
   TukeyHSD()
 ```
 :::
@@ -1416,7 +1466,11 @@ case31_clean |>
 library(dunn.test)
 
 # Post-hoc pairwise comparisons
-dunn.test(as.numeric(case31_clean$q33), case31_clean$q13r, method = "bonferroni")
+dunn.test(
+  as.numeric(case31_clean$q33),
+  case31_clean$q13r,
+  method = "bonferroni"
+)
 ```
 :::
 :::::
@@ -1511,8 +1565,8 @@ H5d: `Loan application simplicity and easiness` will positively influence the ov
 ```{r}
 #| output-location: column
 # Scatterplot for each predictor against the outcome
-ggplot(case31_clean, aes(x = q31, y = q37r)) + 
-  geom_point() + 
+ggplot(case31_clean, aes(x = q31, y = q37r)) +
+  geom_point() +
   geom_smooth(col = "blue") +
   labs(title = "Linearity Check: q31 vs q37r")
 ```
@@ -1522,8 +1576,8 @@ ggplot(case31_clean, aes(x = q31, y = q37r)) +
 ```{r}
 #| output-location: column
 # Scatterplot for each predictor against the outcome
-ggplot(case31_clean, aes(x = q32, y = q37r)) + 
-  geom_point() + 
+ggplot(case31_clean, aes(x = q32, y = q37r)) +
+  geom_point() +
   geom_smooth(col = "blue") +
   labs(title = "Linearity Check: q32 vs q37r")
 ```
@@ -1534,11 +1588,10 @@ ggplot(case31_clean, aes(x = q32, y = q37r)) +
 #| output-location: column
 
 # Scatterplot for each predictor against the outcome
-ggplot(case31_clean, aes(x = q33, y = q37r)) + 
-  geom_point() + 
+ggplot(case31_clean, aes(x = q33, y = q37r)) +
+  geom_point() +
   geom_smooth(col = "blue") +
   labs(title = "Linearity Check: q33 vs q37r")
-
 ```
 
 #### q34 vs. q37r
@@ -1547,8 +1600,8 @@ ggplot(case31_clean, aes(x = q33, y = q37r)) +
 #| output-location: column
 
 # Scatterplot for each predictor against the outcome
-ggplot(case31_clean, aes(x = q34, y = q37r)) + 
-  geom_point() + 
+ggplot(case31_clean, aes(x = q34, y = q37r)) +
+  geom_point() +
   geom_smooth(col = "blue") +
   labs(title = "Linearity Check: q34 vs q37r")
 ```
@@ -1562,11 +1615,10 @@ ggplot(case31_clean, aes(x = q34, y = q37r)) +
 #| output-location: column
 
 library(car)
-lm_model <- case31_clean |> 
-  filter(!is.na(q37r)) |> 
+lm_model <- case31_clean |>
+  filter(!is.na(q37r)) |>
   lm(q37r ~ q31 + q32 + q33 + q34, data = _)
 crPlots(lm_model)
-
 ```
 :::
 
@@ -1589,8 +1641,7 @@ crPlots(lm_model)
 #| output-location: column
 
 library(lmtest)
-dwtest(lm_model)  # Durbin-Watson test for autocorrelation
-
+dwtest(lm_model) # Durbin-Watson test for autocorrelation
 ```
 
 ------------------------------------------------------------------------
@@ -1603,7 +1654,7 @@ dwtest(lm_model)  # Durbin-Watson test for autocorrelation
 ```{r}
 #| output-location: column
 
-plot(lm_model, which = 1)  # Built-in residuals vs. fitted plot
+plot(lm_model, which = 1) # Built-in residuals vs. fitted plot
 ```
 
 #### bp test
@@ -1615,8 +1666,7 @@ plot(lm_model, which = 1)  # Built-in residuals vs. fitted plot
 #| output-location: column
 
 library(lmtest)
-bptest(lm_model)  # Breusch-Pagan test for heteroscedasticity
-
+bptest(lm_model) # Breusch-Pagan test for heteroscedasticity
 ```
 :::
 
@@ -1632,7 +1682,6 @@ bptest(lm_model)  # Breusch-Pagan test for heteroscedasticity
 
 residuals <- residuals(lm_model)
 hist(residuals, breaks = 20, main = "Histogram of Residuals")
-
 ```
 
 #### Q-Q Plot
@@ -1642,7 +1691,6 @@ hist(residuals, breaks = 20, main = "Histogram of Residuals")
 
 qqnorm(residuals)
 qqline(residuals, col = "blue")
-
 ```
 
 #### Test of normality
@@ -1653,8 +1701,7 @@ qqline(residuals, col = "blue")
 ```{r}
 #| output-location: column
 
-shapiro.test(residuals)  # Shapiro-Wilk test
-
+shapiro.test(residuals) # Shapiro-Wilk test
 ```
 :::
 
@@ -1667,8 +1714,7 @@ shapiro.test(residuals)  # Shapiro-Wilk test
 
 ```{r}
 library(car)
-vif(lm_model)  # VIF values
-
+vif(lm_model) # VIF values
 ```
 
 ------------------------------------------------------------------------
@@ -1681,8 +1727,7 @@ vif(lm_model)  # VIF values
 ```{r}
 #| output-location: column
 
-plot(lm_model, which = 4)  # Built-in Cook's distance plot
-
+plot(lm_model, which = 4) # Built-in Cook's distance plot
 ```
 
 #### Leverage and DFBETAS
@@ -1696,8 +1741,7 @@ plot(hatvalues, main = "Leverage Values", ylab = "Leverage")
 
 # DFBETAS
 dfbetas <- dfbeta(lm_model)
-head(dfbetas)  # Shows influence of each observation
-
+head(dfbetas) # Shows influence of each observation
 ```
 :::
 
@@ -1715,10 +1759,9 @@ set.seed(123)
 
 train_control <- trainControl(method = "cv", number = 10)
 
-case31_clean <- case31_clean |> 
-  filter(!is.na(q37r)) |> 
+case31_clean <- case31_clean |>
+  filter(!is.na(q37r)) |>
   mutate(q37r = as.numeric(q37r))
-
 ```
 :::
 
@@ -1730,9 +1773,10 @@ cv_model <- train(
   q37r ~ q31 + q32 + q33 + q34,
   data = case31_clean,
   method = "lm",
-  trControl = train_control)
+  trControl = train_control
+)
 
-cv_model  # Check cross-validation results
+cv_model # Check cross-validation results
 cv_model$resample
 ```
 :::
@@ -1759,8 +1803,8 @@ summary(cv_model) # summary function returns final model fit based on entire dat
 #| eval: true
 #| output-location: column
 
-case31_clean |> 
-  lm(q37r ~ q31 + q32 + q33 + q34, data = _)  |> 
+case31_clean |>
+  lm(q37r ~ q31 + q32 + q33 + q34, data = _) |>
   summary()
 ```
 :::
@@ -1776,20 +1820,19 @@ case31_clean |>
 #| tbl-cap: Regression Analysis
 #| output-location: fragment
 #| echo: false
-m_h5 <- case31_clean |> 
-  lm(q37r ~ q31 + q32 + q33 + q34, data = _) 
+m_h5 <- case31_clean |>
+  lm(q37r ~ q31 + q32 + q33 + q34, data = _)
 
 #summary(m_h5)$coefficients
 
-m_h5 |> 
+m_h5 |>
   tbl_regression() |>
-  add_vif() |> 
-  add_q() |> 
-  italicize_labels() |> 
-  modify_header(label ~ "**Variables**") |> 
-  as_gt() |> 
+  add_vif() |>
+  add_q() |>
+  italicize_labels() |>
+  modify_header(label ~ "**Variables**") |>
+  as_gt() |>
   tab_header(title = md("**Factors that Affect Overall Efficiency**"))
-  
 ```
 :::
 
@@ -1799,21 +1842,22 @@ m_h5 |>
 #| tbl-cap: Regression Analysis with Customer Locatoin Controlled
 #| output-location: fragment
 #| echo: false
-m_h5_2 <- case31_clean |> 
-  lm(q37r ~ q38 + q31 + q32 + q33 + q34, data = _) 
+m_h5_2 <- case31_clean |>
+  lm(q37r ~ q38 + q31 + q32 + q33 + q34, data = _)
 
 #summary(m_h5_2)
 
-m_h5_2 |> 
+m_h5_2 |>
   tbl_regression() |>
-  add_vif() |> 
-  add_q() |> 
-  italicize_labels() |> 
-  modify_header(label ~ "**Variables**") |> 
-  as_gt() |> 
-  tab_header(title = md("**Factors that Affect Overall Efficiency**"),
-             subtitle = "Controlling for the location of residency"
-             )
+  add_vif() |>
+  add_q() |>
+  italicize_labels() |>
+  modify_header(label ~ "**Variables**") |>
+  as_gt() |>
+  tab_header(
+    title = md("**Factors that Affect Overall Efficiency**"),
+    subtitle = "Controlling for the location of residency"
+  )
 ```
 :::
 :::::
