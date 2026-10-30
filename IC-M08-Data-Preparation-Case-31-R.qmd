@@ -28,34 +28,31 @@ The goal is a transparent, reproducible workflow that another analyst can follow
 
 After completing this assignment, you should be able to:
 
-1. Import an SPSS file into R with `haven::read_sav()`.
-2. Inspect variable names, labels, value labels, data types, and missing values.
-3. Build a basic data dictionary from SPSS metadata.
-4. Distinguish raw questionnaire variables from precomputed variables.
-5. Treat special response codes (such as "No Opinion") as missing values.
-6. Reverse-code items so that larger values have a consistent meaning, and recognize when reverse coding does not make sense.
-7. Use reliability and a one-factor analysis as quick evidence for whether a multi-item index is warranted.
-8. Create an index only when the evidence and the item meaning support it.
-9. Add, edit, and remove variable labels and value labels with the `labelled` package, using the case coding instructions.
+1.  Import an SPSS file into R with `haven::read_sav()`.
+2.  Inspect variable names, labels, value labels, data types, and missing values.
+3.  Build a basic data dictionary from SPSS metadata.
+4.  Distinguish raw questionnaire variables from precomputed variables.
+5.  Treat special response codes (such as "No Opinion") as missing values.
+6.  Reverse-code items so that larger values have a consistent meaning, and recognize when reverse coding does not make sense.
+7.  Use reliability and a one-factor analysis as quick evidence for whether a multi-item index is warranted.
+8.  Create an index only when the evidence and the item meaning support it.
+9.  Add, edit, and remove variable labels and value labels with the `labelled` package, using the case coding instructions.
 10. Render a Quarto document to HTML and publish it on GitHub Pages.
 
 ## Files and software
 
 Place these files in the same project folder as this QMD file:
 
-- `Case 31 Data_efcu_1.sav`
-- `Case 31 - Employees Federal Credit Union.PDF`
+-   `Case 31 Data_efcu_1.sav`
+-   `Case 31 - Employees Federal Credit Union.PDF`
 
-Use Positron with an R project connected to your GitHub repository. If a
-package is missing, install it once from the Console (never inside the
-document you submit):
+Use Positron with an R project connected to your GitHub repository. If a package is missing, install it once from the Console (never inside the document you submit):
 
-```r
+``` r
 install.packages(c("tidyverse", "haven", "labelled", "sjlabelled", "janitor", "sjPlot", "psych"))
 ```
 
-The chunk below loads the packages. We call `psych` functions with the
-`psych::` prefix, so `psych` does not need to be loaded.
+The chunk below loads the packages. We call `psych` functions with the `psych::` prefix, so `psych` does not need to be loaded.
 
 ```{r}
 #| label: setup
@@ -69,10 +66,13 @@ library(sjPlot)
 set_theme(theme_minimal())
 ```
 
+## Four Types of Measurement Scales
+
+![](images/paste-2.png)
+
 ## 1. Import and inspect the SPSS data
 
-`read_sav()` reads the SPSS file and keeps the variable labels and value
-labels as metadata. By default (`user_na = FALSE`), values that SPSS flags as user-defined missing are converted to ordinary `NA`.
+`read_sav()` reads the SPSS file and keeps the variable labels and value labels as metadata. By default (`user_na = FALSE`), values that SPSS flags as user-defined missing are converted to ordinary `NA`.
 
 ```{r}
 #| label: import
@@ -92,17 +92,15 @@ If your course materials provide `view_df()` (from the sjPlot package), you can 
 
 ### Questions to answer
 
-1. How many rows and columns are in the imported data?
-2. What are the variable names?
-3. Which variables look like questionnaire items, and which look like
-   precomputed variables?
-4. What is the difference between a *variable label* and a *value label*?
-5. Which variables contain missing values?
+1.  How many rows and columns are in the imported data?
+2.  What are the variable names?
+3.  Which variables look like questionnaire items, and which look like precomputed variables?
+4.  What is the difference between a *variable label* and a *value label*?
+5.  Which variables contain missing values?
 
 *Your answer:*
 
-Use code to support your answers. The table below counts missing values for
-every variable and shows only the variables that have any.
+Use code to support your answers. The table below counts missing values for every variable and shows only the variables that have any.
 
 ```{r}
 #| label: missing-raw
@@ -112,11 +110,15 @@ data_raw |>
   filter(n_missing > 0)
 ```
 
+
+```{r}
+data_raw |> view_df()
+```
 ## 2. Create a data dictionary
 
-SPSS files store metadata that is not visible in the data frame itself.
-`haven` keeps it as attributes. The chunk below builds a compact dictionary
-with each variable's label, class, number of distinct values, and value labels.
+SPSS files store metadata that is not visible in the data frame itself. `haven` keeps it as attributes. The chunk below builds a compact dictionary with each variable's label, class, number of distinct values, and value labels.
+
+
 
 ```{r}
 #| label: dictionary
@@ -141,10 +143,10 @@ Alternatively, you can use `view_df()` in the Console to browse the labels inter
 
 ### Questions to answer
 
-1. Which variables have clear, useful labels?
-2. Which labels should be revised for readability in your report?
-3. Which variables are nominal, ordinal, or approximately interval for this assignment? Explain at least three, using the questionnaire.
-4. Which value labels are essential for interpreting the data, and which are predictable from the response scale?
+1.  Which variables have clear, useful labels?
+2.  Which labels should be revised for readability in your report?
+3.  Which variables are nominal, ordinal, or approximately interval for this assignment? Explain at least three, using the questionnaire.
+4.  Which value labels are essential for interpreting the data, and which are predictable from the response scale?
 
 *Your answer:*
 
@@ -248,8 +250,7 @@ data <- data_labelled |>
 names(data)
 ```
 
-Explain why using an already computed index could be a problem when the
-purpose of this assignment is to evaluate and construct measures.
+Explain why using an already computed index could be a problem when the purpose of this assignment is to evaluate and construct measures.
 
 *Your answer:*
 
@@ -289,9 +290,7 @@ data |>
   summarise(across(c(q7, q8, q37), \(x) sum(x == 6, na.rm = TRUE)))
 ```
 
-If the count is 0, the 6s were already converted to `NA` when the file was
-imported (compare the missing counts in Section 1). The recode below is still
-good practice because it guarantees the result no matter how the file is read.
+If the count is 0, the 6s were already converted to `NA` when the file was imported (compare the missing counts in Section 1). The recode below is still good practice because it guarantees the result no matter how the file is read.
 
 ```{r}
 #| label: recode-no-opinion
@@ -352,20 +351,19 @@ data <- data |>
 
 Two sets of items are deliberately **not** reversed. Read the questionnaire and value labels, then answer the questions below.
 
-- **q9** (frequency of statements): the labels run from "Too Often" through "About Right" to "Never". The best response is in the *middle* of the scale, so the scale is not ordered from unfavorable to favorable and a simple reversal would not make the values comparable.
-- **q13 to q26** (awareness and use of products and services) have the categories "Aware and have used", "Aware but have not used", and "Unaware". These are categories, not a rating from bad to good, so a formula such as `3 - x` has no meaningful interpretation. (The yes/no items q11, q12, q27, and q38 are also categories.)
+-   **q9** (frequency of statements): the labels run from "Too Often" through "About Right" to "Never". The best response is in the *middle* of the scale, so the scale is not ordered from unfavorable to favorable and a simple reversal would not make the values comparable.
+-   **q13 to q26** (awareness and use of products and services) have the categories "Aware and have used", "Aware but have not used", and "Unaware". These are categories, not a rating from bad to good, so a formula such as `3 - x` has no meaningful interpretation. (The yes/no items q11, q12, q27, and q38 are also categories.)
 
 ### Questions to answer
 
-1. Why is a reversal inappropriate for q9? How could you code q9 to answer "was the frequency about right?" instead?
-2. Why should q13 to q26 not be reversed or averaged into one score? What would be a more appropriate way to summarize them?
+1.  Why is a reversal inappropriate for q9? How could you code q9 to answer "was the frequency about right?" instead?
+2.  Why should q13 to q26 not be reversed or averaged into one score? What would be a more appropriate way to summarize them?
 
 *Your answer:*
 
 ### Verify the recoding
 
-Never assume a recode worked. Compare the original and reversed values with a
-cross-tabulation.
+Never assume a recode worked. Compare the original and reversed values with a cross-tabulation.
 
 ```{r}
 #| label: verify-recode
@@ -377,23 +375,19 @@ data |> count(q37, q37r)
 
 Check that:
 
-- "No Opinion" is missing for q7, q8, and q37;
-- the lowest original value became the highest reversed value, and the highest
-  became the lowest;
-- missing values stayed missing; and
-- larger reversed values now mean a more favorable response.
+-   "No Opinion" is missing for q7, q8, and q37;
+-   the lowest original value became the highest reversed value, and the highest became the lowest;
+-   missing values stayed missing; and
+-   larger reversed values now mean a more favorable response.
 
 ## 6. Evaluate candidate multi-item measures
 
 Two groups of items may form multi-item measures:
 
-1. Employee proficiency: q3 through q6.
-2. Operational effectiveness: q30 through q34.
+1.  Employee proficiency: q3 through q6.
+2.  Operational effectiveness: q30 through q34.
 
-Do not create an index just because items sit next to each other in the
-questionnaire. Use **reliability** (Cronbach's alpha) and a quick **one-factor
-analysis** as evidence. This is an initial check, not a substitute for the full
-exploratory factor analysis you will learn later.
+Do not create an index just because items sit next to each other in the questionnaire. Use **reliability** (Cronbach's alpha) and a quick **one-factor analysis** as evidence. This is an initial check, not a substitute for the full exploratory factor analysis you will learn later.
 
 Statistical functions such as `psych::alpha()` expect plain numbers, so we remove the labels from the item sets only (the data keep their labels). `remove_val_labels()` strips the value labels and `remove_var_label()` strips the variable labels.
 
@@ -406,9 +400,10 @@ employee_items <- data |>
   remove_val_labels() |>
   remove_var_label()
 
-employee_alpha <- psych::alpha(employee_items)
-employee_alpha$total
-employee_alpha$item.stats
+library(psych)
+
+employee_items |> alpha()
+
 ```
 
 ```{r}
@@ -455,27 +450,19 @@ operations_fa$communality
 
 For each candidate measure:
 
-1. What is the reliability estimate (`raw_alpha`)?
-2. Do the item-total statistics (`r.drop`) suggest every item contributes? Does
-   any item correlate weakly or negatively with the rest? If so, check its
-   wording to see whether it needs reversing.
-3. Do the factor loadings support one common factor?
-4. Is a one-factor interpretation reasonable given the item wording?
-5. Do you recommend creating an index? Justify with both statistical evidence
-   and substantive meaning.
+1.  What is the reliability estimate (`raw_alpha`)?
+2.  Do the item-total statistics (`r.drop`) suggest every item contributes? Does any item correlate weakly or negatively with the rest? If so, check its wording to see whether it needs reversing.
+3.  Do the factor loadings support one common factor?
+4.  Is a one-factor interpretation reasonable given the item wording?
+5.  Do you recommend creating an index? Justify with both statistical evidence and substantive meaning.
 
 *Your answer:*
 
-Do not use a single cutoff as an automatic decision rule. Consider
-reliability, loadings, item wording, response scales, missing data, and the
-purpose of the analysis together.
+Do not use a single cutoff as an automatic decision rule. Consider reliability, loadings, item wording, response scales, missing data, and the purpose of the analysis together.
 
 ## 7. Create indexes only when justified
 
-If your evaluation supports an index, compute each respondent's mean across
-the items. A mean stays on the original response scale, so it is easy to
-interpret. `rowMeans()` returns `NaN` for a respondent with no valid answers,
-so the code converts `NaN` to `NA`.
+If your evaluation supports an index, compute each respondent's mean across the items. A mean stays on the original response scale, so it is easy to interpret. `rowMeans()` returns `NaN` for a respondent with no valid answers, so the code converts `NaN` to `NA`.
 
 Edit this chunk to keep only the indexes you decided to create.
 
@@ -489,8 +476,7 @@ data <- data |>
   )
 ```
 
-If you decide an index is not warranted, delete its line and explain why the
-items should stay separate and how you would analyze them individually.
+If you decide an index is not warranted, delete its line and explain why the items should stay separate and how you would analyze them individually.
 
 Check the new variables.
 
@@ -505,68 +491,79 @@ data |>
 
 Write a concise narrative that covers:
 
-- how the SPSS data were imported;
-- what the data dictionary showed about labels, values, and measurement levels;
-- which labels you added or corrected, and why;
-- which variables you kept or excluded, and why;
-- how "No Opinion" codes and other missing values were handled;
-- which variables you reverse-coded, which you did not, and how you verified
-  the transformations;
-- what reliability and factor analysis suggested for each candidate measure;
-- whether you created each index, and why; and
-- any limitations or unresolved data-quality concerns.
+-   how the SPSS data were imported;
+-   what the data dictionary showed about labels, values, and measurement levels;
+-   which labels you added or corrected, and why;
+-   which variables you kept or excluded, and why;
+-   how "No Opinion" codes and other missing values were handled;
+-   which variables you reverse-coded, which you did not, and how you verified the transformations;
+-   what reliability and factor analysis suggested for each candidate measure;
+-   whether you created each index, and why; and
+-   any limitations or unresolved data-quality concerns.
 
-Include tables or output that help a reader verify your decisions. Do not paste
-every output into the report.
+Include tables or output that help a reader verify your decisions. Do not paste every output into the report.
 
 *Your narrative:*
 
-## 9. Render and publish your report
+## 9. Save your work to a new SPSS file
+
+**Instructions:** 
+
+-  Save the cleaned data to a new SPSS file. The file name must include your initials and the word "cleaned". 
+
+-  The new file must fix all the coding problems, including reverse coding, and improper use of missing values, variable labels, and value labels. 
+
+-  It must also include any new indexes you created.
+
+
+```{r}
+#| label: save-spss
+
+data |>
+  write_sav("Case 31 Data_efcu_1_cleaned.sav")
+```
+
+## 10. Render and publish your report
 
 Your final submission is a rendered HTML report published on GitHub Pages.
 
 ### Render locally
 
-Save this file in your GitHub repository. In the Positron Terminal, confirm
-you are in the repository folder and run:
+Save this file in your GitHub repository. In the Positron Terminal, confirm you are in the repository folder and run:
 
-```bash
+``` bash
 quarto render IC-M08-Data-Preparation-Case-31-R.qmd
 ```
 
 Check that:
 
-- all code runs without errors;
-- tables and output are readable;
-- the headings and table of contents work;
-- no local computer paths or private information appear; and
-- the report makes sense without opening the R console.
+-   all code runs without errors;
+-   tables and output are readable;
+-   the headings and table of contents work;
+-   no local computer paths or private information appear; and
+-   the report makes sense without opening the R console.
 
 ### Publish on GitHub Pages
 
-Commit and push your QMD file and supporting files. Then publish the rendered
-report using the method shown in class. With Quarto's publishing command:
+Commit and push your QMD file and supporting files. Then publish the rendered report using the method shown in class. With Quarto's publishing command:
 
-```bash
+``` bash
 quarto publish gh-pages IC-M08-Data-Preparation-Case-31-R.qmd
 ```
 
-If your repository uses a different GitHub Pages workflow, follow the course
-instructions. Confirm the public URL opens in a browser that is not signed in
-to GitHub.
+If your repository uses a different GitHub Pages workflow, follow the course instructions. Confirm the public URL opens in a browser that is not signed in to GitHub.
 
 ## Submission requirements
 
 Submit:
 
-1. the QMD source file;
-2. the rendered HTML file, if your course requires it; and
-3. the public GitHub Pages URL in the Appendix below.
+1.  the QMD source file;
+2.  the rendered HTML file, if your course requires it; and
+3.  the public GitHub Pages URL in the Appendix below.
 
 ## Appendix: GitHub Pages link
 
-Replace the placeholder with the full public URL of your report. The link must
-be clickable in the rendered HTML.
+Replace the placeholder with the full public URL of your report. The link must be clickable in the rendered HTML.
 
 **Published report:** [View my GitHub Pages report](https://USERNAME.github.io/REPOSITORY/)
 
