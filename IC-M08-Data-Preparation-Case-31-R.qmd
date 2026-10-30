@@ -6,14 +6,16 @@ format:
   html:
     toc: true
     toc-depth: 2
+    number-sections: true
     code-fold: false
     code-tools: true
     embed-resources: true
     theme: cosmo
 execute:
+  freeze: auto
   warning: false
   message: false
-  echo: true
+  echo: fenced
 ---
 
 ## Overview
@@ -49,7 +51,7 @@ Place these files in the same project folder as this QMD file:
 Use Positron with an R project connected to your GitHub repository. If a package is missing, install it once from the Console (never inside the document you submit):
 
 ``` r
-install.packages(c("tidyverse", "haven", "labelled", "sjlabelled", "janitor", "sjPlot", "psych"))
+install.packages(c("tidyverse", "haven", "labelled", "janitor", "sjPlot", "psych"))
 ```
 
 The chunk below loads the packages. We call `psych` functions with the `psych::` prefix, so `psych` does not need to be loaded.
@@ -63,6 +65,8 @@ library(labelled)
 #library(sjlabelled)
 library(janitor)
 library(sjPlot)
+library(psych)
+library(skimr)
 set_theme(theme_minimal())
 ```
 
@@ -70,7 +74,7 @@ set_theme(theme_minimal())
 
 ![](images/paste-2.png)
 
-## 1. Import and inspect the SPSS data
+## Import and inspect the SPSS data
 
 `read_sav()` reads the SPSS file and keeps the variable labels and value labels as metadata. By default (`user_na = FALSE`), values that SPSS flags as user-defined missing are converted to ordinary `NA`.
 
@@ -86,6 +90,8 @@ Inspect the object in more than one way.
 dim(data_raw)
 names(data_raw)
 glimpse(data_raw)
+skim(data_raw) # descriptive statistics, including missing values
+summary(data_raw) # Min, Max
 ```
 
 If your course materials provide `view_df()` (from the sjPlot package), you can use it in the Console to browse the labels. It opens an interactive viewer, so do not include it in the document you render.
@@ -111,14 +117,9 @@ data_raw |>
 ```
 
 
-```{r}
-data_raw |> view_df()
-```
-## 2. Create a data dictionary
+## Create a data dictionary
 
 SPSS files store metadata that is not visible in the data frame itself. `haven` keeps it as attributes. The chunk below builds a compact dictionary with each variable's label, class, number of distinct values, and value labels.
-
-
 
 ```{r}
 #| label: dictionary
@@ -141,6 +142,12 @@ data_dictionary
 
 Alternatively, you can use `view_df()` in the Console to browse the labels interactively.
 
+```{r}
+#| label: dictionary-easy
+data_raw |> view_df()
+```
+
+
 ### Questions to answer
 
 1.  Which variables have clear, useful labels?
@@ -148,15 +155,15 @@ Alternatively, you can use `view_df()` in the Console to browse the labels inter
 3.  Which variables are nominal, ordinal, or approximately interval for this assignment? Explain at least three, using the questionnaire.
 4.  Which value labels are essential for interpreting the data, and which are predictable from the response scale?
 
-*Your answer:*
+**Your answer:**
 
 Keep `data_raw` unchanged as a reference copy. Do all cleaning on a copy.
 
-## 3. Improve the metadata with the case coding instructions
+## Improve the metadata with the case coding instructions
 
 Labels are documentation that travels with the data. Stripping them (for example with `as.numeric()`) throws that documentation away, so we keep the labels and repair them where they are incomplete.
 
-### 3.1 Coding instructions (Case Exhibit 31.2)
+### Coding instructions (Case Exhibit 31.2)
 
 | Response scale | Coding |
 |------------------------------------|------------------------------------|
@@ -174,7 +181,7 @@ Compare this table with the value labels you printed in Section 2. Which codes i
 
 *Your answer:*
 
-### 3.2 Add, edit, and remove labels
+### Add, edit, and remove labels
 
 The `labelled` package works well with the tidyverse. The main functions are:
 
@@ -199,16 +206,45 @@ val_labels(data_raw$q7)
 
 # Add a label to one code, then strip all value labels
 data_raw$q7 |> add_value_labels("Refused" = 7) |> val_labels()
-data_raw$q7 |> remove_val_labels() |> val_labels()
+
+data_raw$q7 |> add_value_labels("Refused" = 7)
+data_raw$q7 |> var_label()
+data_raw$q7 |> remove_var_label() |> var_label()
+data_raw$q7 |> val_labels()
 ```
 
-### 3.3 Create a labelled copy
+### Fixing Metadata Problems
 
-The chunk below fixes the problems found by comparing the file with Exhibit 31.2. It adds the missing "unaware" and "no answer" codes and labels the two precomputed variables. We checked that `employeeperformance` equals the mean of q3 to q6.
+The chunk below fixes the problems found by comparing the file with Exhibit 31.2. It adds the missing "unaware" and "no answer" codes and labels the two precomputed variables. 
+
+-  Remove the two precomputed variables from the questionnaire items, because they are not part of the survey, and you don't know how it was created. Keep them in `data_raw` as a reference copy.
+
+-  Below is an example of how to add a value label to a single variable. Use `across()` to apply it to multiple variables at once.
+
+-  Complete for all questionnaire variables that need a label added or changed. Check the questionnaire to see which variables use the "unaware" and "no answer" codes.
+
 
 ```{r}
 #| label: add-labels
+
+# Agreemnet Likert Type scale value lables
+five_pt_likert <- c(
+  "Strongly Disagree" = 1,
+  "Disagree" = 2,
+  "Uncertain" = 3,
+  "Agree" = 4,
+  "Strongly Agree" = 5
+)
+
 data_labelled <- data_raw |>
+  #select(-c(OverallEmployeePerformace, employeeperformance)) |>
+  mutate(
+    across(c(q3:q6, q30:q34), \(x) add_value_labels(x, five_pt_likert))
+  )
+
+# Missing "unaware" and "no answer" codes
+
+data_labelled <- data_labelled |>
   mutate(
     across(q13:q26, \(x) add_value_labels(x, "Unaware" = 3)),
     across(c(q11, q12, q27, q38), \(x) add_value_labels(x, "No answer" = 3)),
@@ -223,21 +259,20 @@ data_labelled <- data_raw |>
         "No answer" = 6
       )
     )
-  ) |>
-  set_variable_labels(
-    OverallEmployeePerformace = "Overall employee performance (precomputed)",
-    employeeperformance = "Mean of q3 to q6 (precomputed)"
   )
-
 val_labels(data_labelled$q13)
-var_label(data_labelled$employeeperformance)
+val_labels(data_labelled$q11)
+var_label(data_labelled$q37)
+
+view_df(data_labelled)
 ```
 
 Notice that q8's variable label in the file ("statement frequency") duplicates q9's label, but q8 uses the very high to very low scale. Check the questionnaire for what q8 asks. How would you relabel it with `set_variable_labels()`?
 
 *Your answer:*
 
-## 4. Create an analysis copy
+
+## Create an analysis copy
 
 -   Questionnaire variables have names that start with `q` followed by a number.
 -   The file also contains `OverallEmployeePerformace` and `employeeperformance`, which look like precomputed summaries. Create an analysis copy that keeps the questionnaire variables only. The labels are kept.
@@ -260,6 +295,7 @@ Check the range of each variable against the questionnaire coding. This table li
 
 ```{r}
 #| label: quality-checks
+library(gt)
 data |>
   # Plain numbers are needed to stack columns that have different labels
   mutate(across(everything(), as.numeric)) |>
@@ -269,18 +305,23 @@ data |>
     n_missing = sum(is.na(value)),
     pct_missing = round(mean(is.na(value)) * 100, 1),
     .by = variable
-  )
+  ) |>
+  gt()
 ```
 
 Compare these values with the questionnaire. Does any variable contain a value that the questionnaire does not define?
 
 *Your answer:*
 
-## 5. Recode special responses and reverse-code items
+## Recode special responses and reverse-code items
 
 Reverse coding is needed when a larger number represents a less favorable response than a smaller number. After reverse coding, larger values should mean the same thing across all items that will be combined.
 
-### 5.1 "No Opinion" and "No answer" responses
+-  Fix reverse labels whenever numeric codes do not match the order of the response scale. 
+
+  -  For example, q37 runs 1 to 5, but the labels run from "Excellent" to "Very Poor", so the labels are reversed. We want the labels to match the numeric order, so we will relabel q37 as "Very Poor" = 1 through "Excellent" = 5.
+
+### "No Opinion" and "No answer" responses
 
 According to Exhibit 31.2, q7 and q8 use 6 for "No Opinion", and q37 uses 6 for "No answer". Neither is a rating, so both must be treated as missing. First check whether any 6s remain in the data.
 
@@ -298,7 +339,15 @@ data <- data |>
   mutate(across(c(q7, q8, q37), \(x) na_if(x, 6)))
 ```
 
-### 5.2 Reverse coding
+### Reverse coding
+
+-  **List of items to reverse-code**:
+
+  -  q7, q8, and q37: very high to very low (1 = very high, 5 = very low)
+  -  q10: excellent to poor (1 = excellent, 4 = poor)
+  -  Do not reverse-code q9 (frequency): The questionnaire shows that the best response for q9 is in the middle of the scale
+  -  q13 to q26: These can be considered ordinal scale although they are nominal categories, strictly speaking. 
+  
 
 For a scale that runs from a minimum to a maximum, the formula is:
 
@@ -352,7 +401,8 @@ data <- data |>
 Two sets of items are deliberately **not** reversed. Read the questionnaire and value labels, then answer the questions below.
 
 -   **q9** (frequency of statements): the labels run from "Too Often" through "About Right" to "Never". The best response is in the *middle* of the scale, so the scale is not ordered from unfavorable to favorable and a simple reversal would not make the values comparable.
--   **q13 to q26** (awareness and use of products and services) have the categories "Aware and have used", "Aware but have not used", and "Unaware". These are categories, not a rating from bad to good, so a formula such as `3 - x` has no meaningful interpretation. (The yes/no items q11, q12, q27, and q38 are also categories.)
+-   **q13 to q26** (awareness and use of products and services) have the categories "Aware and have used", "Aware but have not used", and "Unaware". These are categories, not a rating from bad to good, so a formula such as `4 - x` has no meaningful interpretation. (The yes/no items q11, q12, q27, and q38 are also categories.)
+
 
 ### Questions to answer
 
@@ -360,6 +410,15 @@ Two sets of items are deliberately **not** reversed. Read the questionnaire and 
 2.  Why should q13 to q26 not be reversed or averaged into one score? What would be a more appropriate way to summarize them?
 
 *Your answer:*
+
+
+### Awareness Items as Ordinal Scale
+
+**Task:** Let's suppose you want to treat awareness questions (q13 through q26) as an ordinal scale and thus want to create new variables by reverse-coding them. Write the code below
+
+```{r}
+
+```
 
 ### Verify the recoding
 
@@ -380,7 +439,7 @@ Check that:
 -   missing values stayed missing; and
 -   larger reversed values now mean a more favorable response.
 
-## 6. Evaluate candidate multi-item measures
+## Evaluate candidate multi-item measures
 
 Two groups of items may form multi-item measures:
 
@@ -391,7 +450,7 @@ Do not create an index just because items sit next to each other in the question
 
 Statistical functions such as `psych::alpha()` expect plain numbers, so we remove the labels from the item sets only (the data keep their labels). `remove_val_labels()` strips the value labels and `remove_var_label()` strips the variable labels.
 
-### 6.1 Employee proficiency
+### Employee proficiency
 
 ```{r}
 #| label: employee-alpha
@@ -415,11 +474,13 @@ employee_fa <- psych::fa(
   fm = "minres"
 )
 
+employee_fa
+
 employee_fa$loadings
 employee_fa$communality
 ```
 
-### 6.2 Operational effectiveness
+### Operational effectiveness
 
 ```{r}
 #| label: operations-alpha
@@ -429,6 +490,8 @@ operations_items <- data |>
   remove_var_label()
 
 operations_alpha <- psych::alpha(operations_items)
+employee_fa
+
 operations_alpha$total
 operations_alpha$item.stats
 ```
@@ -456,11 +519,11 @@ For each candidate measure:
 4.  Is a one-factor interpretation reasonable given the item wording?
 5.  Do you recommend creating an index? Justify with both statistical evidence and substantive meaning.
 
-*Your answer:*
+**Your answer:**
 
 Do not use a single cutoff as an automatic decision rule. Consider reliability, loadings, item wording, response scales, missing data, and the purpose of the analysis together.
 
-## 7. Create indexes only when justified
+## Create indexes only when justified
 
 If your evaluation supports an index, compute each respondent's mean across the items. A mean stays on the original response scale, so it is easy to interpret. `rowMeans()` returns `NaN` for a respondent with no valid answers, so the code converts `NaN` to `NA`.
 
@@ -487,7 +550,7 @@ data |>
   summary()
 ```
 
-## 8. Report your data-preparation decisions
+## Report your data-preparation decisions
 
 Write a concise narrative that covers:
 
@@ -503,9 +566,22 @@ Write a concise narrative that covers:
 
 Include tables or output that help a reader verify your decisions. Do not paste every output into the report.
 
-*Your narrative:*
+**Your narrative:**
+::: {.callout-note title="Data Preparation Narrative"}
 
-## 9. Save your work to a new SPSS file
+
+
+:::
+
+## Confirm Data Preparation State with Data Dictionary
+
+```{r}
+# Data dictionary with view_df()
+data |> view_df()
+```
+
+
+## Save your work to a new SPSS file
 
 **Instructions:** 
 
@@ -518,12 +594,13 @@ Include tables or output that help a reader verify your decisions. Do not paste 
 
 ```{r}
 #| label: save-spss
+#| eval: false
 
 data |>
   write_sav("Case 31 Data_efcu_1_cleaned.sav")
 ```
 
-## 10. Render and publish your report
+## Render and publish your report
 
 Your final submission is a rendered HTML report published on GitHub Pages.
 
