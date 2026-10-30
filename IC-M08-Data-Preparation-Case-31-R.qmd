@@ -595,7 +595,6 @@ data |> view_df()
 
 ```{r}
 #| label: save-spss
-#| eval: false
 
 data |>
   write_sav("Case 31 Data_efcu_1_cleaned.sav")
