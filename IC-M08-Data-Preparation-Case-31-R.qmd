@@ -6,7 +6,8 @@ date: today
 format:
   html:
     toc: true
-    toc-depth: 2
+    toc-depth: 3
+    toc-expand: 1
     number-sections: true
     code-fold: false
     code-tools: true
@@ -19,7 +20,7 @@ execute:
   echo: fenced
 ---
 
-## Overview
+## Overview {.unnumbered}
 
 In this assignment, you will prepare survey data for analysis using R and Quarto. The data come from Case 31, Employees Federal Credit Union. You will read an SPSS data file, inspect it, document the survey variables, clean coding problems, reverse-code selected items, and decide whether two multi-item measures can be combined into indexes.
 
@@ -27,7 +28,7 @@ The goal is a transparent, reproducible workflow that another analyst can follow
 
 **How to work:** Each code chunk below is complete and runs as written. Run them in order, then answer the questions in your own words in the text between chunks. Replace each *Your answer:* line with your answer.
 
-## Learning outcomes
+## Learning outcomes {.unnumbered}
 
 After completing this assignment, you should be able to:
 
@@ -42,7 +43,7 @@ After completing this assignment, you should be able to:
 9.  Add, edit, and remove variable labels and value labels with the `labelled` package, using the case coding instructions.
 10. Render a Quarto document to HTML and publish it on GitHub Pages.
 
-## Files and software
+## Files and software {.unnumbered}
 
 Place these files in the same project folder as this QMD file:
 
@@ -63,15 +64,15 @@ The chunk below loads the packages. We call `psych` functions with the `psych::`
 library(tidyverse)
 library(haven)
 library(labelled)
-#library(sjlabelled)
 library(janitor)
 library(sjPlot)
 library(psych)
 library(skimr)
+library(gt)
 set_theme(theme_minimal())
 ```
 
-## Four Types of Measurement Scales
+## Four Types of Measurement Scales {.unnumbered}
 
 ![](images/paste-2.png)
 
@@ -138,7 +139,8 @@ data_dictionary <- tibble(
   )
 )
 
-data_dictionary
+data_dictionary |> gt()
+
 ```
 
 Alternatively, you can use `view_df()` in the Console to browse the labels interactively.
@@ -405,7 +407,7 @@ Two sets of items are deliberately **not** reversed. Read the questionnaire and 
 -   **q13 to q26** (awareness and use of products and services) have the categories "Aware and have used", "Aware but have not used", and "Unaware". These are categories, not a rating from bad to good, so a formula such as `4 - x` has no meaningful interpretation. (The yes/no items q11, q12, q27, and q38 are also categories.)
 
 
-### Questions to answer
+#### Questions to answer
 
 1.  Why is a reversal inappropriate for q9? How could you code q9 to answer "was the frequency about right?" instead?
 2.  Why should q13 to q26 not be reversed or averaged into one score? What would be a more appropriate way to summarize them?
@@ -413,7 +415,7 @@ Two sets of items are deliberately **not** reversed. Read the questionnaire and 
 *Your answer:*
 
 
-### Awareness Items as Ordinal Scale
+#### Awareness Items as Ordinal Scale
 
 **Task:** Let's suppose you want to treat awareness questions (q13 through q26) as an ordinal scale and thus want to create new variables by reverse-coding them. Write the code below
 
@@ -524,7 +526,7 @@ For each candidate measure:
 
 Do not use a single cutoff as an automatic decision rule. Consider reliability, loadings, item wording, response scales, missing data, and the purpose of the analysis together.
 
-## Create indexes only when justified
+### Create indexes only when justified
 
 If your evaluation supports an index, compute each respondent's mean across the items. A mean stays on the original response scale, so it is easy to interpret. `rowMeans()` returns `NaN` for a respondent with no valid answers, so the code converts `NaN` to `NA`.
 
@@ -574,7 +576,7 @@ Include tables or output that help a reader verify your decisions. Do not paste 
 
 :::
 
-## Confirm Data Preparation State with Data Dictionary
+## Confirming Completeness of Data Wrangling with Data Dictionary
 
 ```{r}
 # Data dictionary with view_df()
