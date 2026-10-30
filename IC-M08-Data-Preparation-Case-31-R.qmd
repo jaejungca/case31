@@ -636,14 +636,21 @@ If your repository uses a different GitHub Pages workflow, follow the course ins
 
 Submit:
 
-1.  the QMD source file;
-2.  the rendered HTML file, if your course requires it; and
-3.  the public GitHub Pages URL in the Appendix below.
+1.  the QMD source file with an Appendix section that containts:
+  -  Clickable link to GitHub Pages
+  -  Clickable link to GitHub Repo
+  
+2.  the rendered HTML file 
+
 
 ## Appendix: GitHub Pages link
 
 Replace the placeholder with the full public URL of your report. The link must be clickable in the rendered HTML.
 
-**Published report:** [View my GitHub Pages report](https://USERNAME.github.io/REPOSITORY/)
+**Published report:** 
+
+-   [View my GitHub Pages report](https://USERNAME.github.io/REPOSITORY/FIILENAME.html)
+
+-   [GithUb Repo for Case 31](https://www.github.com/USERNAME/REPOSITORY)
 
 Do not leave the placeholder URL in your final submission.
