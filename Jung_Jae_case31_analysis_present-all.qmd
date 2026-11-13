@@ -411,7 +411,7 @@ describe(case31$q7r) |>
   gt()
 ```
 
-------------------------------------------------------------------------
+---
 
 ```{r}
 #| echo: false
@@ -502,7 +502,7 @@ describe(case31$at_emp)
 ```
 :::
 
-------------------------------------------------------------------------
+---
 
 ### Histogram
 
@@ -604,7 +604,7 @@ R4a: Are there any perceived differences on attitude towards employee proficienc
     -   Descriptive statistics, followed by **`independent samples t-test`**
 :::
 
-------------------------------------------------------------------------
+---
 
 ### Descriptives
 
@@ -756,7 +756,7 @@ R4b: Are there any perceived differences on awareness of services between member
     -   Two-way cross-tabs, followed by Chi-square independence test
 :::
 
-------------------------------------------------------------------------
+---
 
 ### q13r (Share account) by q38
 
@@ -944,7 +944,6 @@ case31_clean <- case31 |>
 ### Creating a function for chi-square independence test
 
 ```{r}
-
 chisq_ind_test <- function(data, var) {
   library(dplyr)
   library(rlang)
@@ -1033,24 +1032,27 @@ case31_clean |>
     -   Member residence: IV
     -   operatoinal effectiveness: DV
 -   `Operationalization`:
-    -   q38
-    -   q9r, q10r,
-    -   q11-q12r,
-    -   q31-q34,
-    -   q37r
+    1.  q38 (IV)
+    2.  q9r, 
+    3.  q10r,
+    4.  q11-q12r,
+    5.  q31-q34,
+    6.  q37r
 :::
 
 ::: {.column .fragment width="50%"}
 -   `Scale`:
-    -   Nominal scale
-    -   interval scales
-    -   Nominal
-    -   interval
-    -   interval
+    1.  Nominal scale (IV)
+    2.  Nominal scale
+    3.  interval scales
+    4.  Nominal
+    5.  interval
+    6.  interval
 -   `Statistics`:
     -   Descriptive statistics, followed by
+        -   Chi-Square independence test
         -   2-groups t-test
-        -   Ch-square independence test
+        -   Ch-square independence tests
         -   2-groups t-test
         -   2-groups t-test
 :::
@@ -1117,7 +1119,7 @@ case31_clean |>
 ### Chi-square Goodness-of-fit test
 
 -   $H_0$ = the observed data follows the expected distribution
--   $H_A$ = the observed data follows the expected distribution
+-   $H_A$ = the observed data does not follow the expected distribution
 
 ::: medium-text
 ```{r}
@@ -1165,7 +1167,7 @@ exp_p <- c(
   `Aware and Have Used` = 1 / 3
 )
 
-# Perform chi-square goodness of fit for each product
+# Perform chi-square goodness of fit for each service
 awareness_long |>
   group_by(services) |>
   count(aware_level) |>
@@ -1200,12 +1202,14 @@ R6: What are the members’ attitudes and beliefs about how effectively the cred
 -   `Constructs and roles`:
     -   Attitude toward operational effectiveness
 -   `Operationalization`:
-    -   Q9r–Q10r
+    -   Q9r
+    -   Q10r
     -   Q11–Q12rc,
     -   Q31 – Q34
     -   Q37r
 -   `Scale`:
-    -   ordinal/internal scale
+    -   nominal
+    -   internal scale
     -   nominal scale
     -   Interval
     -   Interval
@@ -1214,6 +1218,7 @@ R6: What are the members’ attitudes and beliefs about how effectively the cred
 ::: {.column .fragment .highlight-blue width="50%"}
 -   `Statistics`:
     -   DS / Chi-square goodness-of-fit test
+    -   DS / One group t-test
     -   DS / Chi-square goodness-of-fit test
     -   DS / One group t-test
     -   DS / One group t-test
@@ -1274,7 +1279,7 @@ case31_clean |>
 ```{r}
 #| echo: false
 #| label: fig-q33-q13r-barplot
-#| fig-cap: Mean VAlue of Adequacy of Financial Services in Meeting Members' Needs (q33) by Their Awareness of Regular Share Accounts (q13r)
+#| fig-cap: Mean Value of Adequacy of Financial Services in Meeting Members' Needs (q33) by Their Awareness of Regular Share Accounts (q13r)
 
 case31_clean |>
   group_by(q13r) |>
@@ -1347,7 +1352,7 @@ residuals(h1_aov_model) |>
 ### 2. Homogeneity of variance
 
 -   $H_0:$ Variance is the same across the groups
--   $H_1:$ The data is NOT normally distributed
+-   $H_1:$ The data is Not the same across the groups
 
 ```{r}
 library(car)
