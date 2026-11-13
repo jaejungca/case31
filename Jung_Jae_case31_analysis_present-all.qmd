@@ -1352,7 +1352,7 @@ residuals(h1_aov_model) |>
 ### 2. Homogeneity of variance
 
 -   $H_0:$ Variance is the same across the groups
--   $H_1:$ The data is Not the same across the groups
+-   $H_1:$ Variance is Not the same across the groups
 
 ```{r}
 library(car)
