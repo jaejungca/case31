@@ -1752,57 +1752,7 @@ head(dfbetas) # Shows influence of each observation
 
 ------------------------------------------------------------------------
 
-### 7. Cross-validation
-
-::::: columns
-::: {.column width="50%"}
-#### Define control for cross-validation
-
-```{r}
-library(caret)
-set.seed(123)
-
-train_control <- trainControl(method = "cv", number = 10)
-
-case31_clean <- case31_clean |>
-  filter(!is.na(q37r)) |>
-  mutate(q37r = as.numeric(q37r))
-```
-:::
-
-::: {.column width="50%"}
-#### Train the model
-
-```{r}
-cv_model <- train(
-  q37r ~ q31 + q32 + q33 + q34,
-  data = case31_clean,
-  method = "lm",
-  trControl = train_control
-)
-
-cv_model # Check cross-validation results
-cv_model$resample
-```
-:::
-:::::
-
-------------------------------------------------------------------------
-
-### Model Parameters
-
-::: panel-tabset
-#### Final Model Parameters from CV
-
-```{r}
-#| output-location: column
-
-summary(cv_model) # summary function returns final model fit based on entire data
-```
-
-------------------------------------------------------------------------
-
-#### Multiple Regression & Results
+### Multiple Regression & Results
 
 ```{r}
 #| eval: true
@@ -1814,7 +1764,7 @@ case31_clean |>
 ```
 :::
 
-------------------------------------------------------------------------
+---
 
 ### Summary Table
 
@@ -1875,6 +1825,7 @@ m_h5_2 |>
 ::: {.fragment .shrink .highlight-blue}
 -   Overall, the assumptions of multiple regression are supported.
     -   Linearity assumption is okay in general.
+    -   Independence assumption is supported.
     -   Homosckedasticiy assumption is confirmed
     -   Multicollinearity is not an issue.
     -   Normality assumption is not supported.
@@ -1889,6 +1840,55 @@ m_h5_2 |>
 :::
 ::::::
 
-## References
+# Appendix
 
--   <https://www.danieldsjoberg.com/gtsummary/>
+## H5: Using cross-validation
+
+::::: columns
+::: {.column width="50%"}
+### Define control for cross-validation
+
+```{r}
+library(caret)
+set.seed(123)
+
+train_control <- trainControl(method = "cv", number = 10)
+
+case31_clean <- case31_clean |>
+  filter(!is.na(q37r)) |>
+  mutate(q37r = as.numeric(q37r))
+```
+:::
+
+::: {.column width="50%"}
+### Train the model
+
+```{r}
+cv_model <- train(
+  q37r ~ q31 + q32 + q33 + q34,
+  data = case31_clean,
+  method = "lm",
+  trControl = train_control
+)
+
+cv_model # Check cross-validation results
+cv_model$resample
+```
+:::
+:::::
+
+
+## Model Parameters
+
+### Final Model Parameters from CV
+
+```{r}
+#| output-location: column
+
+summary(cv_model) # summary function returns final model fit based on entire data
+```
+
+
+# References
+
+<https://www.danieldsjoberg.com/gtsummary/>
